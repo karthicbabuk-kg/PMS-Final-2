@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
-
+const MySQLStore = require('express-mysql-session')(session); // For storing sessions in MySQL
 const path = require('path');
 const authRoutes = require('./routes/auth');
 const companyRoutes = require('./routes/companyRoutes');
@@ -9,10 +9,11 @@ const employeeRoutes = require('./routes/employeeRoutes');
 const customerRoutes = require('./routes/customerRoutes');
 const groupRouter = require('./routes/groupRoutes');
 const customerDoc = require('./routes/customerDocRoutes');
-const masterdataRoutes=require('./routes/masterdataRoutes');
-const executiveRoute=require('./routes/executiveRoutes');
-const addTaskRoute=require('./routes/taskRoutes');
+const masterdataRoutes = require('./routes/masterdataRoutes');
+const executiveRoute = require('./routes/executiveRoutes');
+const addTaskRoute = require('./routes/taskRoutes');
 const taskRoutes = require('./routes/extaskRoutes');
+const db = require('./models/db')
 
 
 const app = express();
@@ -32,16 +33,26 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Set up session store
+const sessionStore = new MySQLStore({}, db); // Assuming you have pool configured
+
+// Session middleware
 app.use(session({
-    secret: 'your_secret_key',
+    key: 'Process Management',
+    secret: 'your_secret_key', // Use a strong secret key
+    store: sessionStore,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60, // 1 hour session expiry
+        httpOnly: true, // Helps mitigate XSS attacks
+    }
 }));
 
 // Routes
 app.use('/tasks', taskRoutes);
-app.use('/addTask',addTaskRoute );
-app.use('/executive',executiveRoute );
+app.use('/addTask', addTaskRoute);
+app.use('/executive', executiveRoute);
 app.use('/master', masterdataRoutes);
 app.use('/customer', customerDoc);
 app.use('/groups', groupRouter);

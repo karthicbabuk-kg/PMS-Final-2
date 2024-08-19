@@ -19,7 +19,7 @@ router.post('/add',groupController.addGroup);
 
 router.get('/companies', async (req, res) => {
     try {
-      const [rows] = await db.query('SELECT company_name FROM companies');
+      const [rows] = await db.query('SELECT DISTINCT company_name FROM companies');
       res.json(rows);
     } catch (error) {
       console.error('Database query error:', error);
@@ -28,9 +28,9 @@ router.get('/companies', async (req, res) => {
   });
   router.get('/dept', async (req,res)=>{
     try {
-        const [departmentCategories] = await db.query('SELECT departmentCategory FROM employees');
-        const [departmentNames] = await db.query('SELECT departmentName FROM employees');
-        const [departmentDesignations] = await db.query('SELECT departmentDesignation FROM employees');
+        const [departmentCategories] = await db.query('SELECT DISTINCT departmentCategory FROM employees');
+        const [departmentNames] = await db.query('SELECT DISTINCT departmentName FROM employees');
+        const [departmentDesignations] = await db.query('SELECT DISTINCT departmentDesignation FROM employees');
 
         res.json({
             departmentCategories,

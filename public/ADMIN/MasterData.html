@@ -289,69 +289,46 @@
                           <div class="row mb-2">
                             <div class="form">
                               <form action="/master/masterdata" method="POST">
-                                <div class="text-xl-end mt-xl-0 mt-2">
-                                    <button type="submit" class="btn btn-primary mb-2 me-2">Add</button>
-                                    <button type="button" class="btn btn-light mb-2 me-2">Cancel</button>
-                                    <button type="button" class="btn btn-light mb-2 me-2">Export</button>
-                                </div>
-                                <p style="font-weight: bold;">Master Data Information</p>
-                            
-                                <div class="row" style="margin-top: 10px;">
+                                <div class="text-end mt-4">
+                                  <button type="submit" class="btn btn-primary mb-2">Add</button>
+                                  <button type="button" class="btn btn-light mb-2">Cancel</button>
+                                  <button type="button" class="btn btn-light mb-2">Export</button>
+                              </div>
+                                <div class="row mt-3">
                                     <div class="col-md-6">
                                         <label class="form-label">Module</label>
-                                        <select class="form-select" name="module" required>
-                                            <option selected value="EDQ"><-Select-></option>
-                                            <option>CRM</option>
-                                            <option>Admin Central</option>
-                                            <option>Business Central</option>
+                                        <select class="form-select" id="moduleSelect" name="module" required>
+                                            <option selected value=""><-Select-></option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Sub Module</label>
-                                        <select class="form-select" name="subModule" required>
-                                            <option selected value="SOU"><-Select-></option>
-                                            <option>Company</option>
-                                            <option>Employees</option>
-                                            <option>Groups</option>
-                                            <option>Roles</option>
-                                            <option>Meetings</option>
-                                            <option>Tasks</option>
-                                            <option>Calls</option>
-                                            <option>Lead</option>
-                                            <option>Opportunities</option>
-                                            <option>Contacts</option>
-                                            <option>Accounts</option>
-                                            <option>Products</option>
-                                            <option>Quotes</option>
-                                            <option>Invoice</option>
-                                            <option>Purchase Order</option>
+                                        <select class="form-select" id="subModuleSelect" name="subModule" required>
+                                            <option selected value=""><-Select-></option>
                                         </select>
                                     </div>
                                 </div>
-                            
-                                <div class="row" style="margin-top: 10px;">
+                    
+                                <div class="row mt-3">
                                     <div class="col-md-6">
                                         <label class="form-label">Column Name</label>
-                                        <select class="form-select" name="columnName" id="columnName" required>
-                                            <option selected value="EDQ"><-Select-></option>
-                                            <option value="Gender">Gender</option>
-                                            <option value="Department Category">Department Category</option>
+                                        <select class="form-select" id="columnNameSelect" name="columnName" required>
+                                            <option selected value=""><-Select-></option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Column Description</label>
-                                        <select class="form-select" name="columnDescription" id="columnDescription" required>
-                                            <option selected value="EDQ"><-Select-></option>
-                                            <option>NA</option>
+                                        <select class="form-select" id="columnDescriptionSelect" name="columnDescription" required>
+                                            <option selected value=""><-Select-></option>
                                         </select>
                                     </div>
                                 </div>
-                            
-                                <div class="row" style="margin-top: 10px;">
+                    
+                                <div class="row mt-3">
                                     <div class="col-md-6">
                                         <label class="form-label">Status</label>
                                         <select class="form-select" name="status" required>
-                                            <option selected value="EDQ"><-Select-></option>
+                                            <option selected value=""><-Select-></option>
                                             <option>Active</option>
                                             <option>Inactive</option>
                                         </select>
@@ -361,6 +338,8 @@
                                         <input type="text" class="form-control" name="addColumnDescription" placeholder="Description" required>
                                     </div>
                                 </div>
+                    
+                               
                             </form>
                             
                             </div>
@@ -1154,98 +1133,171 @@
         alert("Logout Successfully!");
       }
     </script>
-   <script>
-    document.getElementById('columnName').addEventListener('change', function() {
-        const columnDescriptionSelect = document.getElementById('columnDescription');
-        columnDescriptionSelect.innerHTML = ''; // Clear previous options
+ <script>
+  // Populate Module Dropdown
+  fetch('/master/get-modules')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);  // Check the data structure
+        const moduleSelect = document.getElementById('moduleSelect');
+        moduleSelect.innerHTML = '<option selected value=""><-Select-></option>';
 
-        if (this.value === 'Gender') {
-            columnDescriptionSelect.innerHTML = `
-                <option selected value="EDQ"><-Select-></option>
-                <option>Male</option>
-                <option>Female</option>
-            `;
-        } else if (this.value === 'Department Category') {
-            columnDescriptionSelect.innerHTML = `
-                <option selected value="EDQ"><-Select-></option>
-                <option>CRM</option>
-                <option>HRM</option>
-                <option>Planning & Production</option>
-                <option>Inventory & Warehouse</option>
-                <option>Logistics</option>
-                <option>Factory Maintenance</option>
-                <option>Finance & Billing</option>
-                <option>Business Intelligence</option>
-            `;
-        } else {
-            columnDescriptionSelect.innerHTML = `<option selected value="EDQ"><-Select-></option>`;
-        }
-    });
+        data.forEach(module => {
+            moduleSelect.innerHTML += `<option value="${module.Module}">${module.Module}</option>`;
+        });
+    })
+    .catch(error => console.error('Error fetching modules:', error));
+
+  // Trigger fetching Sub Modules when a Module is selected
+  document.getElementById('moduleSelect').addEventListener('change', function() {
+    const module = this.value;
+    fetch(`/master/get-submodules/${module}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);  // Check the data structure
+            const subModuleSelect = document.getElementById('subModuleSelect');
+            subModuleSelect.innerHTML = '<option selected value=""><-Select-></option>';
+
+            data.forEach(submodule => {
+                subModuleSelect.innerHTML += `<option value="${submodule.Sub_Modue}">${submodule.Sub_Modue}</option>`;
+            });
+        })
+        .catch(error => console.error('Error fetching submodules:', error));
+  });
+
+  // Trigger fetching Column Names when a Sub Module is selected
+  document.getElementById('subModuleSelect').addEventListener('change', function() {
+    const module = document.getElementById('moduleSelect').value;
+    const subModule = this.value;
+    fetch(`/master/get-columnNames/${module}/${subModule}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);  // Check the data structure
+            const columnNameSelect = document.getElementById('columnNameSelect');
+            columnNameSelect.innerHTML = '<option selected value=""><-Select-></option>';
+
+            data.forEach(column => {
+                columnNameSelect.innerHTML += `<option value="${column.Column_Name}">${column.Column_Name}</option>`;
+            });
+        })
+        .catch(error => console.error('Error fetching column names:', error));
+  });
+
+  // Trigger fetching Column Descriptions when a Column Name is selected
+  document.getElementById('columnNameSelect').addEventListener('change', function() {
+    const columnName = this.value;
+    fetch(`/master/get-columnDescriptions/${columnName}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);  // Check the data structure
+            const columnDescriptionSelect = document.getElementById('columnDescriptionSelect');
+            columnDescriptionSelect.innerHTML = '<option selected value=""><-Select-></option>';
+
+            data.forEach(description => {
+                columnDescriptionSelect.innerHTML += `<option value="${description.Column_Description}">${description.Column_Description}</option>`;
+            });
+        })
+        .catch(error => console.error('Error fetching column descriptions:', error));
+  });
 </script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    fetch('/master/gets')
-        .then(response => response.json())
-        .then(data => {
-            const tableBody = document.getElementById('data-table-body');
-            tableBody.innerHTML = ''; // Clear any existing rows
+  // Function to fetch and display data in the table based on selected filters
+  function loadTableData(module = '', subModule = '', columnName = '', columnDescription = '') {
+      const query = new URLSearchParams();
+      if (module) query.append('module', module);
+      if (subModule) query.append('subModule', subModule);
+      if (columnName) query.append('columnName', columnName);
+      if (columnDescription) query.append('columnDescription', columnDescription);
 
-            data.forEach((row) => {
-                const tableRow = document.createElement('tr');
+      fetch(`/master/get-masterdata?${query.toString()}`)
+          .then(response => response.json())
+          .then(data => {
+              const tableBody = document.getElementById('data-table-body');
+              tableBody.innerHTML = ''; // Clear existing rows
 
-                tableRow.innerHTML = `
-                    <td>${row.id}</td>
-                    <td>${row.module}</td>
-                    <td>${row.subModule}</td>
-                    <td>${row.columnName}</td>
-                    <td>${row.columnDescription}</td>
-                    <td>${row.status}</td>
-                    <td>
-                        <a href="javascript:void(0);" class="action-icon">
-                            <i class="mdi mdi-square-edit-outline"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="action-icon delete-icon" data-row-id="${row.id}">
+              data.forEach((item, index) => {
+                  const row = document.createElement('tr');
+                  row.innerHTML = `
+                      <td>${index + 1}</td>
+                      <td>${item.Module}</td>
+                      <td>${item.Sub_Modue}</td>
+                      <td>${item.Column_Name}</td>
+                      <td>${item.Column_Description}</td>
+                      <td>${item.Status}</td>
+                      <td>
+                           <a href="javascript:void(0);" class="action-icon delete-group" data-id="${item.id}">
                             <i class="mdi mdi-delete"></i>
                         </a>
-                    </td>
-                `;
+                      </td>
+                  `;
+                  tableBody.appendChild(row);
+              });
 
-                tableBody.appendChild(tableRow);
-            });
+              // Add event listeners to delete buttons
+              document.querySelectorAll('.delete-btn').forEach(button => {
+                  button.addEventListener('click', function() {
+                      const id = this.getAttribute('data-id');
+                      deleteRecord(id);
+                  });
+              });
+          })
+          .catch(error => console.error('Error fetching master data:', error));
+  }
 
-            // Attach event listeners to delete icons
-            const deleteIcons = document.querySelectorAll('.delete-icon');
-            deleteIcons.forEach(icon => {
-                icon.addEventListener('click', handleDelete);
-            });
-        })
-        .catch(error => console.error('Error fetching data:', error));
-  });
-
-  // Delete function to handle deleting a row
-  function handleDelete(event) {
-      const rowId = event.target.closest('.delete-icon').getAttribute('data-row-id');
-      
-      if (confirm('Are you sure you want to delete this row?')) {
-          fetch(`/master/delete/${rowId}`, {
+  // Function to delete a record by ID
+  function deleteRecord(id) {
+      if (confirm('Are you sure you want to delete this record?')) {
+          fetch(`/master/delete/${id}`, {
               method: 'DELETE'
           })
           .then(response => {
               if (response.ok) {
-                  // Remove the row from the table
-                  const tableRow = event.target.closest('tr');
-                  tableRow.remove();
-                  alert('Row deleted successfully');
+                  loadTableData(); // Reload data after deletion
               } else {
-                  alert('Failed to delete row');
+                  console.error('Failed to delete record');
               }
           })
-          .catch(error => console.error('Error deleting row:', error));
+          .catch(error => console.error('Error deleting record:', error));
       }
   }
-</script>
 
+  // Event listeners for filters
+  document.getElementById('moduleSelect').addEventListener('change', function() {
+      const module = this.value;
+      const subModule = document.getElementById('subModuleSelect').value;
+      const columnName = document.getElementById('columnNameSelect').value;
+      const columnDescription = document.getElementById('columnDescriptionSelect').value;
+      loadTableData(module, subModule, columnName, columnDescription);
+  });
+
+  document.getElementById('subModuleSelect').addEventListener('change', function() {
+      const module = document.getElementById('moduleSelect').value;
+      const subModule = this.value;
+      const columnName = document.getElementById('columnNameSelect').value;
+      const columnDescription = document.getElementById('columnDescriptionSelect').value;
+      loadTableData(module, subModule, columnName, columnDescription);
+  });
+
+  document.getElementById('columnNameSelect').addEventListener('change', function() {
+      const module = document.getElementById('moduleSelect').value;
+      const subModule = document.getElementById('subModuleSelect').value;
+      const columnName = this.value;
+      const columnDescription = document.getElementById('columnDescriptionSelect').value;
+      loadTableData(module, subModule, columnName, columnDescription);
+  });
+
+  document.getElementById('columnDescriptionSelect').addEventListener('change', function() {
+      const module = document.getElementById('moduleSelect').value;
+      const subModule = document.getElementById('subModuleSelect').value;
+      const columnName = document.getElementById('columnNameSelect').value;
+      const columnDescription = this.value;
+      loadTableData(module, subModule, columnName, columnDescription);
+  });
+
+  // Load data initially without filters
+  document.addEventListener('DOMContentLoaded', () => loadTableData());
+</script>
 
 
   </body>

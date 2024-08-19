@@ -1,46 +1,81 @@
+// Import necessary modules
 const express = require('express');
 const router = express.Router();
-const masterDataController = require('../controllers/masterdataController')
-const db = require('../models/db')
+const db = require('../models/db'); // Assuming you have a database connection module
 
-// Route to handle creating master data
-router.post('/masterdata', masterDataController.createMasterData);
-// router.get('/get', (req, res) => {
-//     const sqlQuery = 'SELECT * FROM masterdata'; // Replace 'master_data' with your actual table name
-//     db.query(sqlQuery, (err, results) => {
-//         if (err) throw err;
-//         res.render('masterdata', { data: results });
-//     });
-// });
-
-router.get('/gets', async (req, res) => {
+router.get('/get-modules', async (req, res) => {
     try {
-        // SQL Query to get data from your SQL table
-        const [rows] = await db.query('SELECT id, module, subModule, columnName, columnDescription, status FROM masterdata');
-        
-        // Send the result back as JSON
-        res.json(rows);  // Send the rows array containing the data
+        const [rows] = await db.query('SELECT DISTINCT Module FROM final_module');
+        res.json(rows.map(row => ({ Module: row.Module })));
     } catch (error) {
-        console.error('Error fetching data:', error);
-        res.status(500).json({ error: 'Failed to fetch data' });
+        console.error('Error fetching modules:', error);
+        res.status(500).json({ error: 'Failed to fetch modules' });
+    }
+});
+router.get('/get-submodules/:module', async (req, res) => {
+    const { module } = req.params;
+    try {
+        const [rows] = await db.query('SELECT DISTINCT Sub_Modue FROM final_module WHERE Module = ?', [module]);
+        res.json(rows.map(row => ({ Sub_Modue: row.Sub_Modue })));
+    } catch (error) {
+        console.error('Error fetching subModules:', error);
+        res.status(500).json({ error: 'Failed to fetch subModules' });
     }
 });
 
-router.delete('/delete/:id', async (req, res) => {
-    const { id } = req.params;
+// Route to get distinct columnNames based on selected module and subModule
+router.get('/get-columnNames/:module/:subModule', async (req, res) => {
+    const { module, subModule } = req.params;
+    try {
+        const [rows] = await db.query('SELECT DISTINCT Column_Name FROM final_module WHERE Module = ? AND Sub_Modue = ?', [module, subModule]);
+        res.json(rows.map(row => ({ Column_Name: row.Column_Name })));
+    } catch (error) {
+        console.error('Error fetching columnNames:', error);
+        res.status(500).json({ error: 'Failed to fetch columnNames' });
+    }
+});
+// Route to get distinct columnDescriptions based on selected columnName
+router.get('/get-columnDescriptions/:columnName', async (req, res) => {
+    const { columnName } = req.params;
+    try {
+        const [rows] = await db.query('SELECT DISTINCT Column_Description FROM final_module WHERE Column_Name = ?', [columnName]);
+        res.json(rows.map(row => ({ Column_Description: row.Column_Description })));
+    } catch (error) {
+        console.error('Error fetching columnDescriptions:', error);
+        res.status(500).json({ error: 'Failed to fetch columnDescriptions' });
+    }
+})
+
+// Route to get filtered master data based on module, subModule, columnName, and columnDescription
+router.get('/get-masterdata', async (req, res) => {
+    const { module, subModule, columnName, columnDescription } = req.query;
+    let query = 'SELECT * FROM final_module WHERE 1=1'; // 1=1 is a dummy condition to facilitate appending filters
+
+    const params = [];
+
+    if (module) {
+        query += ' AND Module = ?';
+        params.push(module);
+    }
+    if (subModule) {
+        query += ' AND Sub_Modue = ?';
+        params.push(subModule);
+    }
+    if (columnName) {
+        query += ' AND Column_Name = ?';
+        params.push(columnName);
+    }
+    if (columnDescription) {
+        query += ' AND Column_Description = ?';
+        params.push(columnDescription);
+    }
 
     try {
-        // Perform the SQL query to delete the record
-        const result = await db.query('DELETE FROM masterdata WHERE id = ?', [id]);
-
-        if (result.affectedRows > 0) {
-            res.status(200).json({ message: 'Record deleted successfully' });
-        } else {
-            res.status(404).json({ message: 'Record not found' });
-        }
+        const [rows] = await db.query(query, params);
+        res.json(rows);
     } catch (error) {
-        console.error('Error deleting record:', error);
-        res.status(500).json({ error: 'Failed to delete record' });
+        console.error('Error fetching master data:', error);
+        res.status(500).json({ error: 'Failed to fetch master data' });
     }
 });
 module.exports = router;

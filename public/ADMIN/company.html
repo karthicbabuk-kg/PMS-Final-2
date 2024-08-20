@@ -342,8 +342,181 @@
         <!-- end row -->
       </div>
 
-  
+        <!-- edit company -->
 
+      <div class="modal fade" id="fullscreeexampleModal" tabindex="-1" aria-labelledby="fullscreeexampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="fullscreeexampleModalLabel">Edit Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    
+                    <p style="font-weight: bold;">Company Information</p>
+
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="col-md-6">
+                        <label class="form-label">Company Name</label>
+                        <input type="text" class="form-control" placeholder="Company Name" id="CCP_CN" runat="server" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Company Owner</label>
+                        <input type="text" class="form-control" placeholder="Company Owner" id="CCP_CO" runat="server" />
+                      </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="col-md-6">
+                        <label class="form-label">Phone</label>
+                        <input type="text" class="form-control" placeholder="Phone" id="CCP_PHN" runat="server" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" placeholder="Email" id="CCP_EMAIL" runat="server" />
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="col-md-6">
+                        <label class="form-label">Website</label>
+                        <input type="text" class="form-control" placeholder="website" id="CCP_WEB" runat="server" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Fax</label>
+                        <input type="text" class="form-control" placeholder="Fax" id="CCP_FAX" runat="server" />
+                      </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="col-md-6">
+                        <label class="form-label">Source</label>
+                        <select class="form-select" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();" id="CCP_DD_SOU" runat="server">
+                          <option selected value="SOU"><-Select-></option>
+                          <option>Advertisement</option>
+                          <option>Cold Call</option>
+                          <option>Employee Referral</option>
+                          <option>External Referral</option>
+                          <option>Online Store</option>
+                          <option>Partner</option>
+                          <option>Public Relations</option>
+                          <option>Trade Show</option>
+                          <option>Web Search</option>
+                          <option>Facebook</option>
+                          <option>Twitter</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Industry</label>
+                        <select class="form-select" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();" id="CCP_DD_IND" runat="server">
+                          <option selected value="IND"><-Select-></option>
+                          <option>Asp(Application Service Provider)</option>
+                          <option>Data/Telecom OEM</option>
+                          <option>ERP(Enterprise Resource Planning)</option>
+                          <option>Government/Military</option>
+                          <option>Large Enterprises</option>
+                          <option>Management ISV</option>
+                          <option>MSP(Management Service Provider)</option>
+                          <option>Network Equipment Enterprises</option>
+                          <option>Non-Management ISV</option>
+                          <option>Optical Networking</option>
+                          <option>Service Provider</option>
+                          <option>Small/Medium Enterprise</option>
+                          <option>Storage Equipement</option>
+                          <option>Storage Serive Provider</option>
+                          <option>System Integrator</option>
+                          <option>Wireless Industry</option>
+                          <option>ERP</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="col-md-6">
+                        <label class="form-label">No of Employees</label>
+                        <input type="text" class="form-control" placeholder="No of Employees" id="CCP_NOE" runat="server" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Annual Revenue</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <select class="form-select" id="CCP_DD_AMO" runat="server">
+                              <option selected value="ARS"><-Select-></option>
+                              <option>USD</option>
+                              <option>INR</option>
+                              <option>EURO</option>
+                            </select>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Annual Revenue" id="CCP_AR" runat="server" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="col-md-6">
+                        <label class="form-label">Skype Id</label>
+                        <input type="text" class="form-control" placeholder="Skype Id" id="CCP_SKY" runat="server" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Twitter</label>
+                        <input type="text" class="form-control" placeholder="Twitter" id="CCP_TWI" runat="server" />
+                      </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="col-md-6">
+                        <label class="form-label">Documents</label>
+                        <input type="file" class="form-control" placeholder="Documents" id="CCP_DOC" runat="server" />
+                      </div>
+                    
+                    </div>
+
+                    <p style="font-weight: bold; margin-top: 16px;">Address Information</p>
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="col-md-6">
+                        <label class="form-label">Street</label>
+                        <input type="text" class="form-control" placeholder="Street" id="CCP_STR" runat="server" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-control" placeholder="City" id="CCP_CIT" runat="server" />
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="col-md-6">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-control" placeholder="State" id="CCP_STA" runat="server" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Zipcode</label>
+                        <input type="text" class="form-control" placeholder="Zipcode" id="CCP_ZIP" runat="server" />
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="col col-md-6">
+                        <label class="form-label">Country</label>
+                        <input type="text" class="form-control" placeholder="Country" id="CCP_COU" runat="server" />
+                      </div>
+                    </div>
+
+                    <p style="font-weight: bold; margin-top: 20px;">Additional Information</p>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" placeholder="Description" id="CCP_DES" runat="server"></textarea>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                    <!-- Close button -->
+                    <a href="company.html" class="btn btn-light" data-bs-dismiss="modal">Close</a>
+                    <!-- Save button (you can customize this as needed) -->
+                    <a href="company.html" type="button" class="btn btn-primary">Save Changes</a>
+                </div>
+            </div>
+        </div>
+    </div>
       <!-- Footer Start -->
       <footer class="footer">
         <div class="container-fluid">
@@ -1105,7 +1278,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <td>${company.gst_no || 'NA'}</td>
                 <td>${company.pan_no || 'NA'}</td>
                 <td>
-                    <a href="#" class="action-icon edit-icon"><i class="mdi mdi-square-edit-outline"></i></a>
+                    <a href="#" class="action-icon" data-bs-toggle="modal" data-bs-target="#fullscreeexampleModal"><i class="mdi mdi-square-edit-outline"></i></a>
                     <a href="javascript:void(0);" class="action-icon delete-icon"><i class="mdi mdi-delete"></i></a>
                 </td>
             `;

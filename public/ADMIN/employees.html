@@ -458,6 +458,419 @@
         <!-- container -->
       </div>
 
+      <div class="modal fade" id="fullscreeexampleModal" tabindex="-1" aria-labelledby="fullscreeexampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="fullscreeexampleModalLabel">Edit Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+             
+                    <p style="font-weight: bold;">Primary Details</p>
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Employee Name</label>
+                              <input type="text" class="form-control" placeholder="Employee name" id="AEM_EN" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Employee Code</label>
+                              <input type="text" class="form-control" placeholder="Employee code" id="AEM_EC" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Gender</label>
+                              <select class="form-select" id="AEM_DD_GN" runat="server">
+                                <option selected value="GEN"><-Select-></option>
+                                <option>Male</option>
+                                <option>Female</option>
+                              </select>
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Company</label>
+                              <select class="form-select" id="AEM_DD_CM" runat="server">
+                                <option selected value="CMP"><-Select-></option>
+                                <option>Jayashree Spun Bond</option>
+                              </select>
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Department Category</label>
+                              <select class="form-select" id="AEM_DD_DC" runat="server">
+                                <option selected value="DPC"><-Select-></option>
+                                <option>Production</option>
+                                <option>Sales</option>
+                              </select>
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Department Name</label>
+                              <select class="form-select" id="AEM_DD_DN" runat="server">
+                                <option selected value="DPN"><-Select-></option>
+                                <option>Production</option>
+                              </select>
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Department Desigination</label>
+                              <select class="form-select" id="AEM_DD_DD" runat="server">
+                                <option selected value="DPD"><-Select-></option>
+                                <option>NA</option>
+                              </select>
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Shift</label>
+                              <select class="form-select" id="AEM_DD_SF" runat="server">
+                                <option selected value="DPS"><-Select-></option>
+                                <option>Day Shift</option>
+                                <option>Night Shift</option>
+                              </select>
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Shift Start Time</label>
+                              <input type="time" class="form-control" id="AEM_ST" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Shift End Time</label>
+                              <input type="time" class="form-control" id="AEM_ET" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Educational Qualification</label>
+                              <select class="form-select" id="AEM_DD_EQ" runat="server">
+                                <option selected value="EDQ"><-Select-></option>
+                                <option>UG</option>
+                                <option>PG</option>
+                              </select>
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Department</label>
+                              <input type="text" class="form-control" placeholder="Department" id="AEM_DP" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label"> Experience</label>
+                              <select class="form-select" id="AEM_DD_EX" runat="server">
+                                <option selected value="EXP"><-Select-></option>
+                                <option>Experienced</option>
+                                <option>Fresher</option>
+                              </select>
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Previous Company</label>
+                              <input type="text" class="form-control" placeholder="Previous company" id="AEM_PC" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Relevant Experience in Years</label>
+                              <input type="text" class="form-control" placeholder="Experience in years" id="AEM_EY" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Relevant Experience in Months</label>
+                              <input type="text" class="form-control" placeholder="Experience in months" id="AEM_EM" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Date of Birth</label>
+                              <input type="date" class="form-control" id="AEM_DB" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Place of Birth</label>
+                              <input type="text" class="form-control" placeholder="Place of birth" id="AEM_PB" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Blood Group</label>
+                              <input type="text" class="form-control" placeholder="Blood group" id="AEM_BG" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Date of Joining</label>
+                              <input type="date" class="form-control" id="AEM_DJ" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label"> Employement Type</label>
+                              <select class="form-select" id="AEM_DD_ET" runat="server">
+                                <option selected value="EPT"><-Select-></option>
+                                <option>Full-time</option>
+                                <option>Part-time</option>
+                              </select>
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Employement Status</label>
+                              <select class="form-select" id="AEM_DD_ES" runat="server">
+                                <option selected value="EPS"><-Select-></option>
+                                <option>Contract</option>
+                              </select>
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Personal Mobile</label>
+                              <input type="text" class="form-control" placeholder="Personal mobile" id="AEM_PM" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Work mobile</label>
+                              <input type="text" class="form-control" placeholder="Work mobile" id="AEM_WM" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Extension</label>
+                              <input type="text" class="form-control" placeholder="Extension" id="AEM_ES" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Bio Metric ID</label>
+                              <input type="text" class="form-control" placeholder="Bio Metric ID" id="AEM_ID" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+
+                        
+
+                          <p style="font-weight: bold;">Personal Details</p>
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Father name</label>
+                              <input type="text" class="form-control" placeholder="Father name" id="AEM_FN" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Mother name</label>
+                              <input type="text" class="form-control" placeholder="Mother name" id="AEM_MN" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Residental Address</label>
+                              <input type="text" class="form-control" placeholder="Residental address" id="AEM_RA" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Address Line 1</label>
+                              <input type="text" class="form-control" placeholder="Address line 1" id="AEM_AD" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Address Line 2</label>
+                              <input type="text" class="form-control" placeholder="Address line 2" id="AEM_ADD" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">City</label>
+                              <input type="text" class="form-control" placeholder="City" id="AEM_CIT" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">District</label>
+                              <input type="text" class="form-control" placeholder="District" id="AEM_DIS" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">State</label>
+                              <input type="text" class="form-control" placeholder="State" id="AEM_STA" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Pincode</label>
+                              <input type="text" class="form-control" placeholder="Pincode" id="AEM_PIN" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Country</label>
+                              <input type="text" class="form-control" placeholder="Country" id="AEM_COU" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Permanent Address</label>
+                              <input type="text" class="form-control" placeholder="Permanent address" id="AEM_PA" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Address Line 1</label>
+                              <input type="text" class="form-control" placeholder="Address line 1" id="AEM_PAL" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Address Line 2</label>
+                              <input type="text" class="form-control" placeholder="Address line 2" id="AEM_PALL" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">City</label>
+                              <input type="text" class="form-control" placeholder="City" id="AEM_PCIT" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">District</label>
+                              <input type="text" class="form-control" placeholder="District" id="AEM_PDIS" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">State</label>
+                              <input type="text" class="form-control" placeholder="State" id="AEM_PSTA" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Pincode</label>
+                              <input type="text" class="form-control" placeholder="Pincode" id="AEM_PPIN" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Country</label>
+                              <input type="text" class="form-control" placeholder="Country" id="AEM_PCOU" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Contact Number</label>
+                              <input type="text" class="form-control" placeholder="Contact number" id="AEM_CTN" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Email</label>
+                              <input type="email" class="form-control" placeholder="Email" id="AEM_EMAIL" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                        
+                          <p style="font-weight: bold;">Official Details</p>
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Aadhar Card</label>
+                              <input type="text" class="form-control" placeholder="Aadhar card" id="AEM_AC" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Voter ID</label>
+                              <input type="text" class="form-control" placeholder="Voter ID" id="AEM_VID" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Record Status</label>
+                              <input type="text" class="form-control" placeholder="Record status" id="AEM_RS" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Record Location</label>
+                              <input type="text" class="form-control" placeholder="Record location" id="AEM_RL" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Remarks</label>
+                              <input type="text" class="form-control" placeholder="Remarks" id="AEM_RK" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">UAN Number</label>
+                              <input type="text" class="form-control" placeholder="UAN number" id="AEM_UAN" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Login ID</label>
+                              <input type="text" class="form-control" placeholder="Login ID" id="AEM_LID" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Password</label>
+                              <input type="text" class="form-control" placeholder="Password" id="AEM_PAS" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">UAN Login Phone</label>
+                              <input type="text" class="form-control" placeholder="UAN link phone" id="AEM_ULP" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Aadhar Link Phone</label>
+                              <input type="text" class="form-control" placeholder="Aadhar link phone" id="AEM_ALP" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Bank Name</label>
+                              <input type="text" class="form-control" placeholder="Bank name" id="AEM_BN" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Branch</label>
+                              <input type="text" class="form-control" placeholder="Branch" id="AEM_BR" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">IFSC Code</label>
+                              <input type="text" class="form-control" placeholder="IFSC code" id="AEM_IFS" runat="server" />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Account No</label>
+                              <input type="text" class="form-control" placeholder="Account no" id="AEM_ATN" runat="server" />
+                            </div>
+                          </div>
+                          <!-- end row -->
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <label class="form-label">Password</label>
+                              <input type="text" class="form-control" placeholder="Password" id="AEM_PASS" runat="server" />
+                            </div>
+                            
+                              <div class="col-md-6">
+                                <label class="form-label">Documents</label>
+                                <input type="file" class="form-control" placeholder="Documents" id="AEM_DOC" runat="server" />
+                              </div>
+                            
+                            
+                          </div>
+                          <!-- end row -->
+
+                     
+               
+                  </form>
+                </div>
+                <div class="modal-footer">
+                    <!-- Close button -->
+                    <a href="employees.html" class="btn btn-light" data-bs-dismiss="modal">Close</a>
+                    <!-- Save button (you can customize this as needed) -->
+                    <a href="employees.html" type="button" class="btn btn-primary">Save Changes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
       <!-- Footer Start -->
       <footer class="footer">
         <div class="container-fluid">
@@ -1814,7 +2227,7 @@
                     <td>${employee.company}</td>
                     <td>${employee.departmentDesignation}</td>
                     <td>
-                        <a href="#" class="action-icon edit-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                        <a href="#"  class="action-icon" data-bs-toggle="modal" data-bs-target="#fullscreeexampleModal"> <i class="mdi mdi-square-edit-outline"></i></a>
                         <a href="#" class="action-icon delete-icon" data-id="${employee.id}"> <i class="mdi mdi-delete"></i></a>
                     </td>
                 `;

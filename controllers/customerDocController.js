@@ -12,7 +12,7 @@ exports.uploadCustomerDocument = async (req, res) => {
 
     try {
         const [result] = await db.query(
-            `INSERT INTO customer_documents (customer_name, aadhar_no, aadhar_image_path, pan_no, pan_image_path, bank_account_no, bank_passbook_image_path) 
+            `INSERT INTO customer_documents (Customer_Name, aadhar_no, aadhar_image_path, pan_no, pan_image_path, Bank_Accountno, bank_passbook_image_path) 
             VALUES (?, ?, ?, ?, ?, ?, ?)`,
             [CD_CN, CD_AN, aadharImage, CD_PN, panImage, CD_BN, bankPassbookImage]
         );

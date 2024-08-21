@@ -290,76 +290,43 @@
                       <div class="form">
                         <form action="/groups/add" method="POST">
                           <div class="text-xl-end mt-xl-0 mt-2">
-                            <button type="submit"  class="btn btn-primary mb-2 me-2">Add</button>
-
-                            <button type="button"  class="btn btn-light mb-2 me-2">Cancel</button>
-
+                            <button type="submit" class="btn btn-primary mb-2 me-2">Add</button>
+                            <button type="button" class="btn btn-light mb-2 me-2">Cancel</button>
                             <button type="button" class="btn btn-light mb-2 me-2">Export</button>
-
                           </div>
+                        
                           <p style="font-weight: bold;">Create/Delete Groups</p>
-
+                        
                           <div class="row" style="margin-top: 10px;">
                             <div class="col-md-6">
                               <label class="form-label">Group Name</label>
-                              <input type="text" class="form-control" placeholder="TL" name="GR_GN" id="GR_GN" runat="server" required>
+                              <input type="text" class="form-control" placeholder="TL" name="GR_GN" id="GR_GN" required>
                             </div>
-                          
-                          </div>
-
-                          <div class="row" style="margin-top: 10px;">
                             <div class="col-md-6">
                               <label class="form-label">Company</label>
-                              <select class="form-select" name="GR_COM" id="GR_COM" runat="server" required>
+                              <select class="form-select" name="GR_COM" id="GR_COM" onchange="fetchLeadsAndExecutives()" required>
                                 <option selected value="COM"><-Select-></option>
-                         
-                              </select>
-                            </div>
-                            <div class="col-md-6">
-                              <label class="form-label">Department Category</label>
-                              <select class="form-select" name="GR_DC" id="GR_DC" runat="server" required>
-                                <option selected value="DPC"><-Select-></option>
-                           
-                                
+                                <!-- Company options will be added here dynamically -->
                               </select>
                             </div>
                           </div>
-
+                        
                           <div class="row" style="margin-top: 10px;">
                             <div class="col-md-6">
-                              <label class="form-label">Department Name</label>
-                              <select class="form-select" name="GR_DN" id="GR_DN" runat="server" required>
-                                <option selected value="DN"><-Select-></option>
-                              
+                              <label class="form-label">Select Lead</label>
+                              <select class="form-select" name="GR_SL" id="GR_SL" required>
+                                <option selected value="SE"><-Select-></option>
+                                <!-- Team leads will be added here dynamically -->
                               </select>
                             </div>
                             <div class="col-md-6">
-                              <label class="form-label">Department Designation</label>
-                              <select class="form-select" name="GR_DD" id="GR_DD" runat="server" required>
-                                <option selected value="DD"><-Select-></option>
-                                <option value="TL">Team Lead</option>
-                                <option value="TL">Executive</option>
-                                
+                              <label class="form-label">Select Employee</label>
+                              <select class="form-select" name="GR_SE" id="GR_SE" required>
+                                <option selected value="SL"><-Select-></option>
+                                <!-- Executives will be added here dynamically -->
                               </select>
                             </div>
                           </div>
-
-                          <div class="row" style="margin-top: 10px;">
-                            <div class="col-md-6">
-                                <label class="form-label">Select Lead</label>
-                                <select class="form-select" name="GR_SL" id="GR_SL" required>
-                                    <option selected value="SE"><-Select-></option>
-                                   
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Select Employee</label>
-                                <select class="form-select" name="GR_SE" id="GR_SE" required>
-                                    <option selected value="SL"><-Select-></option>
-                                   
-                                </select>
-                            </div>
-                        </div>
                         </form>
                       </div>
                     </div>
@@ -378,9 +345,6 @@
                           <th>ID</th>
                           <th>Group Name</th>
                           <th>Company</th>
-                          <th>Department Category</th>
-                          <th>Department Name</th>
-                          <th>Department Designation</th>
                           <th>Lead</th>
                           <th>Employee</th>
                           <th style="width: 125px;">Action</th>
@@ -1145,39 +1109,13 @@
 
             companies.forEach(company => {
                 const option = document.createElement('option');
-                option.value = company.company_name;
-                option.textContent = company.company_name;
+                option.value = company.Company;
+                option.textContent = company.Company;
                 companySelect.appendChild(option);
             });
 
             // Fetch and populate department details
-            const departmentResponse = await fetch('/groups/dept');
-            const departmentDetails = await departmentResponse.json();
-
-            const departmentCategorySelect = document.getElementById('GR_DC');
-            const departmentNameSelect = document.getElementById('GR_DN');
-            const departmentDesignationSelect = document.getElementById('GR_DD');
-
-            departmentDetails.departmentCategories.forEach(category => {
-                const option = document.createElement('option');
-                option.value = category.departmentCategory;
-                option.textContent = category.departmentCategory;
-                departmentCategorySelect.appendChild(option);
-            });
-
-            departmentDetails.departmentNames.forEach(name => {
-                const option = document.createElement('option');
-                option.value = name.departmentName;
-                option.textContent = name.departmentName;
-                departmentNameSelect.appendChild(option);
-            });
-
-            // departmentDetails.departmentDesignations.forEach(designation => {
-            //     const option = document.createElement('option');
-            //     option.value = designation.departmentDesignation;
-            //     option.textContent = designation.departmentDesignation;
-            //     departmentDesignationSelect.appendChild(option);
-            // });
+           
 
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -1198,15 +1136,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 row.innerHTML = `
                     <td>${i += 1}</td>
-                    <td>${group.group_name}</td>
-                    <td>${group.company}</td>
-                    <td>${group.department_category}</td>
-                    <td>${group.department_name}</td>
-                    <td>${group.department_designation}</td>
-                    <td>${group.led}</td>
-                    <td>${group.employee}</td>
+                    <td>${group.Group_Name}</td>
+                    <td>${group.Company}</td>
+                    <td>${group.Select_Lead}</td>
+                    <td>${group.Select_Employee}</td>
                     <td>
-                        <a href="javascript:void(0);" class="action-icon delete-group" data-id="${group.id}">
+                        <a href="javascript:void(0);" class="action-icon delete-group" data-id="${group.GRP_ID}">
                             <i class="mdi mdi-delete"></i>
                         </a>
                     </td>
@@ -1243,30 +1178,35 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+
+
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-      fetch('/groups/employees')
+  function fetchLeadsAndExecutives() {
+      const selectedCompany = document.getElementById('GR_COM').value;
+  
+      // Fetch team leads based on the selected company
+      fetch(`/groups/team-leads?companyName=${selectedCompany}`)
           .then(response => response.json())
           .then(data => {
-              const GR_SL = document.getElementById('GR_SL');
-              const GR_SE = document.getElementById('GR_SE');
-
-              data.forEach(employee => {
-                  const optionLead = document.createElement('option');
-                  optionLead.value = employee.employeeName;
-                  optionLead.textContent = employee.employeeName;
-                  GR_SL.appendChild(optionLead);
-
-                  const optionEmployee = document.createElement('option');
-                  optionEmployee.value = employee.employeeName;
-                  optionEmployee.textContent = employee.employeeName;
-                  GR_SE.appendChild(optionEmployee);
+              const leadSelect = document.getElementById('GR_SL');
+              leadSelect.innerHTML = '<option selected value="SE"><-Select Lead-></option>';  // Clear existing options
+              data.forEach(lead => {
+                  leadSelect.innerHTML += `<option value="${lead.Employee_Name}">${lead.Employee_Name}</option>`;
               });
-          })
-          .catch(error => console.error('Error fetching employee data:', error));
-  });
-</script>
-
+          });
+  
+      // Fetch executives based on the selected company
+      fetch(`/groups/executives?companyName=${selectedCompany}`)
+          .then(response => response.json())
+          .then(data => {
+              const employeeSelect = document.getElementById('GR_SE');
+              employeeSelect.innerHTML = '<option selected value="SL"><-Select Employee-></option>';  // Clear existing options
+              data.forEach(executive => {
+                  employeeSelect.innerHTML += `<option value="${executive.Employee_Name}">${executive.Employee_Name}</option>`;
+              });
+          });
+  }
+  </script>
 
   </body>
 </html>

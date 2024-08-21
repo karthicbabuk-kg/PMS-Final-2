@@ -13,7 +13,7 @@ router.post('/add', customerController.addCustomer);
 
 router.get('/get', async (req, res) => {
     try {
-        const [rows] = await db.query('SELECT * FROM customers');
+        const [rows] = await db.query('SELECT * FROM customer');
         res.json(rows);
     } catch (error) {
         console.error('Database query error:', error);
@@ -25,7 +25,7 @@ router.delete('/delete/:id', (req, res) => {
     const customerId = req.params.id;
 
     // SQL query to delete the customer
-    const sql = 'DELETE FROM customers WHERE id = ?';
+    const sql = 'DELETE FROM customer WHERE CUS_ID = ?';
     db.query(sql, [customerId], (err, result) => {
         if (err) {
             console.error('Error deleting customer:', err);

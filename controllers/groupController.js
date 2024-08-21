@@ -2,18 +2,18 @@ const db = require('../models/db');
 
 exports.addGroup = async (req, res) => {
     const {
-        GR_GN, GR_COM, GR_DC, GR_DN, GR_DD, GR_SL, GR_SE
+        GR_GN, GR_COM, GR_SL, GR_SE
     } = req.body;
 
     try {
+
         const query = `
-            INSERT INTO grp (
-                group_name, company, department_category, department_name, 
-                department_designation, led, employee
-            ) VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO \`groups\` (
+                Group_Name, Company, Select_Lead, Select_Employee
+            ) VALUES (?, ?, ?, ?)
         `;
 
-        const values = [GR_GN, GR_COM, GR_DC, GR_DN, GR_DD, GR_SL, GR_SE];
+        const values = [GR_GN, GR_COM, GR_SL, GR_SE];
 
         const [result] = await db.query(query, values);
 
@@ -25,28 +25,52 @@ exports.addGroup = async (req, res) => {
     }
 };
 
-// exports.getDepartmentDetails = async (req, res) => {
-//     try {
-//         const [departmentCategories] = await db.query('SELECT DISTINCT departmentCategory FROM employees');
-//         const [departmentNames] = await db.query('SELECT DISTINCT departmentName FROM employees');
-//         const [departmentDesignations] = await db.query('SELECT DISTINCT departmentDesignation FROM employees');
-//         const [employeeName] = await db.query('SELECT DISTINCT employeeName FROM employees');
 
-//         res.json({
-//             departmentCategories,
-//             departmentNames,
-//             departmentDesignations,
-//             employeeName
-//         });
-//     } catch (error) {
-//         console.error('Error fetching department details:', error);
-//         res.status(500).send('Server error');
-//     }
-// };
+exports.getCompanies= async (req, res) => {
+    try {
+      const [rows] = await db.query('SELECT DISTINCT Company FROM employee');
+      res.json(rows);
+    } catch (error) {
+      console.error('Database query error:', error);
+      res.status(500).json({ error: 'Database error' });
+    }
+  };
+
+  exports.getTeamLeads = async (req, res) => {
+    const companyName = req.query.companyName;  // Get company name from query parameters
+
+    try {
+        const [rows] = await db.query(
+            'SELECT DISTINCT Employee_Name FROM employee WHERE Department_Desigination = ? AND Company = ?', 
+            ['Team Lead', companyName]
+        );
+        res.json(rows);  // Send the filtered team leads back as JSON
+    } catch (error) {
+        console.error('Error fetching team leads:', error);
+        res.status(500).send('Server error');
+    }
+};
+
+// Get executives based on selected company
+exports.getExecutives = async (req, res) => {
+    const companyName = req.query.companyName;  // Get company name from query parameters
+
+    try {
+        const [rows] = await db.query(
+            'SELECT DISTINCT Employee_Name FROM employee WHERE Department_Desigination = ? AND Company = ?', 
+            ['Executive', companyName]
+        );
+        res.json(rows);  // Send the filtered executives back as JSON
+    } catch (error) {
+        console.error('Error fetching executives:', error);
+        res.status(500).send('Server error');
+    }
+};
+
 
 exports.getGroups = async (req, res) => {
     try {
-        const [rows] = await db.query('SELECT * FROM `grp`');
+        const [rows] = await db.query('SELECT * FROM `groups`');
         res.json(rows);
     } catch (error) {
         console.error('Error fetching group data:', error);
@@ -54,12 +78,4 @@ exports.getGroups = async (req, res) => {
     }
 };
 
-exports.getEmployees = async (req, res) => {
-    try {
-        const [rows] = await db.query('SELECT DISTINCT employeeName FROM employees');
-        res.json(rows);
-    } catch (error) {
-        console.error('Error fetching employee data:', error);
-        res.status(500).send('Server error');
-    }
-};
+

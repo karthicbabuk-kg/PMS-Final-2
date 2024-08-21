@@ -25,7 +25,7 @@ router.post('/add', upload.single('AEM_DOC'), employeeController.addEmployee);
 
 router.get('/get', async (req, res) => {
     try {
-        const [employees] = await db.query('SELECT * FROM employees');
+        const [employees] = await db.query('SELECT * FROM employee');
         res.json(employees);
     } catch (error) {
         console.error('Database fetch error:', error);
@@ -35,7 +35,7 @@ router.get('/get', async (req, res) => {
 
 router.get('/companies', async (req, res) => {
     try {
-      const [rows] = await db.query('SELECT company_name FROM companies');
+      const [rows] = await db.query('SELECT Company_Name FROM company');
       res.json(rows);
     } catch (error) {
       console.error('Database query error:', error);

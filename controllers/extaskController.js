@@ -25,11 +25,11 @@ exports.addTask = async (req, res) => {
 
 exports.getexecutiveDetail = async (req, res) => {
     try {
-        const [executiveName] = await db.query('SELECT employee FROM grp');
-        const [conpanyName] = await db.query('SELECT company FROM executiveTask');
-        const [file] = await db.query('SELECT file FROM executiveTask');
-        const [remarks] = await db.query('SELECT remarks FROM executiveTask');
-        const [status] = await db.query('SELECT status FROM executiveTask');
+        const [executiveName] = await db.query('SELECT employee FROM groups');
+        const [conpanyName] = await db.query('SELECT company FROM upload_task');
+        const [file] = await db.query('SELECT file FROM upload_task');
+        const [remarks] = await db.query('SELECT remarks FROM upload_task');
+        const [status] = await db.query('SELECT status FROM upload_task');
 
         res.json({
             executiveName,

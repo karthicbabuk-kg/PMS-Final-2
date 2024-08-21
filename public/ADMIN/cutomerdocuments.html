@@ -290,55 +290,61 @@
                       <div class="form">
                         <form action="/customer/upload" method="POST" enctype="multipart/form-data">
                           <div class="text-xl-end mt-xl-0 mt-2">
-                            <button type="submit"  class="btn btn-primary mb-2 me-2">Add</button>
-
-                            <button type="button"  class="btn btn-light mb-2 me-2">Cancel</button>
-
+                              <button type="submit" class="btn btn-primary mb-2 me-2">Add</button>
+                              <button type="button" class="btn btn-light mb-2 me-2">Cancel</button>
                           </div>
-                          <p style="font-weight: bold;">Customer Documents</p>
-
-                          <div class="row" style="margin-top: 10px;">
-                            <div class="col-md-6">
-                              <label class="form-label">Customer Name</label>
-                              <input type="text" class="form-control" placeholder="TL" name="CD_CN" runat="server" required>
-                            </div>
                           
-                          </div>
-
+                          <p style="font-weight: bold;">Customer Documents</p>
+                      
+                          <!-- Account Owner Dropdown -->
                           <div class="row" style="margin-top: 10px;">
-                            <div class="col-md-6">
-                              <label class="form-label">Aadhar No</label>
-                              <input type="text" class="form-control" placeholder="Aadhar No" name="CD_AN" runat="server" required>
-                            </div>
-                            <div class="col-md-6">
-                              <label class="form-label">Aadhar Image</label>
-                              <input type="file" class="form-control" name="CD_AI" runat="server" required>
-                            </div>
+                              <div class="col-md-6">
+                                  <label class="form-label">Account Owner</label>
+                                  <select class="form-select" name="ANTO" id="accountOwnerSelect" required>
+                                      <option selected value=""><-Select-></option>
+                                      <!-- Options populated by JavaScript -->
+                                  </select>
+                              </div>
                           </div>
-
+                      
+                          <!-- Company ID and Company Name -->
                           <div class="row" style="margin-top: 10px;">
-                            <div class="col-md-6">
-                              <label class="form-label">PAN No</label>
-                              <input type="text" class="form-control" placeholder="PAN No" name="CD_PN" runat="server" required>
-                            </div>
-                            <div class="col-md-6">
-                              <label class="form-label">PAN Image</label>
-                              <input type="file" class="form-control" name="CD_PI" runat="server" required>
-                            </div>
+                              <div class="col-md-6">
+                                  <label class="form-label">Company ID</label>
+                                  <select class="form-select" name="CMID" id="companyIdSelect" required>
+                                      <option selected value=""><-Select-></option>
+                                      <!-- Options populated by JavaScript -->
+                                  </select>
+                              </div>
+                              <div class="col-md-6">
+                                  <label class="form-label">Company Name</label>
+                                  <input type="text" class="form-control" name="CMN" id="companyNameInput" readonly>
+                              </div>
                           </div>
-
+                      
+                          <!-- Document Type and Document Name -->
                           <div class="row" style="margin-top: 10px;">
-                            <div class="col-md-6">
-                              <label class="form-label">Bank Account No</label>
-                              <input type="text" class="form-control" placeholder="Aadhar No" name="CD_BN" runat="server" required>
-                            </div>
-                            <div class="col-md-6">
-                              <label class="form-label">Bank Passbook Image</label>
-                              <input type="file" class="form-control" name="CD_BI" runat="server" required>
-                            </div>
+                              <div class="col-md-6">
+                                  <label class="form-label">Document Type</label>
+                                  <select class="form-select" name="DCT" id="documentTypeSelect" required>
+                                      <option selected value=""><-Select-></option>
+                                      <!-- Options populated by JavaScript -->
+                                  </select>
+                              </div>
+                              <div class="col-md-6">
+                                  <label class="form-label">Document Name</label>
+                                  <input type="text" class="form-control" name="DOCN" required>
+                              </div>
                           </div>
-
-                        </form>
+                      
+                          <!-- Document URL (File Upload) -->
+                          <div class="row" style="margin-top: 10px;">
+                              <div class="col-md-6">
+                                  <label class="form-label">Document URL</label>
+                                  <input type="file" class="form-control" name="DURL" accept=".pdf,.jpg,.jpeg,.png" required>
+                              </div>
+                          </div>
+                      </form>
                       </div>
                     </div>
                     <!-- end col-->
@@ -1091,5 +1097,56 @@
         alert("Logout Successfully!");
       }
     </script>
+
+<script>
+  // Fetch Account Owners from the customer table
+  fetch('/customer/getAccountOwners')
+      .then(response => response.json())
+      .then(data => {
+          const accountOwnerSelect = document.getElementById('accountOwnerSelect');
+          data.forEach(owner => {
+              const option = document.createElement('option');
+              option.value = owner.Account_Owner;
+              option.textContent = owner.Account_Owner;
+              accountOwnerSelect.appendChild(option);
+          });
+      });
+
+  // Fetch Company IDs and populate the dropdown
+  fetch('/customer/getCompanyIds')
+      .then(response => response.json())
+      .then(data => {
+          const companyIdSelect = document.getElementById('companyIdSelect');
+          data.forEach(company => {
+              const option = document.createElement('option');
+              option.value = company.Company_Accid;
+              option.textContent = company.Company_Accid;
+              companyIdSelect.appendChild(option);
+          });
+      });
+
+  // Fetch Company Name based on the selected Company ID
+  document.getElementById('companyIdSelect').addEventListener('change', function () {
+      const companyId = this.value;
+      fetch(`/customer/getCompanyName/${companyId}`)
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById('companyNameInput').value = data.Company_Name || '';
+          });
+  });
+
+  // Fetch Document Types from the final_module table
+  fetch('/customer/getDocumentTypes')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('documentTypeSelect');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+</script>
   </body>
 </html>

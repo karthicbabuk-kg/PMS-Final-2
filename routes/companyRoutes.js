@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-const db = require('../models/db')
-
+const db = require('../models/db');
 const companyController = require('../controllers/companyController');
 
 // Configure multer for file uploads
@@ -20,28 +19,30 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+router.post('/add', upload.single('Company_Logo'), companyController.addCompany);
 
-router.post('/add', upload.single('CCP_LOGO'), companyController.addCompany);
+
 router.get('/get', async (req, res) => {
     try {
-        const [rows] = await db.query('SELECT * FROM companies');
+        const [rows] = await db.query('SELECT * FROM company');
         res.json(rows);
     } catch (error) {
         console.error('Database fetch error:', error);
         res.status(500).send('Server error');
     }
 });
+
 router.delete('/:id', async (req, res) => {
     const companyId = req.params.id;
     try {
-        const result = await db.query('DELETE FROM companies WHERE id = ?', [companyId]);
+        const result = await db.query('DELETE FROM company WHERE CM_ID = ?', [companyId]);
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Company not found' });
         }
         res.json({ message: 'Company deleted successfully' });
     } catch (error) {
         console.error('Database delete error:', error);
-        res.status(500).send('Server error');
+        res.status(500).send('Server error');   
     }
 });
 

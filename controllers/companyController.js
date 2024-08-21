@@ -1,34 +1,62 @@
-    const db = require('../models/db');
+const db = require('../models/db'); // Ensure the path is correct for your project structure
+const moment = require('moment');
 
-    exports.addCompany = async (req, res) => {
-        const {
-            CCP_CN, CCP_AID, CCP_PHN, CCP_EMAIL, CCP_WEB, CCP_FAX, CCP_NOE, CCP_AR,
-            CCP_DD_AMO, CCP_SKY, CCP_GST, CCP_PAN, CCP_DD_ETAX, CCP_DD_ETDS,
-            CCP_BKN, CCP_BRN, CCP_CRN, CCP_ACTNO, IFSC, CCP_DNO, CCP_STR,
-            CCP_CIT, CCP_STA, CCP_ZIP, CCP_COU, CCP_DES
-        } = req.body;
+exports.addCompany = async (req, res) => {
+  try {
+    const {
+      CCP_CN, CCP_AID, CCP_PHN, CCP_EMAIL, CCP_WEB, CCP_FAX,
+      CCP_NOE, CCP_DD_AMO, CCP_AR, CCP_SKY, CCP_GST, CCP_PAN,
+      CCP_DD_ETAX, CCP_DD_ETDS, CCP_BKN, CCP_BRN, CCP_CRN,
+      CCP_ACTNO, IFSC, CCP_DNO, CCP_STR, CCP_CIT, CCP_STA,
+      CCP_ZIP, CCP_COU, CCP_DES
+    } = req.body;
 
-        const logoPath = req.file ? `/uploads/${req.file.filename}` : null;
+    const companylogo = req.file ? `/uploads/${req.file.filename}` : null;
 
-        try {
-            const [result] = await db.query(
-                `INSERT INTO companies (company_name, account_id, phone, email, website, fax, no_of_employees, 
-                annual_revenue, revenue_currency, skype_id, gst_no, pan_no, enable_tax, enable_tds, 
-                bank_name, branch_name, crn_id, account_no, ifsc_code, door_no, street, city, 
-                state, zipcode, country, description, logo) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-                [
-                    CCP_CN, CCP_AID, CCP_PHN, CCP_EMAIL, CCP_WEB, CCP_FAX, CCP_NOE, CCP_AR,
-                    CCP_DD_AMO, CCP_SKY, CCP_GST, CCP_PAN, CCP_DD_ETAX, CCP_DD_ETDS, CCP_BKN,
-                    CCP_BRN, CCP_CRN, CCP_ACTNO, IFSC, CCP_DNO, CCP_STR, CCP_CIT, CCP_STA,
-                    CCP_ZIP, CCP_COU, CCP_DES, logoPath
-                ]
-            );
+    // Additional fields
+    const Ip_Mac = Math.floor(Math.random() * 1000000000); // Random number for Ip_Mac
+    const Created_DT = moment().format('YYYY-MM-DD'); // Current date
+    const Lastupdated_DT = Created_DT; // Same as Created_DT
+    const Month_Year = moment().format('MM-YYYY'); // Current month and year
 
-            console.log("Insert Result: ", JSON.stringify(result));
-            res.redirect('../ADMIN/company.html'); // Redirect to the company after successful insert
-        } catch (error) {
-            console.error('Database insert error:', error);
-            res.status(500).send('Server error');
-        }
-    };
+    // Query to get the Financial_Year from the financial_year table
+    const getFinancialYearQuery = `SELECT Financial_Year FROM financial_year`;
+    const [financialYearResults] = await db.query(getFinancialYearQuery);
+
+    const Financial_Year = financialYearResults[0] ? financialYearResults[0].Financial_Year : null; // Get the latest financial year
+
+    // Check if financial year is available
+    if (!Financial_Year) {
+      return res.status(400).send('Financial Year not found');
+    }
+
+    // Insert data into the company table
+    const insertCompanyQuery = `
+      INSERT INTO company (
+        Company_Name, Company_Accid, Phone, Email, Website, Fax,
+        Numberof_Employees, Annualrevenue_Select, Annual_Revenue, Skype_Id, Gst_Vat, Business_Pan,
+        Enable_Tax, Enable_Tds, Bank_Name, Branch_Name, Crn_Id,
+        Account_No, Ifsc_Code, Door_No, Street, City, State,
+        Zipcode, Country, Description, Company_Logo, Ip_Mac, Financial_Year, Created_DT,
+        Lastupdated_DT, Month_Year
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    const values = [
+      CCP_CN, CCP_AID, CCP_PHN, CCP_EMAIL, CCP_WEB, CCP_FAX,
+      CCP_NOE, CCP_DD_AMO, CCP_AR, CCP_SKY, CCP_GST, CCP_PAN,
+      CCP_DD_ETAX, CCP_DD_ETDS, CCP_BKN, CCP_BRN, CCP_CRN,
+      CCP_ACTNO, IFSC, CCP_DNO, CCP_STR, CCP_CIT, CCP_STA,
+      CCP_ZIP, CCP_COU, CCP_DES, companylogo, Ip_Mac, Financial_Year,
+      Created_DT, Lastupdated_DT, Month_Year
+    ];
+
+    await db.query(insertCompanyQuery, values);
+
+    // Successfully inserted the company data
+    res.redirect('../ADMIN/company.html');
+  } catch (error) {
+    console.error("Error processing company details:", error);
+    res.status(500).send('Internal Server Error');
+  }
+};

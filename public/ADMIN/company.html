@@ -1265,18 +1265,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         const tableBody = document.getElementById('company-table-body');
         tableBody.innerHTML = '';
 
-        companies.forEach(company => {
+        companies.forEach((company,i) => {
             const row = document.createElement('tr');
-            row.dataset.companyId = company.id;
+            row.dataset.companyId = company.CM_ID;
 
             row.innerHTML = `
-                <td><img src="${company.logo || '../assets/images/logo-sm.png'}" alt="Company Logo" width="50"></td>
-                <td>${company.account_id}</td>
-                <td>${company.company_name}</td>
-                <td>${company.email}</td>
-                <td>${company.phone}</td>
-                <td>${company.gst_no || 'NA'}</td>
-                <td>${company.pan_no || 'NA'}</td>
+                <td><img src="${company.Company_Logo || '../assets/images/logo-sm.png'}" alt="Company Logo" width="50"></td>
+                <td>${company.Company_Accid}</td>
+                <td>${company.Company_Name}</td>
+                <td>${company.Email}</td>
+                <td>${company.Phone}</td>
+                <td>${company.Gst_Vat || 'NA'}</td>
+                <td>${company.Business_Pan || 'NA'}</td>
                 <td>
                     <a href="#" class="action-icon" data-bs-toggle="modal" data-bs-target="#fullscreeexampleModal"><i class="mdi mdi-square-edit-outline"></i></a>
                     <a href="javascript:void(0);" class="action-icon delete-icon"><i class="mdi mdi-delete"></i></a>

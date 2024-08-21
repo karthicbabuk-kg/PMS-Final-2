@@ -4,7 +4,7 @@ const path = require('path');
 // Add Task
 exports.addTask = async (req, res) => {
     const {
-        ATK_DD_EXE, ATK_DD_CMP, ATK_TN, ATK_DD_FILE, ATK_REM, ATK_DD_STA, ATK_DET
+         ATK_DD_CMP, ATK_TN, ATK_DD_FILE, ATK_REM, ATK_DD_STA, ATK_DET
     } = req.body;
 
     // Multer stores the file path in `req.file` if a file is uploaded
@@ -12,10 +12,10 @@ exports.addTask = async (req, res) => {
 
     try {
         const [result] = await db.query(
-            `INSERT INTO tasks (executiveName, companyName, taskName, file, remarks, status, taskDetails, document) 
+            `INSERT INTO assign_task ( companyName, taskName, file, remarks, status, taskDetails, document) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
             [
-                ATK_DD_EXE, ATK_DD_CMP, ATK_TN, ATK_DD_FILE, ATK_REM, ATK_DD_STA, ATK_DET, documentPath
+                 ATK_DD_CMP, ATK_TN, ATK_DD_FILE, ATK_REM, ATK_DD_STA, ATK_DET, documentPath
             ]
         );
 

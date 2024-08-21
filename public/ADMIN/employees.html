@@ -2218,17 +2218,17 @@
 
                 row.innerHTML = `
                     <td>
-                        <img src="${employee.employeePhoto || '../assets/images/users/avatar-1.jpg'}" width="40px" alt="">
+                        <img src="${employee.Employee_Photo || '../assets/images/users/avatar-1.jpg'}" width="40px" alt="">
                     </td>
-                    <td>${employee.employeeCode}</td>
-                    <td>${employee.employeeName}</td>
-                    <td>${employee.email}</td>
-                    <td>${employee.personalMobile}</td>
-                    <td>${employee.company}</td>
-                    <td>${employee.departmentDesignation}</td>
+                    <td>${employee.Employee_Code}</td>
+                    <td>${employee.Employee_Name}</td>
+                    <td>${employee.Email}</td>
+                    <td>${employee.Personal_Mobile}</td>
+                    <td>${employee.Company}</td>
+                    <td>${employee.Department_Desigination}</td>
                     <td>
                         <a href="#"  class="action-icon" data-bs-toggle="modal" data-bs-target="#fullscreeexampleModal"> <i class="mdi mdi-square-edit-outline"></i></a>
-                        <a href="#" class="action-icon delete-icon" data-id="${employee.id}"> <i class="mdi mdi-delete"></i></a>
+                        <a href="#" class="action-icon delete-icon" data-id="${employee.EM_ID}"> <i class="mdi mdi-delete"></i></a>
                     </td>
                 `;
 

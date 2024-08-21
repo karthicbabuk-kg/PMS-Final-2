@@ -1,54 +1,82 @@
-// routes/customerRoutes.js
-
 const express = require('express');
-const router = express.Router();
 const multer = require('multer');
-const path = require('path');
-const customerController = require('../controllers/customerDocController');
+const db = require('../models/db');
+const router = express.Router();
 
+// Multer setup for file uploads
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/');
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');  // Save to 'uploads/' folder
     },
-    filename: (req, file, cb) => {
-        const currentDate = new Date().toISOString().split('T')[0]; // Format date as YYYY-MM-DD
-        const originalName = file.originalname; // Original file name
-        cb(null, `${currentDate}-${originalName}`);
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
     }
 });
-
 const upload = multer({ storage: storage });
 
-
-// Route to handle customer document upload
-router.post('/upload', upload.fields([
-    { name: 'CD_AI', maxCount: 1 },
-    { name: 'CD_PI', maxCount: 1 },
-    { name: 'CD_BI', maxCount: 1 }
-]), customerController.uploadCustomerDocument);
-
-router.get('/get', async (req, res) => {
+// Fetch distinct account owners from the customer table
+router.get('/getAccountOwners', async (req, res) => {
     try {
-        const [rows] = await db.query('SELECT * FROM customer_documents');
+        const [rows] = await db.query('SELECT DISTINCT Account_Owner FROM customer');
         res.json(rows);
     } catch (error) {
-        console.error('Database fetch error:', error);
-        res.status(500).send('Server error');
+        console.error('Error fetching account owners:', error);
+        res.status(500).json({ error: 'Database error' });
     }
 });
 
-router.delete('/:id', async (req, res) => {
-    const documentId = req.params.id;
+// Route to fetch Company IDs
+router.get('/getCompanyIds', async (req, res) => {
     try {
-        const result = await db.query('DELETE FROM customer_documents WHERE id = ?', [documentId]);
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'Document not found' });
-        }
-        res.json({ message: 'Document deleted successfully' });
+        const [rows] = await db.query('SELECT DISTINCT Company_Accid FROM company');
+        res.json(rows);
     } catch (error) {
-        console.error('Database delete error:', error);
-        res.status(500).send('Server error');
+        console.error('Error fetching company IDs:', error);
+        res.status(500).json({ error: 'Database error' });
     }
 });
 
+// Route to fetch Company Name based on selected Company ID
+router.get('/getCompanyName/:companyId', async (req, res) => {
+    const { companyId } = req.params;
+    try {
+        const [rows] = await db.query('SELECT Company_Name FROM company WHERE Company_Accid = ?', [companyId]);
+        res.json(rows[0] || {});
+    } catch (error) {
+        console.error('Error fetching company name:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+
+// Route to fetch Document Types
+router.get('/getDocumentTypes', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT Column_Description FROM final_module WHERE Column_Name = 'Document Type'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+
+
+
+router.post('/upload', upload.single('DURL'), async (req, res) => {
+    const { ANTO, CMID, CMN, DCT, DOCN } = req.body;
+    const documentUrl = req.file ? req.file.filename : null;
+
+    try {
+        // Correct column name in the SQL query
+        const query = `INSERT INTO customer_documents (Account_Owner, Company_ID, Company_Name, Document_Type, Document_Name, Document_URL) 
+                       VALUES (?, ?, ?, ?, ?, ?)`;
+        const values = [ANTO, CMID, CMN, DCT, DOCN, documentUrl];
+        const [result] = await db.query(query, values);
+        console.log("Insert Result: ", JSON.stringify(result));
+        
+        res.redirect('../ADMIN/cutomerdocuments.html'); // Redirect after successful upload
+    } catch (error) {
+        console.error('Error uploading document:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
 module.exports = router;

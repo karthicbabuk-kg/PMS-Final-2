@@ -11,24 +11,23 @@ exports.addCompany = async (req, res) => {
       CCP_ZIP, CCP_COU, CCP_DES
     } = req.body;
 
-    const companylogo = req.file ? `/uploads/${req.file.filename}` : null;
+    const Company_Logo = req.file ? `/uploads/${req.file.filename}` : null;
 
     // Additional fields
     const Ip_Mac = Math.floor(Math.random() * 1000000000); // Random number for Ip_Mac
     const Created_DT = moment().format('YYYY-MM-DD'); // Current date
-    const Lastupdated_DT = Created_DT; // Same as Created_DT
-    const Month_Year = moment().format('MM-YYYY'); // Current month and year
+    const Lastupdated_DT = Created_DT;
+    const Month_Year = moment().format('MM-YYYY');
 
-    // Query to get the Financial_Year from the financial_year table
+    // Get Financial Year
     const getFinancialYearQuery = `SELECT Financial_Year FROM financial_year`;
     const [financialYearResults] = await db.query(getFinancialYearQuery);
 
-    const Financial_Year = financialYearResults[0] ? financialYearResults[0].Financial_Year : null; // Get the latest financial year
-
-    // Check if financial year is available
-    if (!Financial_Year) {
+    if (!financialYearResults.length) {
       return res.status(400).send('Financial Year not found');
     }
+
+    const Financial_Year = financialYearResults[0].Financial_Year;
 
     // Insert data into the company table
     const insertCompanyQuery = `
@@ -47,14 +46,13 @@ exports.addCompany = async (req, res) => {
       CCP_NOE, CCP_DD_AMO, CCP_AR, CCP_SKY, CCP_GST, CCP_PAN,
       CCP_DD_ETAX, CCP_DD_ETDS, CCP_BKN, CCP_BRN, CCP_CRN,
       CCP_ACTNO, IFSC, CCP_DNO, CCP_STR, CCP_CIT, CCP_STA,
-      CCP_ZIP, CCP_COU, CCP_DES, companylogo, Ip_Mac, Financial_Year,
+      CCP_ZIP, CCP_COU, CCP_DES, Company_Logo, Ip_Mac, Financial_Year,
       Created_DT, Lastupdated_DT, Month_Year
     ];
 
     await db.query(insertCompanyQuery, values);
 
-    // Successfully inserted the company data
-    res.redirect('../ADMIN/company.html');
+    res.redirect('/ADMIN/company.html');
   } catch (error) {
     console.error("Error processing company details:", error);
     res.status(500).send('Internal Server Error');

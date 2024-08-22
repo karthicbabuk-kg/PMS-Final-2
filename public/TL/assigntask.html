@@ -1076,7 +1076,7 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-    fetch('/addTask/tasks')
+    fetch('/addtask/getTask')
         .then(response => response.json())
         .then(data => {
             const tableBody = document.querySelector('tbody');
@@ -1085,10 +1085,10 @@
             data.forEach(task => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${task.executiveName}</td>
-                    <td>${task.companyName}</td>
-                    <td>${task.taskName}</td>
-                    <td>${task.status}</td>
+                    <td>${task.Executive_Name}</td>
+                    <td>${task.Company_Name}</td>
+                    <td>${task.Task_Name}</td>
+                    <td>${task.Status}</td>
                     <td>
                         <a href="javascript:void(0);" class="action-icon edit-icon">
                             <i class="mdi mdi-square-edit-outline"></i>

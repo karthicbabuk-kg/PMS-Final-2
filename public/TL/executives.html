@@ -1056,6 +1056,8 @@
     fetch('/groups/get')
         .then(response => response.json())
         .then(data => {
+          console.log(data);
+          
             const tableBody = document.getElementById('executiveTableBody');
             tableBody.innerHTML = ''; // Clear existing rows
             
@@ -1064,8 +1066,8 @@
                 
                 row.innerHTML = `
                     <td>${i + 1}</td>
-                    <td>${group.employee}</td>
-                    <td>${group.company}</td>
+                    <td>${group.Select_Employee}</td>
+                    <td>${group.Company}</td>
                     <td>
                         <a href="javascript:void(0);" class="action-icon delete-group" data-id="${group.id}"> 
                             <i class="mdi mdi-delete"></i>
@@ -1087,25 +1089,22 @@
             });
         })
         .catch(error => console.error('Error fetching group data:', error));
-});
+  });
 
-// Function to delete a group
-function deleteGroup(groupId) {
+  function deleteGroup(groupId) {
     fetch(`/addTask/delete/${groupId}`, {
         method: 'DELETE'
     })
     .then(response => {
         if (response.ok) {
-            // Group deleted successfully, refresh the group list
-            alert('task deleted successfully');
+            alert('Task deleted successfully');
             location.reload(); // Refresh page or re-fetch data
         } else {
             alert('Error deleting group');
         }
     })
     .catch(error => console.error('Error:', error));
-}
-
+  }
 </script>
   </body>
 </html>

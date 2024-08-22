@@ -20,6 +20,7 @@ router.get('/admin', (req, res) => {
 
 router.get('/tl', (req, res) => {
     if (req.session.user.role === 'tl') {
+        console.log(`Welcome Team Lead: ${req.session.user.name}`); // You can now access employee name
         res.sendFile(path.join(__dirname, '../public/TL/home.html'));
     } else {
         res.redirect('/');
@@ -28,6 +29,7 @@ router.get('/tl', (req, res) => {
 
 router.get('/executive', (req, res) => {
     if (req.session.user.role === 'executive') {
+        console.log(`Welcome Executive: ${req.session.user.name}`); // You can now access employee name
         res.sendFile(path.join(__dirname, '../public/EXECUTIVE/home.html'));
     } else {
         res.redirect('/');

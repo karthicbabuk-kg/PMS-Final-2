@@ -334,8 +334,8 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Company Name</label>
-                                    <select class="form-select" name="ATK_DD_CMP" id="ATK_DD_CMP" required>
+                                    <label class="form-label">Company ID</label>
+                                    <select class="form-select" name="CMP_ID" id="CMP_ID" required>
                                         <option selected>-Select-</option>
                                         <!-- Options will be populated dynamically -->
                                     </select>
@@ -344,51 +344,67 @@
                         
                             <!-- Task Name and File -->
                             <div class="row" style="margin-top: 10px;">
-                                <div class="col-md-6">
-                                    <label class="form-label">Task Name</label>
-                                    <input type="text" class="form-control" placeholder="Task Name" name="ATK_TN" id="ATK_TN" required />
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">File</label>
-                                    <select class="form-select" name="ATK_DD_FILE" required>
-                                        <option selected>-Select-</option>
-                                        <option>NA</option>
-                                        <!-- Add other options dynamically if needed -->
-                                    </select>
-                                </div>
+                              <div class="col-md-6">
+                                <label class="form-label">Company Name</label>
+                                <select class="form-select" name="ATK_DD_CMP" id="ATK_DD_CMP" required>
+                                    <option selected>-Select-</option>
+                                    <!-- Options will be populated dynamically -->
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Document Type</label>
+                              <select class="form-select" name="DCT" id="documentTypeSelect" required>
+                                  <option selected value=""><-Select-></option>
+                                  <!-- Options populated by JavaScript -->
+                              </select>
+                          </div>
                             </div>
                         
                             <!-- Remarks and Status -->
                             <div class="row" style="margin-top: 10px;">
+                              <div class="col-md-6">
+                                <label class="form-label">Document Name</label>
+                                <input type="text" class="form-control" placeholder="Document Name" name="DOCN" required>
+                            </div>
+                                
                                 <div class="col-md-6">
-                                    <label class="form-label">Remarks</label>
-                                    <input type="text" class="form-control" placeholder="Remarks" name="ATK_REM" />
-                                </div>
+                                  <label class="form-label">Document URL</label>
+                                  <input type="file" class="form-control" name="DURL" accept=".pdf,.jpg,.jpeg,.png" required>
+                              </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px;">
+                              <div class="col-md-6">
+                                <label class="form-label">Task Name</label>
+                                <input type="text" class="form-control" placeholder="Task Name" name="TSN" required>
+                            </div>
+                                
                                 <div class="col-md-6">
-                                    <label class="form-label">Status</label>
-                                    <select class="form-select" name="ATK_DD_STA" required>
-                                        <option selected>-Select-</option>
-                                        <option value="Open">Open</option>
-                                        <option value="Closed">Closed</option>
-                                    </select>
-                                </div>
+                                  <label class="form-label">Task Details</label>
+                                  <input type="text" class="form-control" placeholder="Task Details" name="TSD" required>
+                              </div>
                             </div>
                         
                             <!-- Document Upload -->
                             <div class="row" style="margin-top: 10px;">
-                                <div class="col-md-6">
-                                    <label class="form-label">Document</label>
-                                    <input type="file" class="form-control" name="ATK_DOC" />
-                                </div>
+                              <div class="col-md-6">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" name="ATK_DD_STA" required>
+                                    <option selected>-Select-</option>
+                                    <option value="Open">Open</option>
+                                    <option value="Closed">Closed</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                              <label class="form-label">Remarks</label>
+                              <input type="text" class="form-control" placeholder="Remarks" name="REM"  required>
+                          </div>
+                               
                             </div>
                         
                             <!-- Task Details -->
-                            <div class="row mt-2">
-                                <div class="col-md-12">
-                                    <label class="form-label">Task Details</label>
-                                    <textarea class="form-control" placeholder="Task Details" name="ATK_DET" required></textarea>
-                                </div>
-                            </div>
+                            
                         </form>
                         
                         
@@ -1188,36 +1204,67 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-      // Fetch executive names and company names from the backend
-      fetch('/addTask/gets')
-          .then(response => response.json())
-          .then(data => {
-              const execDropdown = document.getElementById('ATK_DD_EXE');
-              const companyDropdown = document.getElementById('ATK_DD_CMP');
-  
-              // Clear existing options
-              execDropdown.innerHTML = '<option selected>-Select-</option>';
-              companyDropdown.innerHTML = '<option selected>-Select-</option>';
-  
-              // Populate executive names
-              data.forEach(group => {
-                  const execOption = document.createElement('option');
-                  execOption.value = group.employee;
-                  execOption.textContent = group.employee;
-                  execDropdown.appendChild(execOption);
-              });
-  
-              // Populate company names
-              const uniqueCompanies = [...new Set(data.map(group => group.company))]; // Remove duplicates
-              uniqueCompanies.forEach(company => {
-                  const companyOption = document.createElement('option');
-                  companyOption.value = company;
-                  companyOption.textContent = company;
-                  companyDropdown.appendChild(companyOption);
-              });
-          })
-          .catch(error => console.error('Error fetching group data:', error));
-  });
-  </script>
+    // Populate Executive Dropdown
+    fetch('/addTask/get-executives')
+        .then(response => response.json())
+        .then(data => {
+            const executiveSelect = document.getElementById('ATK_DD_EXE');
+            executiveSelect.innerHTML = '<option selected>-Select-</option>'; // Reset options
+            data.forEach(executive => {
+                const option = document.createElement('option');
+                option.value = executive.name;
+                option.textContent = executive.name;
+                executiveSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching executives:', error));
+    
+    // Populate Company Dropdown
+    fetch('/addTask/get-companies')
+        .then(response => response.json())
+        .then(data => {
+            const companySelect = document.getElementById('CMP_ID');
+            companySelect.innerHTML = '<option selected>-Select-</option>'; // Reset options
+            data.forEach(company => {
+                const option = document.createElement('option');
+                option.value = company.id;
+                option.textContent = company.id;
+                companySelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching companies:', error));
+    
+    // Populate Company Name Dropdown
+    fetch('/addTask/get-companies') // Assuming it is the same list
+        .then(response => response.json())
+        .then(data => {
+            const companyNameSelect = document.getElementById('ATK_DD_CMP');
+            companyNameSelect.innerHTML = '<option selected>-Select-</option>'; // Reset options
+            data.forEach(company => {
+                const option = document.createElement('option');
+                option.value = company.name;
+                option.textContent = company.name;
+                companyNameSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching companies for Company Name:', error));
+    
+    // Populate Document Type Dropdown
+    fetch('/addTask/get-document-types')
+        .then(response => response.json())
+        .then(data => {
+            const documentTypeSelect = document.getElementById('documentTypeSelect');
+            documentTypeSelect.innerHTML = '<option selected value=""><-Select-></option>'; // Reset options
+            data.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type.name;
+                option.textContent = type.name;
+                documentTypeSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching document types:', error));
+});
+
+</script>
   </body>
 </html>

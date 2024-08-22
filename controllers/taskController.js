@@ -4,18 +4,18 @@ const path = require('path');
 // Add Task
 exports.addTask = async (req, res) => {
     const {
-         ATK_DD_CMP, ATK_TN, ATK_DD_FILE, ATK_REM, ATK_DD_STA, ATK_DET
+         ATK_DD_EXE, CMP_ID, ATK_DD_CMP, DCT, DOCN,TSN,TSD,REM,ATK_DD_STA
     } = req.body;
 
     // Multer stores the file path in `req.file` if a file is uploaded
-    const documentPath = req.file ? `/uploads/${req.file.filename}` : null;
+    const DURL = req.file ? `/uploads/${req.file.filename}` : null;
 
     try {
         const [result] = await db.query(
-            `INSERT INTO assign_task ( companyName, taskName, file, remarks, status, taskDetails, document) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            `INSERT INTO assign_task ( Executive_Name, Company_Id, Company_Name, Document_Type, Document_Name, Doument_URL, Task_Name,Task_Details,Remarks,Status) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)`,
             [
-                 ATK_DD_CMP, ATK_TN, ATK_DD_FILE, ATK_REM, ATK_DD_STA, ATK_DET, documentPath
+                 ATK_DD_EXE, CMP_ID, ATK_DD_CMP, DCT, DOCN, DURL,TSN,TSD,REM,ATK_DD_STA
             ]
         );
 
@@ -29,7 +29,7 @@ exports.addTask = async (req, res) => {
 // Get Tasks
 exports.getTasks = async (req, res) => {
     try {
-        const [rows] = await db.query('SELECT * FROM tasks');
+        const [rows] = await db.query('SELECT * FROM assign_task');
         res.json(rows);
     } catch (error) {
         console.error('Database fetch error:', error);

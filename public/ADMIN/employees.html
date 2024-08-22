@@ -438,7 +438,6 @@
                     <table class="table table-centered table-nowrap mb-0">
                         <thead class="table-light">
                             <tr>
-                                <th>DP</th>
                                 <th>Employee Code</th>
                                 <th>Employee Name</th>
                                 <th>Email</th>
@@ -2224,9 +2223,7 @@
                 const row = document.createElement('tr');
 
                 row.innerHTML = `
-                    <td>
-                        <img src="${employee.Employee_Photo || '../assets/images/users/avatar-1.jpg'}" width="40px" alt="">
-                    </td>
+                    
                     <td>${employee.Employee_Code}</td>
                     <td>${employee.Employee_Name}</td>
                     <td>${employee.Email}</td>

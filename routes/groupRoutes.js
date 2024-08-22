@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const groupController = require('../controllers/groupController');
+const authController = require('../controllers/authController')
 const db = require('../models/db');
 
 
@@ -17,9 +18,11 @@ router.post('/add',groupController.addGroup);
 //     }
 // });
 
+router.use(authController.ensureAuthenticated);
 router.get('/companies', groupController.getCompanies)
   router.get('/team-leads', groupController.getTeamLeads);
   router.get('/executives', groupController.getExecutives);
+  router.get('/getbyTL', groupController.getGroupsByTeamLead);
   router.get('/get', groupController.getGroups);
 
   router.delete('/delete/:id', async (req, res) => {

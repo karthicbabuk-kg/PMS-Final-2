@@ -1,5 +1,5 @@
 const mysql = require('mysql2/promise');
-const pool = require('../models/db'); // Assume you have a DB connection pool
+const pool = require('../models/db'); // DB connection pool
 
 exports.authenticateUser = async (req, res) => {
     const { role, username, password } = req.query;
@@ -7,21 +7,35 @@ exports.authenticateUser = async (req, res) => {
     try {
         let user;
 
-        // If the role is 'admin', check in the 'User' table
+        // If the role is 'admin', check in the 'users' table
         if (role === 'admin') {
             const [rows] = await pool.query('SELECT * FROM users WHERE role = ? AND username = ? AND password = ?', [role, username, password]);
-            user = rows[0]; // Assumes the User table has role, username, and password fields
+            user = rows[0]; // Assumes the users table has role, username, and password fields
 
-        // If the role is 'tl' or 'executive', check in the 'Employee' table
+        // If the role is 'tl' or 'executive', check in the 'employee' table
         } else if (role === 'tl' || role === 'executive') {
-            const [rows] = await pool.query('SELECT * FROM employees WHERE departmentDesignation = ? AND loginID = ? AND pass = ?', [role === 'tl' ? 'Team Lead' : 'Executive', username, password]);
-            user = rows[0]; // Assumes the Employee table has departmentDesignation, loginID, and pass fields
+            const [rows] = await pool.query(`
+                SELECT Employee_Name, Department_Desigination, Email, Employee_Code 
+                FROM employee 
+                WHERE Department_Desigination = ? AND Login_Id = ? AND Password = ?
+            `, [role === 'tl' ? 'Team Lead' : 'Executive', username, password]);
+
+            user = rows[0]; // Get the first matching employee record
         }
 
         // Validate user and set session
         if (user) {
-            req.session.user = { role: role, username: user.username };
-            res.redirect('/' + role); // Redirect based on the role
+            // Store the relevant user details in the session
+            req.session.user = {
+                role: role,
+                username: user.username || username,  // In case 'username' is not in employee
+                name: user.Employee_Name,
+                designation: user.Department_Desigination,
+                email: user.Email,
+                code: user.Employee_Code
+            };
+
+            res.redirect('/' + role); // Redirect based on the role (admin, tl, executive)
         } else {
             res.status(401).send('Unauthorized: Invalid username, password, or role');
         }
@@ -31,6 +45,7 @@ exports.authenticateUser = async (req, res) => {
     }
 };
 
+// Middleware to ensure the user is authenticated
 exports.ensureAuthenticated = (req, res, next) => {
     if (req.session && req.session.user) {
         return next();  // Allow the next middleware or route handler to execute

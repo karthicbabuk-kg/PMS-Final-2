@@ -1,21 +1,97 @@
 const db = require('../models/db');
+const moment = require('moment');
 const path = require('path');
 
 // Add Task
 exports.addTask = async (req, res) => {
     const {
-         ATK_DD_EXE, CMP_ID, ATK_DD_CMP, DCT, DOCN,TSN,TSD,REM,ATK_DD_STA
+        ATK_DD_EXE, // Executive name selected from the form
+        CMP_ID,
+        ATK_DD_CMP,
+        DCT,
+        DOCN,
+        TSN,
+        TSD,
+        REM,
+        ATK_DD_STA
     } = req.body;
+
+    // Ensure session data is available
+    if (!req.session || !req.session.user) {
+        return res.status(401).send('Unauthorized: No session data found');
+    }
+
+    // Get TL details from the session
+    const sessionUser = req.session.user;
+
+    // Hardcoding the primary role as "TL Team Lead"
+    const Primary_Roles = sessionUser.designation === "Team Lead" ? "Team Lead" : sessionUser.designation;
+    const Primary_Email = sessionUser.email; // TL's Email
+    const Primary_ID = sessionUser.code; // TL's Employee_Code
+    const Primary_Name = sessionUser.name; // TL's Employee_Name
+
+    // Validation: Check if the primary role is "TL Team Lead"
+    if (Primary_Roles !== "TL Team Lead") {
+        return res.status(403).send('Error: Only Team Leads can assign tasks.');
+    }
+
+    // Fetch the Executive's details based on the selected Executive_Name from the form
+    let secondaryRole, secondaryEmail, secondaryID, secondaryName;
+
+    try {
+        const [executive] = await db.query(
+            'SELECT Department_Desigination, Email, Employee_Code, Employee_Name FROM employee WHERE Employee_Name = ?',
+            [ATK_DD_EXE]
+        );
+
+        if (executive.length > 0) {
+            secondaryRole = executive[0].Department_Desigination;
+            secondaryEmail = executive[0].Email;
+            secondaryID = executive[0].Employee_Code;
+            secondaryName = executive[0].Employee_Name;
+        } else {
+            return res.status(404).send('Executive not found');
+        }
+    } catch (error) {
+        console.error('Error fetching executive details:', error);
+        return res.status(500).send('Server error');
+    }
+
+    // Validation: Check if the secondary role is "Executive"
+    if (secondaryRole !== "Executive") {
+        return res.status(403).send('Error: The selected employee is not an Executive.');
+    }
 
     // Multer stores the file path in `req.file` if a file is uploaded
     const DURL = req.file ? `/uploads/${req.file.filename}` : null;
 
+    const Ip_Mac = Math.floor(Math.random() * 1000000000); // Random number for Ip_Mac
+    const Created_DT = moment().format('YYYY-MM-DD'); // Current date
+    const Lastupdated_DT = Created_DT;
+    const Month_Year = moment().format('MM-YYYY');
+
+    // Get Financial Year
+    const getFinancialYearQuery = `SELECT Financial_Year FROM financial_year`;
+    const [financialYearResults] = await db.query(getFinancialYearQuery);
+
+    if (!financialYearResults.length) {
+      return res.status(400).send('Financial Year not found');
+    }
+
+    const Financial_Year = financialYearResults[0].Financial_Year;
+
     try {
         const [result] = await db.query(
-            `INSERT INTO assign_task ( Executive_Name, Company_Id, Company_Name, Document_Type, Document_Name, Doument_URL, Task_Name,Task_Details,Remarks,Status) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)`,
+            `INSERT INTO assign_task (
+                Executive_Name, Company_Id, Company_Name, Document_Type, Document_Name, Doument_URL, Task_Name, Task_Details, 
+                Remarks, Status, Ip_Mac, Financial_Year, Primary_Roles, Primary_Email, Primary_ID, Primary_Name, 
+                Secondary_Roles, Secondary_Email, Secondary_ID, Secondary_Name, Created_DT, Lastupdated_DT, Month_Year
+            ) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
-                 ATK_DD_EXE, CMP_ID, ATK_DD_CMP, DCT, DOCN, DURL,TSN,TSD,REM,ATK_DD_STA
+                ATK_DD_EXE, CMP_ID, ATK_DD_CMP, DCT, DOCN, DURL, TSN, TSD, REM, ATK_DD_STA,
+                Ip_Mac, Financial_Year, Primary_Roles, Primary_Email, Primary_ID, Primary_Name,
+                secondaryRole, secondaryEmail, secondaryID, secondaryName, Created_DT, Lastupdated_DT, Month_Year
             ]
         );
 
@@ -26,6 +102,8 @@ exports.addTask = async (req, res) => {
         res.status(500).send('Server error');
     }
 };
+
+
 // Get Tasks
 exports.getTasks = async (req, res) => {
     try {

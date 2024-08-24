@@ -65,6 +65,26 @@ app.use('/', authRoutes);
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+app.get('/dashboard-counts', async (req, res) => {
+    try {
+      const [companyCount] = await db.query('SELECT COUNT(*) AS count FROM company');
+      const [employeeCount] = await db.query('SELECT COUNT(*) AS count FROM employee');
+      const [groupCount] = await db.query(`SELECT COUNT(*) AS count FROM \`groups\` `);
+      const [customerCount] = await db.query('SELECT COUNT(*) AS count FROM customer');
+      const [customerDocCount] = await db.query('SELECT COUNT(*) AS count FROM customer_documents');
+  
+      res.json({
+        companyCount: companyCount[0].count,
+        employeeCount: employeeCount[0].count,
+        groupCount: groupCount[0].count,
+        customerCount: customerCount[0].count,
+        customerDocCount: customerDocCount[0].count,
+      });
+    } catch (err) {
+      console.error('Error fetching counts:', err);
+      res.status(500).send('Server Error');
+    }
+  });
 
 // Start server
 app.listen(PORT, () => {

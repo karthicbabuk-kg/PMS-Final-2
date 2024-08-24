@@ -46,4 +46,30 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+router.get('/edit/:id', (req, res) => {
+    const companyId = req.params.companyId;
+    
+    const sqlQuery = 'SELECT * FROM company WHERE CM_ID = ?';
+    db.query(sqlQuery, [companyId], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Server Error');
+        }
+        res.json(result[0]); // Assuming you only want one company based on id
+    });
+});
+
+router.put('/putEdit/:id', (req, res) => {
+    const companyId = req.params.companyId;
+    const updatedData = req.body;
+  
+    const sqlQuery = 'UPDATE company SET ? WHERE CM_ID = ?';
+    db.query(sqlQuery, [updatedData, companyId], (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Server Error');
+      }
+      res.send('Company updated successfully');
+    });
+  });
 module.exports = router;

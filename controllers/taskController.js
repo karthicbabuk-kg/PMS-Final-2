@@ -16,24 +16,21 @@ exports.addTask = async (req, res) => {
         ATK_DD_STA
     } = req.body;
 
-    // Ensure session data is available
-    if (!req.session || !req.session.user) {
+
+      // Ensure session data is available
+      if (!req.session || !req.session.user) {
         return res.status(401).send('Unauthorized: No session data found');
     }
 
-    // Get TL details from the session
     const sessionUser = req.session.user;
+    const Primary_Role = sessionUser.designation
+    const Primary_Email = sessionUser.email; // Executive's Email
+    const Primary_ID = sessionUser.code; // Executive's Employee_Code
+    const Primary_Name = sessionUser.name; // Executive's Employee_Name
 
-    // Hardcoding the primary role as "TL Team Lead"
-    const Primary_Roles = sessionUser.designation === "Team Lead" ? "Team Lead" : sessionUser.designation;
-    const Primary_Email = sessionUser.email; // TL's Email
-    const Primary_ID = sessionUser.code; // TL's Employee_Code
-    const Primary_Name = sessionUser.name; // TL's Employee_Name
-
-    // Validation: Check if the primary role is "TL Team Lead"
-    if (Primary_Roles !== "TL Team Lead") {
-        return res.status(403).send('Error: Only Team Leads can assign tasks.');
-    }
+    // Debugging: Log the selected executive name
+    console.log('Selected Executive Name:', ATK_DD_EXE);
+    console.log('Session User:', sessionUser);
 
     // Fetch the Executive's details based on the selected Executive_Name from the form
     let secondaryRole, secondaryEmail, secondaryID, secondaryName;
@@ -87,10 +84,10 @@ exports.addTask = async (req, res) => {
                 Remarks, Status, Ip_Mac, Financial_Year, Primary_Roles, Primary_Email, Primary_ID, Primary_Name, 
                 Secondary_Roles, Secondary_Email, Secondary_ID, Secondary_Name, Created_DT, Lastupdated_DT, Month_Year
             ) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`,
             [
                 ATK_DD_EXE, CMP_ID, ATK_DD_CMP, DCT, DOCN, DURL, TSN, TSD, REM, ATK_DD_STA,
-                Ip_Mac, Financial_Year, Primary_Roles, Primary_Email, Primary_ID, Primary_Name,
+                Ip_Mac, Financial_Year,Primary_Role, Primary_Email, Primary_ID, Primary_Name,
                 secondaryRole, secondaryEmail, secondaryID, secondaryName, Created_DT, Lastupdated_DT, Month_Year
             ]
         );

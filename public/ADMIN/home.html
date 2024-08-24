@@ -292,75 +292,57 @@
             </div>
 
             <div class="row mb-3">
-              <div class="col-md-12">
-                <div class="cards">
-                  <div class="row">
-                    <div class="col-md-4 mt-3">
-                      <div class="card rounded-0 m-0" style="background-color: white;">
-                        <div class="card-body text-center">
-                          <h3>0</h3>
-                          <h4>
-                            <a href="#" style="color: #6c757d;"><span>Companies</span></a>
-                          </h4>
-                          <!--<p class="text-white font-12 mb-0 badge bg-success">Activated</p>-->
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 mt-3">
-                      <div class="card rounded-0 m-0" style="background-color: white;">
-                        <div class="card-body text-center">
-                          <h3>0</h3>
-                          <h4>
-                            <a href="#" style="color: #6c757d;"><span>Employees</span></a>
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 mt-3">
-                      <div class="card rounded-0 m-0" style="background-color: white;">
-                        <div class="card-body text-center">
-                          <h3>0</h3>
-                          <h4>
-                            <a href="#" style="color: #6c757d;"><span>Groups</span></a>
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
+              <div class="col-md-4 mt-3">
+                <div class="card rounded-0 m-0" style="background-color: white;">
+                  <div class="card-body text-center">
+                    <h3 id="companyCount">0</h3>
+                    <h4><a href="#" style="color: #6c757d;"><span>Companies</span></a></h4>
                   </div>
-
-                  <div class="row">
-                    <div class="col-md-4 mt-3">
-                      <div class="card rounded-0 m-0" style="background-color: white;">
-                        <div class="card-body text-center">
-                          <h3>0</h3>
-                          <h4>
-                            <a href="#" style="color: #6c757d;"><span>Customers</span></a>
-                          </h4>
-                          <!--<p class="text-white font-12 mb-0 badge bg-success">Activated</p>-->
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 mt-3">
-                      <div class="card rounded-0 m-0" style="background-color: white;">
-                        <div class="card-body text-center">
-                          <h3>0</h3>
-                          <h4>
-                            <a href="#" style="color: #6c757d;"><span>Customers Documents</span></a>
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 mt-3">
-                      <div class="card rounded-0 m-0" style="background-color: white;">
-                        <div class="card-body text-center">
-                          <h3>0</h3>
-                          <h4>
-                            <a href="#" style="color: #6c757d;"><span>File Size</span></a>
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
+                </div>
+              </div>
+              <div class="col-md-4 mt-3">
+                <div class="card rounded-0 m-0" style="background-color: white;">
+                  <div class="card-body text-center">
+                    <h3 id="employeeCount">0</h3>
+                    <h4><a href="#" style="color: #6c757d;"><span>Employees</span></a></h4>
                   </div>
+                </div>
+              </div>
+              <div class="col-md-4 mt-3">
+                <div class="card rounded-0 m-0" style="background-color: white;">
+                  <div class="card-body text-center">
+                    <h3 id="groupCount">0</h3>
+                    <h4><a href="#" style="color: #6c757d;"><span>Groups</span></a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 mt-3">
+                <div class="card rounded-0 m-0" style="background-color: white;">
+                  <div class="card-body text-center">
+                    <h3 id="customerCount">0</h3>
+                    <h4><a href="#" style="color: #6c757d;"><span>Customers</span></a></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mt-3">
+                <div class="card rounded-0 m-0" style="background-color: white;">
+                  <div class="card-body text-center">
+                    <h3 id="customerDocCount">0</h3>
+                    <h4><a href="#" style="color: #6c757d;"><span>Customers Documents</span></a></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mt-3">
+                <div class="card rounded-0 m-0" style="background-color: white;">
+                  <div class="card-body text-center">
+                    <h3 id="fileSizeCount">0</h3>
+                    <h4><a href="#" style="color: #6c757d;"><span>File Size</span></a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
                  
                   
             <!-- end row-->
@@ -1115,5 +1097,43 @@
         alert("Logout Successfully!");
       }
     </script>
+
+<script>
+ // Function to animate the counter
+function animateCounter(id, targetValue, duration) {
+  const element = document.getElementById(id);
+  let startValue = 0;
+  const increment = targetValue / (duration / 10); // Calculate increment based on duration
+
+  const counter = setInterval(() => {
+    startValue += increment;
+    if (startValue >= targetValue) {
+      element.textContent = targetValue; // Ensure exact final value is shown
+      clearInterval(counter);
+    } else {
+      element.textContent = Math.floor(startValue); // Update the element's text with the current value
+    }
+  }, 5); // Update every 10ms for smooth animation
+}
+
+// Fetch dashboard counts and animate the counters
+function fetchDashboardCounts() {
+  fetch('/dashboard-counts')
+    .then(response => response.json())
+    .then(data => {
+      // Animate each counter with the fetched data
+      animateCounter('companyCount', data.companyCount, 2000); // 2 seconds duration
+      animateCounter('employeeCount', data.employeeCount, 2000); // 2 seconds duration
+      animateCounter('groupCount', data.groupCount, 2000); // 2 seconds duration
+      animateCounter('customerCount', data.customerCount, 2000); // 2 seconds duration
+      animateCounter('customerDocCount', data.customerDocCount, 2000); // 2 seconds duration
+    })
+    .catch(error => console.error('Error fetching dashboard counts:', error));
+}
+
+// Call the function when the page loads
+window.onload = fetchDashboardCounts;
+</script>
+
   </body>
 </html>

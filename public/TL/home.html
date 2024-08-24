@@ -239,7 +239,95 @@
       <!-- Start Page Content here -->
       <!-- ============================================================== -->
 
+      <div class="content-page">
+        <div class="content">
+          <!-- Start Content-->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div class="page-title-box">
+                  <div class="page-title-right">
+                    <form class="d-flex">
+                      <div class="input-group">
+                        <input type="text" class="form-control form-control-light" id="dash-daterange" />
+                        <span class="input-group-text bg-primary border-primary text-white">
+                          <i class="mdi mdi-calendar-range font-13"></i>
+                        </span>
+                      </div>
+                      <a href="javascript: void(0);" class="btn btn-primary ms-2">
+                        <i class="mdi mdi-autorenew"></i>
+                      </a>
+                    </form>
+                  </div>
+                  <h4 class="page-title">Dashboard</h4>
+                </div>
+              </div>
+            </div>
 
+            <div class="row mb-3">
+              <div class="col-md-4 mt-3">
+                <div class="card rounded-0 m-0" style="background-color: white;">
+                  <div class="card-body text-center">
+                    <h3 id="companyCount">0</h3>
+                    <h4><a href="#" style="color: #6c757d;"><span>Companies</span></a></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mt-3">
+                <div class="card rounded-0 m-0" style="background-color: white;">
+                  <div class="card-body text-center">
+                    <h3 id="employeeCount">0</h3>
+                    <h4><a href="#" style="color: #6c757d;"><span>Employees</span></a></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mt-3">
+                <div class="card rounded-0 m-0" style="background-color: white;">
+                  <div class="card-body text-center">
+                    <h3 id="groupCount">0</h3>
+                    <h4><a href="#" style="color: #6c757d;"><span>Groups</span></a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 mt-3">
+                <div class="card rounded-0 m-0" style="background-color: white;">
+                  <div class="card-body text-center">
+                    <h3 id="customerCount">0</h3>
+                    <h4><a href="#" style="color: #6c757d;"><span>Customers</span></a></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mt-3">
+                <div class="card rounded-0 m-0" style="background-color: white;">
+                  <div class="card-body text-center">
+                    <h3 id="customerDocCount">0</h3>
+                    <h4><a href="#" style="color: #6c757d;"><span>Customers Documents</span></a></h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mt-3">
+                <div class="card rounded-0 m-0" style="background-color: white;">
+                  <div class="card-body text-center">
+                    <h3 id="fileSizeCount">0</h3>
+                    <h4><a href="#" style="color: #6c757d;"><span>File Size</span></a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+                 
+                  
+            <!-- end row-->
+
+            <!-- end row -->
+
+            <!-- end row -->
+          </div>
+          <!-- container -->
+        </div>
+        <!-- content -->
+      </div>
       <!-- content -->
 
       <!-- ============================================================== -->
@@ -980,5 +1068,25 @@
         alert("Logout Successfully!");
       }
     </script>
+
+<script>
+  // Function to fetch dashboard counts and populate cards
+  function fetchDashboardCounts() {
+    fetch('/dashboard-counts')
+      .then(response => response.json())
+      .then(data => {
+        // Populate the cards with the fetched counts
+        document.querySelector('#companyCount').textContent = data.companyCount;
+        document.querySelector('#employeeCount').textContent = data.employeeCount;
+        document.querySelector('#groupCount').textContent = data.groupCount;
+        document.querySelector('#customerCount').textContent = data.customerCount;
+        document.querySelector('#customerDocCount').textContent = data.customerDocCount;
+      })
+      .catch(error => console.error('Error fetching dashboard counts:', error));
+  }
+
+  // Call the function when the page loads
+  window.onload = fetchDashboardCounts;
+</script>
   </body>
 </html>

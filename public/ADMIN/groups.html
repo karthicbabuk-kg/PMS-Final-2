@@ -1159,7 +1159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Attach delete event listener to each delete icon after table rows are rendered
             document.querySelectorAll('.delete-group').forEach(deleteBtn => {
-                deleteBtn.addEventListener('click', (e) => {
+                deleteBtn.addEventListener('click', async (e) => {
                     const groupId = e.currentTarget.getAttribute('data-id');
                     
                     // Confirm before delete
@@ -1184,6 +1184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Error fetching group data:', error));
 });
 </script>
+
 
 
 

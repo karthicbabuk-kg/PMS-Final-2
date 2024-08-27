@@ -1113,7 +1113,7 @@ function animateCounter(id, targetValue, duration) {
     } else {
       element.textContent = Math.floor(startValue); // Update the element's text with the current value
     }
-  }, 5); // Update every 10ms for smooth animation
+  }, 10); // Update every 10ms for smooth animation
 }
 
 // Fetch dashboard counts and animate the counters
@@ -1122,11 +1122,11 @@ function fetchDashboardCounts() {
     .then(response => response.json())
     .then(data => {
       // Animate each counter with the fetched data
-      animateCounter('companyCount', data.companyCount, 2000); // 2 seconds duration
-      animateCounter('employeeCount', data.employeeCount, 2000); // 2 seconds duration
-      animateCounter('groupCount', data.groupCount, 2000); // 2 seconds duration
-      animateCounter('customerCount', data.customerCount, 2000); // 2 seconds duration
-      animateCounter('customerDocCount', data.customerDocCount, 2000); // 2 seconds duration
+      animateCounter('companyCount', data.companyCount, 1000); // 2 seconds duration
+      animateCounter('employeeCount', data.employeeCount, 1000); // 2 seconds duration
+      animateCounter('groupCount', data.groupCount, 1000); // 2 seconds duration
+      animateCounter('customerCount', data.customerCount, 1000); // 2 seconds duration
+      animateCounter('customerDocCount', data.customerDocCount, 1000); // 2 seconds duration
     })
     .catch(error => console.error('Error fetching dashboard counts:', error));
 }

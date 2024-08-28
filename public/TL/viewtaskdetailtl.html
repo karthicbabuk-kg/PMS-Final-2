@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Customers</title>
+    <title>Task Detail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
@@ -42,7 +42,7 @@
               <!-- Logo light -->
               <a href="index.html" class="logo-light">
                 <span class="logo-lg">
-                  <img src="../assets/images/logomain.png" alt="logo" />
+                  <img src="../assets/images/pm.png" alt="logo" />
                 </span>
                 <span class="logo-sm">
                   <img src="../assets/images/logo-sm.png" alt="small logo" />
@@ -72,7 +72,7 @@
                 <span class="title">Create menu</span>
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated">
-                <!-- item-->
+               <!-- item-->
                 <a href="addcompany.html" class="dropdown-item">
                   <span class="align-middle">+ Company</span>
                 </a>
@@ -85,6 +85,8 @@
                 <a href="addcustomers.html" class="dropdown-item">
                   <span class="align-middle">+ Customers</span>
                 </a>
+
+                
               </div>
             </li>
 
@@ -145,8 +147,10 @@
                   <h6 class="text-overflow m-0">Welcome !</h6>
                 </div>
 
+              
+
                 <!-- item-->
-                <a href="../index.html" class="dropdown-item" onclick="myFunction()">
+                <a href="index.html" class="dropdown-item" onclick="myFunction()">
                   <i class="mdi mdi-logout me-1"></i>
                   <span>Logout</span>
                 </a>
@@ -193,61 +197,33 @@
             <li class="side-nav-title">My Work</li>
 
           <li class="side-nav-item">
-              <a href="../ADMIN/home.html" class="side-nav-link">
+              <a href="home.html" class="side-nav-link">
                 <i class="ri-bar-chart-box-fill"></i>
 
                 <span> Dashboard </span>
               </a>
             </li>
             <li class="side-nav-item">
-              <a href="../ADMIN/MasterData.html" class="side-nav-link">
-                <i class=" ri-funds-box-fill  "></i>
-                <span>Master Data </span>
-              </a>
-            </li>
-            <li class="side-nav-item">
-              <a href="../ADMIN/company.html" class="side-nav-link">
+              <a href="executives.html" class="side-nav-link">
                 <i class="ri-send-plane-fill"></i>
-                <span> Company</span>
+                <span> Executives</span>
               </a>
             </li>
             <li class="side-nav-item">
-              <a href="../ADMIN/employees.html" class="side-nav-link">
-                <i class="ri-group-fill"></i>
-                <span>Employee</span>
+              <a href="assigntask.html" class="side-nav-link">
+                <i class="ri-task-fill"></i>
+                <span>Assign Task</span>
               </a>
             </li>
             <li class="side-nav-item">
-              <a href="../ADMIN/groups.html" class="side-nav-link">
-                <i class="ri-team-fill"></i>
-                <span>Groups</span>
+              <a href="viewtask.html" class="side-nav-link">
+                <i class="ri-list-check"></i>
+                <span>View Task</span>
               </a>
             </li>
          
            
-            <li class="side-nav-item">
-              <a href="../ADMIN/customers.html" class="side-nav-link">
-                <i class="ri-account-box-fill"></i>
-                <span>Customer</span>
-              </a>
-            </li>
-
-            <li class="side-nav-item">
-              <a href="../ADMIN/cutomerdocuments.html" class="side-nav-link">
-                <i class="ri-contacts-book-fill"></i>
-                <span>Customer Documents </span>
-              </a>
-            </li>
-            <li class="side-nav-item">
-              <a href="../ADMIN/filesize.html" class="side-nav-link">
-                <i class="ri-contacts-book-fill"></i>
-                <span>File Size</span>
-              </a>
-            </li>
             
-            
-            
-       
             
           </ul>
           <!--- End Sidemenu -->
@@ -274,63 +250,116 @@
                   <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                       <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                      <li class="breadcrumb-item active"><a href="javascript: void(0);">Customer</a></li>
+                      <li class="breadcrumb-item"><a href="javascript: void(0);">Task Details</a></li>
+                      <li class="breadcrumb-item active">Task Details</li>
                     </ol>
                   </div>
-                  <h4 class="page-title">My Active Customers</h4>
+                  <h4 class="page-title">Task Details</h4>
                 </div>
               </div>
             </div>
             <!-- end page title -->
 
             <div class="row">
-              <div class="col-12">
-                <div class="card">
+              <div class="col-xxl-12">
+                <!-- project card -->
+                <div class="card d-block">
                   <div class="card-body">
-                    <div class="row mb-2">
-                      <div class="col-xl-12">
-                        <div class="text-xl-end mt-xl-0 mt-2">
-                          <a type="button" href="addcustomers.html" class="btn btn-primary mb-2 me-2">Add Customers</a>
-                          <button type="button" class="btn btn-light mb-2" data-bs-toggle="modal" data-bs-target="#info-alert-modalexport">Export</button>
-                          <div id="info-alert-modalexport" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-sm modal-dialog-centered">
-                              <div class="modal-content">
-                                <div class="modal-body p-4">
-                                  <div class="text-center">
-                                    <p class="mt-2"><i class="ri-check-line text-info h1"></i></p>
-                                    <img src="../assets/images/logomain.png" style="width: 80px;" />
-                                    <p class="mt-3">Data Exported Successfully !</p>
-                                    <button type="button" class="btn btn-info my-2" data-bs-dismiss="modal">Okay</button>
+                    <div class="text-xl-end mt-xl-0 mt-z p-3">
+                        <button type="button" class="btn btn-light mb-2 me-2">Edit</button>
+                        <button type="button" class="btn btn-primary mb-2 me-2">Save</button>
+                    </div>
+                
+                    <div class="clearfix"></div>
+                
+                    <div class="row">
+                          <div class="col-md-6">
+                              <!-- assignee -->
+                              <h5 class="mt-2 mb-1 fw-bold text-uppercase">Company Name</h5>
+                              <div class="d-flex">
+                                  <div>
+                                      <p class="mt-1 font-14">
+                                      -
+                                      </p>
                                   </div>
-                                </div>
                               </div>
-                              <!-- /.modal-content -->
+                          </div>
+                          <div class="col-md-6">
+                            <!-- assignee -->
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Task Name</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p class="mt-1 font-14">
+                                    -
+                                    </p>
+                                </div>
                             </div>
                           </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                          <!-- assignee -->
+                          <h5 class="mt-2 mb-1 fw-bold text-uppercase">File</h5>
+                          <div class="d-flex">
+                              <div>
+                                  <p class="mt-1 font-14">
+                                  -
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                        <!-- assignee -->
+                        <h5 class="mt-2 mb-1 fw-bold text-uppercase">Status</h5>
+                        <div class="d-flex">
+                            <div>
+                                <p class="mt-1 font-14">
+                                -
+                                </p>
+                            </div>
                         </div>
                       </div>
-                      <!-- end col-->
                     </div>
-
-                    <div class="table-responsive">
-                      <table class="table table-centered table-nowrap mb-0">
-                          <thead class="table-light">
-                              <tr>
-                                  <th>ID</th>
-                                  <th>Company</th>
-                                  <th>Website</th>
-                                  <th>Phone</th>
-                                  <th>Email</th>
-                                  <th>Account Ratings</th>
-                                  <th style="width: 125px;">Action</th>
-                              </tr>
-                          </thead>
-                          <tbody id="customerTableBody">
-                              <!-- Data will be inserted here dynamically -->
-                          </tbody>
-                      </table>
-                  </div>
-                  </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                          <!-- assignee -->
+                          <h5 class="mt-2 mb-1 fw-bold text-uppercase">Remarks</h5>
+                          <div class="d-flex">
+                              <div>
+                                  <p class="mt-1 font-14">
+                                  -
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                        <!-- assignee -->
+                        <h5 class="mt-2 mb-1 fw-bold text-uppercase"> Task Detail</h5>
+                        <div class="d-flex">
+                            <div>
+                                <p class="mt-1 font-14">
+                                -
+                                </p>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                          <!-- assignee -->
+                          <h5 class="mt-2 mb-1 fw-bold text-uppercase">Document</h5>
+                          <div class="d-flex">
+                              <div>
+                                  <p class="mt-1 font-14">
+                                  -
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                
+                
+                </div>
+                
                   <!-- end card-body-->
                 </div>
                 <!-- end card-->
@@ -341,9 +370,25 @@
           </div>
           <!-- container -->
         </div>
+        <!-- content -->
+
+        <!-- Footer Start -->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="text-md-end footer-links d-none d-md-block">
+                  <p>Copyright © 2024 CRM. All Rights Reserved. Designed by <a href="https://covenanttecs.com/" target="_blank">Covenant Technologies</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- end Footer -->
       </div>
 
-   
+      <!-- content -->
+
       <!-- ============================================================== -->
       <!-- End Page content -->
       <!-- ============================================================== -->
@@ -1032,7 +1077,7 @@
             </button>
           </div>
           <div class="col-6">
-            <a href="https://themes.getbootstrap.com/product/hyper-responsive-admin-dashboard-template/" target="_blank" role="button" class="btn btn-primary w-100">Buy Now</a>
+            <a href="#" target="_blank" role="button" class="btn btn-primary w-100">Done</a>
           </div>
         </div>
       </div>
@@ -1055,12 +1100,18 @@
     <!-- Vendor js -->
     <script src="../assets/js/vendor.min.js"></script>
 
+    <!-- App js -->
+    <script src="../assets/js/app.min.js"></script>
+    <script src="../assets/js/custom.js"></script>
+
     <!-- Daterangepicker js -->
     <script src="../assets/vendor/daterangepicker/moment.min.js"></script>
     <script src="../assets/vendor/daterangepicker/daterangepicker.js"></script>
 
     <!-- Apex Charts js -->
     <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <!-- Apex Chart Pie Demo js -->
+    <script src="../assets/js/pages/demo.apex-pie.js"></script>
 
     <!-- Vector Map js -->
     <script src="../assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
@@ -1069,83 +1120,12 @@
     <!-- Dashboard App js -->
     <script src="../assets/js/pages/demo.dashboard.js"></script>
 
-    <!-- App js -->
-   <script src="../assets/js/app.min.js"></script>
-    <script src="../assets/js/custom.js"></script>
+    
+
     <script>
       function myFunction() {
         alert("Logout Successfully!");
       }
     </script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    fetch('/customers/get')
-        .then(response => response.json())
-        .then(customers => {
-            const tableBody = document.getElementById('customerTableBody');
-            tableBody.innerHTML = ''; // Clear the table body before inserting new data
-
-            customers.forEach((customer, i) => {
-                const row = document.createElement('tr');
-                row.dataset.customerId = customer.CUS_ID;
-
-                row.innerHTML = `
-                    <td>${i + 1}</td>
-                    <td>${customer.Company_Name}</td>
-                    <td>${customer.Website}</td>
-                    <td>${customer.Phone}</td>
-                    <td>${customer.Email}</td>
-                    <td>${customer.Account_Ratings}</td>
-                    <td>
-                        <a href="customerview.html?customerId=${customer.CUS_ID}"class="action-icon">
-                            <i class="mdi mdi-square-edit-outline"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="action-icon delete-customer" data-id="${customer.CUS_ID}">
-                            <i class="mdi mdi-delete"></i>
-                        </a>
-                    </td>
-                `;
-
-                tableBody.appendChild(row);
-            });
-
-            // Attach delete function to delete icons
-            document.querySelectorAll('.delete-customer').forEach(icon => {
-                icon.addEventListener('click', deleteCustomer);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching customer data:', error);
-        });
-});
-
-
-
-  function deleteCustomer(event) {
-    const customerId = event.currentTarget.getAttribute('data-id');
-
-    // Confirm before deleting
-    if (confirm('Are you sure you want to delete this customer?')) {
-        fetch(`/customers/delete/${customerId}`, {
-            method: 'DELETE',
-        })
-        .then(response => {
-            if (response.ok) {
-                // Successfully deleted, now remove the row from the table
-                const row = event.currentTarget.closest('tr');
-                row.remove();
-                alert('Customer deleted successfully.');
-            } else {
-                alert('Failed to delete customer.');
-            }
-        })
-        .catch(error => {
-            console.error('Error deleting customer:', error);
-        });
-    }
-}
-</script>
-
   </body>
 </html>

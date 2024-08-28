@@ -1069,70 +1069,63 @@
     </script>
 
 <script>
- document.addEventListener('DOMContentLoaded', function() {
-    // Function to populate the table with task data
-    function populateTable(tasks) {
-        const tableBody = document.getElementById('taskTableBody');
-        tableBody.innerHTML = '';  // Clear existing rows
-
-        tasks.forEach(task => {
-            const row = document.createElement('tr');
-
-            row.innerHTML = `
-                <td>${task.companyName}</td>
-                <td>${task.taskName}</td>
-                <td>${task.status}</td>
-                <td>${task.remarks}</td>
-                <td>
-                    <a href="javascript:void(0);" class="action-icon edit-icon">
-                        <i class="mdi mdi-square-edit-outline"></i>
-                    </a>
-                    <a href="javascript:void(0);" class="action-icon delete-icon" data-task-id="${task.id}">
-                        <i class="mdi mdi-delete"></i>
-                    </a>
-                </td>
-            `;
-
-            tableBody.appendChild(row);
-        });
-
-        // Attach delete event listeners
-        document.querySelectorAll('.delete-icon').forEach(icon => {
-            icon.addEventListener('click', function() {
-                const taskId = this.getAttribute('data-task-id');
-                deleteTask(taskId, this);
-            });
-        });
-    }
-
-    // Fetch data from the backend and populate the table
-    fetch('/tasks/get')  // Call the API endpoint
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/tasks/getTask1')  // Adjust this URL to match your API endpoint
         .then(response => response.json())
-        .then(data => {
-            populateTable(data);
-        })
-        .catch(error => console.error('Error fetching task data:', error));
+        .then(tasks => {
+            const tbody = document.getElementById('taskTableBody');
+            tbody.innerHTML = ''; // Clear existing rows
 
-    // Function to delete a task
-    function deleteTask(taskId, deleteIcon) {
-        const confirmed = confirm('Are you sure you want to delete this task?');
-        if (!confirmed) return;
+            tasks.forEach(task => {
+                const row = document.createElement('tr');
+                row.dataset.taskId = task.UT_ID;
 
-        fetch(`/tasks/delete/${taskId}`, {  // Assuming your API endpoint is '/tasks/delete/:id'
-            method: 'DELETE'
+                row.innerHTML = `
+                    <td>${task.Company_Name}</td>
+                    <td>${task.Task_Name}</td>
+                    <td>${task.Status}</td>
+                    <td>${task.Remarks}</td>
+                    <td>
+                        <a href="viewtaskdetail.html" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                        <a href="javascript:void(0);" class="action-icon delete-icon"> 
+                            <i class="mdi mdi-delete"></i>
+                        </a>
+                    </td>
+                `;
+
+                tbody.appendChild(row);
+            });
+
+            // Attach event listeners to delete icons
+            document.querySelectorAll('.delete-icon').forEach(icon => {
+                icon.addEventListener('click', async function () {
+                    const row = this.closest('tr');
+                    const taskId = row.dataset.taskId;
+
+                    const confirmed = confirm('Are you sure you want to delete this task?');
+                    if (!confirmed) return;
+
+                    try {
+                        const response = await fetch(`/tasks/delete1/${taskId}`, {
+                            method: 'DELETE',
+                        });
+
+                        if (response.ok) {
+                            row.remove(); // Remove the row from the table if delete is successful
+                        } else {
+                            console.error('Failed to delete task');
+                        }
+                    } catch (error) {
+                        console.error('Error deleting task:', error);
+                    }
+                });
+            });
         })
-        .then(response => {
-            if (response.ok) {
-                // Remove the task row from the table
-                const row = deleteIcon.closest('tr');
-                row.remove();
-            } else {
-                console.error('Failed to delete task');
-            }
-        })
-        .catch(error => console.error('Error deleting task:', error));
-    }
+        .catch(error => {
+            console.error('Error fetching tasks:', error);
+        });
 });
+
 </script>
   </body>
 </html>

@@ -21,7 +21,30 @@ const upload = multer({ storage: storage });
 
 // Route to add a task
 router.post('/add', upload.single('DURL'), taskController.addTask);
-router.get('/getTask',taskController.getTasks)
+router.get('/getTask', async (req, res) => {
+    try {
+        const [rows] = await db.query('SELECT * FROM assign_task');
+        res.json(rows);
+    } catch (error) {
+        console.error('Database fetch error:', error);
+        res.status(500).send('Server error');
+    }
+});
+router.delete('/owndelete/:id', async (req, res) => {
+    const taskId = req.params.id;
+    try {
+        const result = await db.query('DELETE FROM assign_task WHERE AT_ID = ?', [taskId]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Task not found' });
+        }
+        res.json({ message: 'Task deleted successfully' });
+    } catch (error) {
+        console.error('Database delete error:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+
 // Route to get tasks
 router.get('/get-executives', async (req, res) => {
     try {

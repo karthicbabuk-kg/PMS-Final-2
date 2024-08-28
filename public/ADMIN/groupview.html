@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Customers</title>
+    <title>Active Groups</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
@@ -24,15 +24,13 @@
 
     <!-- Icons css -->
     <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
 
   <body>
     <!-- Begin page -->
     <div class="wrapper">
-      <!-- ========== Common Header Start ========== -->
-
       <!-- ========== Topbar Start ========== -->
       <div class="navbar-custom">
         <div class="topbar container-fluid">
@@ -40,14 +38,24 @@
             <!-- Topbar Brand Logo -->
             <div class="logo-topbar">
               <!-- Logo light -->
-              <a href="index.html" class="logo-light">
-                <span class="logo-lg">
-                  <img src="../assets/images/logomain.png" alt="logo" />
+              <a href="home.html" class="logo-light">
+                 <span class="logo-lg">
+                  <img src="../assets/images/pm.png" alt="logo" />
                 </span>
                 <span class="logo-sm">
                   <img src="../assets/images/logo-sm.png" alt="small logo" />
                 </span>
               </a>
+
+              <!-- Logo Dark -->
+              <!--<a href="home.html" class="logo-dark">
+                <span class="logo-lg">
+                  <img src="../assets/images/logo-dark.png" alt="dark logo" />
+                </span>
+                <span class="logo-sm">
+                  <img src="../assets/images/logo-dark-sm.png" alt="small logo" />
+                </span>
+              </a>-->
             </div>
 
             <!-- Sidebar Menu Toggle Button -->
@@ -72,7 +80,6 @@
                 <span class="title">Create menu</span>
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated">
-                <!-- item-->
                 <a href="addcompany.html" class="dropdown-item">
                   <span class="align-middle">+ Company</span>
                 </a>
@@ -141,12 +148,13 @@
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">
                 <!-- item-->
+                <!-- item-->
                 <div class="dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Welcome !</h6>
                 </div>
 
                 <!-- item-->
-                <a href="../index.html" class="dropdown-item" onclick="myFunction()">
+                <a href="index.html" class="dropdown-item" onclick="myFunction()">
                   <i class="mdi mdi-logout me-1"></i>
                   <span>Logout</span>
                 </a>
@@ -160,14 +168,24 @@
       <!-- ========== Left Sidebar Start ========== -->
       <div class="leftside-menu">
         <!-- Brand Logo Light -->
-        <a href="index.html" class="logo logo-light">
+        <a href="home.html" class="logo logo-light">
           <span class="logo-lg">
-            <img src="../assets/images/pm.png" style="width: 180px;height: 30px;" alt="logo" />
+           <img src="../assets/images/pm.png" style="width: 180px;height: 30px;" alt="logo" />
           </span>
           <span class="logo-sm">
-            <img src="../assets/images/logo-sm.png" alt="small logo" />
+            <img src="../assets/images/logo-sm.png" alt="Admin" />
           </span>
         </a>
+
+        <!-- Brand Logo Dark -->
+        <!--<a href="home.html" class="logo logo-dark">
+          <span class="logo-lg">
+            <img src="../assets/images/logo-dark.png" alt="dark logo" />
+          </span>
+          <span class="logo-sm">
+            <img src="../assets/images/logo-dark-sm.png" alt="small logo" />
+          </span>
+        </a>-->
 
         <!-- Sidebar Hover Menu Toggle Button -->
         <div class="button-sm-hover" data-bs-toggle="tooltip" data-bs-placement="right" title="Show Full Sidebar">
@@ -189,36 +207,30 @@
           </div>
 
           <!--- Sidemenu -->
-          <ul class="side-nav">
+            <ul class="side-nav">
             <li class="side-nav-title">My Work</li>
 
           <li class="side-nav-item">
-              <a href="../ADMIN/home.html" class="side-nav-link">
+              <a href="home.html" class="side-nav-link">
                 <i class="ri-bar-chart-box-fill"></i>
 
                 <span> Dashboard </span>
               </a>
             </li>
             <li class="side-nav-item">
-              <a href="../ADMIN/MasterData.html" class="side-nav-link">
-                <i class=" ri-funds-box-fill  "></i>
-                <span>Master Data </span>
-              </a>
-            </li>
-            <li class="side-nav-item">
-              <a href="../ADMIN/company.html" class="side-nav-link">
+              <a href="company.html" class="side-nav-link">
                 <i class="ri-send-plane-fill"></i>
                 <span> Company</span>
               </a>
             </li>
             <li class="side-nav-item">
-              <a href="../ADMIN/employees.html" class="side-nav-link">
+              <a href="employees.html" class="side-nav-link">
                 <i class="ri-group-fill"></i>
                 <span>Employee</span>
               </a>
             </li>
             <li class="side-nav-item">
-              <a href="../ADMIN/groups.html" class="side-nav-link">
+              <a href="groups.html" class="side-nav-link">
                 <i class="ri-team-fill"></i>
                 <span>Groups</span>
               </a>
@@ -226,26 +238,25 @@
          
            
             <li class="side-nav-item">
-              <a href="../ADMIN/customers.html" class="side-nav-link">
+              <a href="customers.html" class="side-nav-link">
                 <i class="ri-account-box-fill"></i>
                 <span>Customer</span>
               </a>
             </li>
 
             <li class="side-nav-item">
-              <a href="../ADMIN/cutomerdocuments.html" class="side-nav-link">
+              <a href="cutomerdocuments.html" class="side-nav-link">
                 <i class="ri-contacts-book-fill"></i>
                 <span>Customer Documents </span>
               </a>
             </li>
+            
             <li class="side-nav-item">
-              <a href="../ADMIN/filesize.html" class="side-nav-link">
-                <i class="ri-contacts-book-fill"></i>
-                <span>File Size</span>
+              <a href="MasterData.html" class="side-nav-link">
+                <i class=" ri-funds-box-fill  "></i>
+                <span>Master Data </span>
               </a>
             </li>
-            
-            
             
        
             
@@ -256,8 +267,6 @@
         </div>
       </div>
       <!-- ========== Left Sidebar End ========== -->
-
-      <!-- ========== Common Header End ========== -->
 
       <!-- ============================================================== -->
       <!-- Start Page Content here -->
@@ -274,79 +283,85 @@
                   <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                       <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                      <li class="breadcrumb-item active"><a href="javascript: void(0);">Customer</a></li>
+                      <li class="breadcrumb-item active"><a href="javascript: void(0);"> Groups</a></li>
                     </ol>
                   </div>
-                  <h4 class="page-title">My Active Customers</h4>
+                  <h4 class="page-title"> Groups</h4>
                 </div>
               </div>
             </div>
             <!-- end page title -->
 
             <div class="row">
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row mb-2">
-                      <div class="col-xl-12">
-                        <div class="text-xl-end mt-xl-0 mt-2">
-                          <a type="button" href="addcustomers.html" class="btn btn-primary mb-2 me-2">Add Customers</a>
-                          <button type="button" class="btn btn-light mb-2" data-bs-toggle="modal" data-bs-target="#info-alert-modalexport">Export</button>
-                          <div id="info-alert-modalexport" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-sm modal-dialog-centered">
-                              <div class="modal-content">
-                                <div class="modal-body p-4">
-                                  <div class="text-center">
-                                    <p class="mt-2"><i class="ri-check-line text-info h1"></i></p>
-                                    <img src="../assets/images/logomain.png" style="width: 80px;" />
-                                    <p class="mt-3">Data Exported Successfully !</p>
-                                    <button type="button" class="btn btn-info my-2" data-bs-dismiss="modal">Okay</button>
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- /.modal-content -->
-                            </div>
-                          </div>
-                        </div>
+                <div class="col-xxl-12">
+                  <!-- project card -->
+                  <div class="card d-block">
+                    <div class="card-body">
+                      <div class="text-xl-end mt-xl-0 mt-z p-3">
+                          <button type="button" id="edit-button" class="btn btn-light mb-2 me-2">Edit</button>
+                          <button type="button" id="save-button" class="btn btn-primary mb-2 me-2">Save</button>
                       </div>
-                      <!-- end col-->
+                  
+                      <div class="clearfix"></div>
+                  
+                      <div class="row">
+                        <div class="col-md-6">
+                            <!-- Group Name -->
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Group Name</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="group-name-text" class="mt-1 font-14">-</p>
+                                    <input type="text" id="group-name-input" class="form-control mt-1 font-14"  style="display: none;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Company -->
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Company</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="company-text" class="mt-1 font-14">-</p>
+                                    <input type="text" id="company-input" class="form-control mt-1 font-14"  style="display: none;">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="table-responsive">
-                      <table class="table table-centered table-nowrap mb-0">
-                          <thead class="table-light">
-                              <tr>
-                                  <th>ID</th>
-                                  <th>Company</th>
-                                  <th>Website</th>
-                                  <th>Phone</th>
-                                  <th>Email</th>
-                                  <th>Account Ratings</th>
-                                  <th style="width: 125px;">Action</th>
-                              </tr>
-                          </thead>
-                          <tbody id="customerTableBody">
-                              <!-- Data will be inserted here dynamically -->
-                          </tbody>
-                      </table>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Lead -->
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Lead</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="lead-text" class="mt-1 font-14">-</p>
+                                    <input type="text" id="lead-input" class="form-control mt-1 font-14"  style="display: none;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Employee -->
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Employee</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="employee-text" class="mt-1 font-14">-</p>
+                                    <input type="text" id="employee-input" class="form-control mt-1 font-14"  style="display: none;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
                   </div>
+                  
+                    <!-- end card-body-->
                   </div>
-                  <!-- end card-body-->
+                  <!-- end card-->
                 </div>
-                <!-- end card-->
+                <!-- end col -->
               </div>
-              <!-- end col -->
-            </div>
             <!-- end row -->
           </div>
           <!-- container -->
         </div>
       </div>
-
-   
-      <!-- ============================================================== -->
-      <!-- End Page content -->
-      <!-- ============================================================== -->
 
       <!-- Footer Start -->
       <footer class="footer">
@@ -361,6 +376,10 @@
         </div>
       </footer>
       <!-- end Footer -->
+
+      <!-- ============================================================== -->
+      <!-- End Page content -->
+      <!-- ============================================================== -->
     </div>
     <!-- END wrapper -->
 
@@ -1032,7 +1051,7 @@
             </button>
           </div>
           <div class="col-6">
-            <a href="https://themes.getbootstrap.com/product/hyper-responsive-admin-dashboard-template/" target="_blank" role="button" class="btn btn-primary w-100">Buy Now</a>
+            <a href="#" target="_blank" role="button" class="btn btn-primary w-100">Done</a>
           </div>
         </div>
       </div>
@@ -1061,6 +1080,8 @@
 
     <!-- Apex Charts js -->
     <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <!-- Apex Chart Pie Demo js -->
+    <script src="../assets/js/pages/demo.apex-pie.js"></script>
 
     <!-- Vector Map js -->
     <script src="../assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
@@ -1070,8 +1091,9 @@
     <script src="../assets/js/pages/demo.dashboard.js"></script>
 
     <!-- App js -->
-   <script src="../assets/js/app.min.js"></script>
+    <script src="../assets/js/app.min.js"></script>
     <script src="../assets/js/custom.js"></script>
+
     <script>
       function myFunction() {
         alert("Logout Successfully!");
@@ -1079,73 +1101,104 @@
     </script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    fetch('/customers/get')
-        .then(response => response.json())
-        .then(customers => {
-            const tableBody = document.getElementById('customerTableBody');
-            tableBody.innerHTML = ''; // Clear the table body before inserting new data
+  document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const groupId = urlParams.get('groupId'); // Get the group ID from URL
+      console.log(groupId);
+      
+      if (!groupId) {
+          console.error('No group ID provided');
+          return;
+      }
 
-            customers.forEach((customer, i) => {
-                const row = document.createElement('tr');
-                row.dataset.customerId = customer.CUS_ID;
+      try {
+          // Fetch group details
+          const response = await fetch(`/groups/edit/${groupId}`);
 
-                row.innerHTML = `
-                    <td>${i + 1}</td>
-                    <td>${customer.Company_Name}</td>
-                    <td>${customer.Website}</td>
-                    <td>${customer.Phone}</td>
-                    <td>${customer.Email}</td>
-                    <td>${customer.Account_Ratings}</td>
-                    <td>
-                        <a href="customerview.html?customerId=${customer.CUS_ID}"class="action-icon">
-                            <i class="mdi mdi-square-edit-outline"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="action-icon delete-customer" data-id="${customer.CUS_ID}">
-                            <i class="mdi mdi-delete"></i>
-                        </a>
-                    </td>
-                `;
+          // Check if the response is OK
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
 
-                tableBody.appendChild(row);
-            });
+          // Check if the response is JSON
+          const contentType = response.headers.get('Content-Type');
+          if (!contentType || !contentType.includes('application/json')) {
+              throw new Error('Response is not JSON');
+          }
 
-            // Attach delete function to delete icons
-            document.querySelectorAll('.delete-customer').forEach(icon => {
-                icon.addEventListener('click', deleteCustomer);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching customer data:', error);
-        });
-});
+          const group = await response.json(); // Parse response as JSON
+          console.log('Group Data:', group);
+          
+          // Populate fields
+          document.getElementById('group-name-text').textContent = group.Group_Name || '-';
+          document.getElementById('group-name-input').value = group.Group_Name || '';
+          document.getElementById('company-text').textContent = group.Company || '-';
+          document.getElementById('company-input').value = group.Company || '';
+          document.getElementById('lead-text').textContent = group.Lead || '-';
+          document.getElementById('lead-input').value = group.Lead || '';
+          document.getElementById('employee-text').textContent = group.Employee || '-';
+          document.getElementById('employee-input').value = group.Employee || '';
+          document.getElementById('status-text').textContent = group.Status || '-';
+          document.getElementById('status-input').value = group.Status || '';
 
+      } catch (error) {
+          console.error('Error fetching group details:', error);
+          // Optionally, display an error message to the user
+          alert('There was a problem fetching group details.');
+      }
+      const editButton = document.getElementById('edit-button');
+     editButton.addEventListener('click', () => {
+          const fields = [
+              'group-name', 'company', 'lead', 'employee'
+          ];
 
+          fields.forEach(fieldId => {
+              const textElem = document.getElementById(`${fieldId}-text`);
+              const inputElem = document.getElementById(`${fieldId}-input`);
 
-  function deleteCustomer(event) {
-    const customerId = event.currentTarget.getAttribute('data-id');
+              if (textElem && inputElem) {
+                  const isEditing = inputElem.style.display === 'block';
+                  textElem.style.display = isEditing ? 'block' : 'none';
+                  inputElem.style.display = isEditing ? 'none' : 'block';
+              }
+          });
+      });
 
-    // Confirm before deleting
-    if (confirm('Are you sure you want to delete this customer?')) {
-        fetch(`/customers/delete/${customerId}`, {
-            method: 'DELETE',
-        })
-        .then(response => {
-            if (response.ok) {
-                // Successfully deleted, now remove the row from the table
-                const row = event.currentTarget.closest('tr');
-                row.remove();
-                alert('Customer deleted successfully.');
-            } else {
-                alert('Failed to delete customer.');
-            }
-        })
-        .catch(error => {
-            console.error('Error deleting customer:', error);
-        });
-    }
-}
+      document.getElementById('save-button').addEventListener('click', async () => {
+          // Prepare the data object with group details from input fields
+          const updatedGroup = {
+              Group_Name: document.getElementById('group-name-input').value,
+              Company: document.getElementById('company-input').value,
+              Lead: document.getElementById('lead-input').value,
+              Employee: document.getElementById('employee-input').value,
+              Status: document.getElementById('status-input').value
+          };
+
+          console.log('Data to be sent:', updatedGroup); // Debugging: Log data object to verify
+
+          try {
+              // Send the data to the server for updating
+              const response = await fetch(`/groups/putEdit/${groupId}`, {
+                  method: 'PUT',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(updatedGroup)
+              });
+
+              if (response.ok) {
+                  // Update the UI or redirect as necessary
+                  alert('Group details updated successfully!');
+                  window.location.reload(); // Refresh page after save
+              } else {
+                  throw new Error('Failed to update group details');
+              }
+          } catch (error) {
+              console.error('Error updating group details:', error);
+              alert('There was a problem updating group details.');
+          }
+      });
+  });
 </script>
-
   </body>
 </html>

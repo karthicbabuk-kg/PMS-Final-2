@@ -43,4 +43,48 @@ router.get('/companies', groupController.getCompanies)
 });
 
 
+
+
+// edit page
+
+router.get('/edit/:groupId', (req, res) => {
+    const groupId = req.params.groupId;
+    const query = 'SELECT * FROM groups WHERE GRP_ID = ?';
+
+    db.query(query, [groupId], (err, results) => {
+        if (err) {
+            console.error('Error fetching group details:', err);
+            res.status(500).send('Error fetching group details');
+            return;
+        }
+        res.json(results[0]);
+    });
+});
+
+router.put('/putEdit/:groupId', (req, res) => {
+    const groupId = req.params.groupId;
+    const updatedGroup = req.body;
+
+    const query = `
+        UPDATE groups SET
+        Group_Name = ?, Company = ?, Select_Lead = ?, Select_Employee = ?
+        WHERE GRP_ID = ?
+    `;
+
+    db.query(query, [
+        updatedGroup.Group_Name,
+        updatedGroup.Lead,
+        updatedGroup.Employee,
+        updatedGroup.Status,
+        groupId
+    ], (err, results) => {
+        if (err) {
+            console.error('Error updating group details:', err);
+            res.status(500).send('Error updating group details');
+            return;
+        }
+        res.send('Group details updated successfully');
+    });
+});
+
 module.exports = router;

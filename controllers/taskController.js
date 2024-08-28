@@ -116,7 +116,7 @@ exports.getTasks = async (req, res) => {
 exports.deleteTask = async (req, res) => {
     const taskId = req.params.id;
     try {
-        const result = await db.query('DELETE FROM tasks WHERE id = ?', [taskId]);
+        const result = await db.query('DELETE FROM assign_task WHERE AT_ID = ?', [taskId]);
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Task not found' });
         }

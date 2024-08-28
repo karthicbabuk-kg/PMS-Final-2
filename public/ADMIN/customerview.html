@@ -146,7 +146,7 @@
                 </div>
 
                 <!-- item-->
-                <a href="../index.html" class="dropdown-item" onclick="myFunction()">
+                <a href="index.html" class="dropdown-item" onclick="myFunction()">
                   <i class="mdi mdi-logout me-1"></i>
                   <span>Logout</span>
                 </a>
@@ -162,10 +162,10 @@
         <!-- Brand Logo Light -->
         <a href="index.html" class="logo logo-light">
           <span class="logo-lg">
-            <img src="../assets/images/pm.png" style="width: 180px;height: 30px;" alt="logo" />
+            <img src="../assets//images/pm.png" style="width: 180px;height: 30px;" alt="logo" />
           </span>
           <span class="logo-sm">
-            <img src="../assets/images/logo-sm.png" alt="small logo" />
+            <img src="../assets//images/logo-sm.png" alt="small logo" />
           </span>
         </a>
 
@@ -185,40 +185,35 @@
           <div class="leftbar-user">
             <a href="#">
               <img src="../assets/images/users/avatar-1.jpg" alt="user-image" height="42" class="rounded-circle shadow-sm" />
+              <span class="leftbar-user-name mt-2">Dominic Keller</span>
             </a>
           </div>
 
           <!--- Sidemenu -->
-          <ul class="side-nav">
+            <ul class="side-nav">
             <li class="side-nav-title">My Work</li>
 
           <li class="side-nav-item">
-              <a href="../ADMIN/home.html" class="side-nav-link">
+              <a href="home.html" class="side-nav-link">
                 <i class="ri-bar-chart-box-fill"></i>
 
                 <span> Dashboard </span>
               </a>
             </li>
             <li class="side-nav-item">
-              <a href="../ADMIN/MasterData.html" class="side-nav-link">
-                <i class=" ri-funds-box-fill  "></i>
-                <span>Master Data </span>
-              </a>
-            </li>
-            <li class="side-nav-item">
-              <a href="../ADMIN/company.html" class="side-nav-link">
+              <a href="company.html" class="side-nav-link">
                 <i class="ri-send-plane-fill"></i>
                 <span> Company</span>
               </a>
             </li>
             <li class="side-nav-item">
-              <a href="../ADMIN/employees.html" class="side-nav-link">
+              <a href="employees.html" class="side-nav-link">
                 <i class="ri-group-fill"></i>
                 <span>Employee</span>
               </a>
             </li>
             <li class="side-nav-item">
-              <a href="../ADMIN/groups.html" class="side-nav-link">
+              <a href="groups.html" class="side-nav-link">
                 <i class="ri-team-fill"></i>
                 <span>Groups</span>
               </a>
@@ -226,26 +221,25 @@
          
            
             <li class="side-nav-item">
-              <a href="../ADMIN/customers.html" class="side-nav-link">
+              <a href="customers.html" class="side-nav-link">
                 <i class="ri-account-box-fill"></i>
                 <span>Customer</span>
               </a>
             </li>
 
             <li class="side-nav-item">
-              <a href="../ADMIN/cutomerdocuments.html" class="side-nav-link">
+              <a href="cutomerdocuments.html" class="side-nav-link">
                 <i class="ri-contacts-book-fill"></i>
                 <span>Customer Documents </span>
               </a>
             </li>
+            
             <li class="side-nav-item">
-              <a href="../ADMIN/filesize.html" class="side-nav-link">
-                <i class="ri-contacts-book-fill"></i>
-                <span>File Size</span>
+              <a href="MasterData.html" class="side-nav-link">
+                <i class=" ri-funds-box-fill  "></i>
+                <span>Master Data </span>
               </a>
             </li>
-            
-            
             
        
             
@@ -277,66 +271,551 @@
                       <li class="breadcrumb-item active"><a href="javascript: void(0);">Customer</a></li>
                     </ol>
                   </div>
-                  <h4 class="page-title">My Active Customers</h4>
+                  <h4 class="page-title">My  Customers</h4>
                 </div>
               </div>
             </div>
             <!-- end page title -->
 
             <div class="row">
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row mb-2">
-                      <div class="col-xl-12">
-                        <div class="text-xl-end mt-xl-0 mt-2">
-                          <a type="button" href="addcustomers.html" class="btn btn-primary mb-2 me-2">Add Customers</a>
-                          <button type="button" class="btn btn-light mb-2" data-bs-toggle="modal" data-bs-target="#info-alert-modalexport">Export</button>
-                          <div id="info-alert-modalexport" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-sm modal-dialog-centered">
-                              <div class="modal-content">
-                                <div class="modal-body p-4">
-                                  <div class="text-center">
-                                    <p class="mt-2"><i class="ri-check-line text-info h1"></i></p>
-                                    <img src="../assets/images/logomain.png" style="width: 80px;" />
-                                    <p class="mt-3">Data Exported Successfully !</p>
-                                    <button type="button" class="btn btn-info my-2" data-bs-dismiss="modal">Okay</button>
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- /.modal-content -->
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- end col-->
+                <div class="col-12">
+                  <div class="card">
+                    <div class="text-xl-end mt-xl-0 mt-z p-3">
+                      <button type="button" id="edit-button" class="btn btn-light mb-2 me-2">Edit</button>
+  
+                      <button type="button" id="save-button" class="btn btn-primary mb-2 me-2">Save</button>
+  
+                     
                     </div>
+  
+                      <ul class="nav nav-tabs nav-justified nav-bordered mb-3 mt-2">
+                          <li class="nav-item">
+                              <a href="#home-b2" data-bs-toggle="tab" aria-expanded="false" class="nav-link active">
+                                  <i class="mdi mdi-home-variant d-md-none d-none"></i>
+                                  <span class="d-block d-md-block">Basic Details</span>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="#profile-b2" data-bs-toggle="tab" aria-expanded="true" class="nav-link ">
+                                  <i class="mdi mdi-account-circle d-md-none d-none"></i>
+                                  <span class="d-block d-md-block">Account Details</span>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="#settings-b2" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                                  <i class="mdi mdi-settings-outline d-md-none d-none"></i>
+                                  <span class="d-block d-md-block">Contact Details</span>
+                              </a>
+                          </li>
+                      </ul>
+                      
+                      <div class="tab-content p-3">
+                          <div class="tab-pane show active" id="home-b2">
+                            <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Account Owner</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                        <p id="account-owner" class="mt-1 font-14">-</p>
+                                        <input id="account-owner-input" type="text" class="form-control" style="display: none;">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Ratings</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                        <p id="rating" class="mt-1 font-14">-</p>
+                                        <input id="rating-input" type="text" class="form-control" style="display: none;">
 
-                    <div class="table-responsive">
-                      <table class="table table-centered table-nowrap mb-0">
-                          <thead class="table-light">
-                              <tr>
-                                  <th>ID</th>
-                                  <th>Company</th>
-                                  <th>Website</th>
-                                  <th>Phone</th>
-                                  <th>Email</th>
-                                  <th>Account Ratings</th>
-                                  <th style="width: 125px;">Action</th>
-                              </tr>
-                          </thead>
-                          <tbody id="customerTableBody">
-                              <!-- Data will be inserted here dynamically -->
-                          </tbody>
-                      </table>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Customer ID</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="customer-id" class="mt-1 font-14">-</p>
+                                        <input id="customer-id-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Customer Name</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="customer-name" class="mt-1 font-14">-</p>
+                                        <input id="customer-name-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Parent Company Name</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="parent-company-name" class="mt-1 font-14">-</p>
+                                        <input id="parent-company-name-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Website</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="website" class="mt-1 font-14">-</p>
+                                        <input id="website-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Phone</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="phone" class="mt-1 font-14">-</p>
+                                        <input id="phone-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Fax</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="fax" class="mt-1 font-14">-</p>
+                                        <input id="fax-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Email</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="email" class="mt-1 font-14">-</p>
+                                        <input id="email-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Accounts Email</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="accounts-email" class="mt-1 font-14">-</p>
+                                        <input id="accounts-email-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">CEO Name</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="ceo-name" class="mt-1 font-14">-</p>
+                                        <input id="ceo-name-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">CEO Email</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="ceo-email" class="mt-1 font-14">-</p>
+                                        <input id="ceo-email-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Ownership</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="ownership" class="mt-1 font-14">-</p>
+                                        <input id="ownership-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Company Type</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="company-type" class="mt-1 font-14">-</p>
+                                        <input id="company-type-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Industry</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="industry" class="mt-1 font-14">-</p>
+                                        <input id="industry-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Employees</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="employees" class="mt-1 font-14">-</p>
+                                        <input id="employees-input" type="text" class="form-control" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                          
+                        <div class="row">
+                          <div class="col-md-6">
+                              <h5 class="mt-2 mb-1 fw-bold text-uppercase">Annual Revenue</h5>
+                              <div class="d-flex">
+                                  <div>
+                                      <p id="annual-revenue" class="mt-1 font-14">-</p>
+                                      <input id="annual-revenue-input" type="text" class="form-control" style="display: none;">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <h5 class="mt-2 mb-1 fw-bold text-uppercase">Expected Revenue</h5>
+                              <div class="d-flex">
+                                  <div>
+                                      <p id="expected-revenue" class="mt-1 font-14">-</p>
+                                      <input id="expected-revenue-input" type="text" class="form-control" style="display: none;">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+  
+                      <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Primary Contact Name</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="primary-contact-name" class="mt-1 font-14">-</p>
+                                    <input id="primary-contact-name-input" type="text" class="form-control" style="display: none;" placeholder="Enter Primary Contact Name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Secondary Contact Name</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="secondary-contact-name" class="mt-1 font-14">-</p>
+                                    <input id="secondary-contact-name-input" type="text" class="form-control" style="display: none;" placeholder="Enter Secondary Contact Name">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Primary Phone</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="primary-phone" class="mt-1 font-14">-</p>
+                                    <input id="primary-phone-input" type="tel" class="form-control" style="display: none;" placeholder="Enter Primary Phone Number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Secondary Phone</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="secondary-phone" class="mt-1 font-14">-</p>
+                                    <input id="secondary-phone-input" type="tel" class="form-control" style="display: none;" placeholder="Enter Secondary Phone Number">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Primary Email</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="primary-email" class="mt-1 font-14">-</p>
+                                    <input id="primary-email-input" type="email" class="form-control" style="display: none;" placeholder="Enter Primary Email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Secondary Email</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="secondary-email" class="mt-1 font-14">-</p>
+                                    <input id="secondary-email-input" type="email" class="form-control" style="display: none;" placeholder="Enter Secondary Email">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Primary Designation</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="primary-designation" class="mt-1 font-14">-</p>
+                                    <input id="primary-designation-input" type="text" class="form-control" style="display: none;" placeholder="Enter Primary Designation">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Secondary Designation</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="secondary-designation" class="mt-1 font-14">-</p>
+                                    <input id="secondary-designation-input" type="text" class="form-control" style="display: none;" placeholder="Enter Secondary Designation">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Remarks</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="remarks" class="mt-1 font-14">-</p>
+                                    <input id="remarks-input" type="text" class="form-control" style="display: none;" placeholder="Enter Remarks">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Additional Remarks</h5>
+                            <div class="d-flex">
+                                <div>
+                                    <p id="additional-remarks" class="mt-1 font-14">-</p>
+                                    <input id="additional-remarks-input" type="text" class="form-control" style="display: none;" placeholder="Enter Additional Remarks">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                      
+                        </div>
+  
+                        <div class="tab-pane" id="profile-b2">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Bank Account Number</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="bank-account-number" class="mt-1 font-14">-</p>
+                                          <input id="bank-account-number-input" type="text" class="form-control" style="display: none;" placeholder="Enter Bank Account Number">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Account Holder Name</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="account-holder-name" class="mt-1 font-14">-</p>
+                                          <input id="account-holder-name-input" type="text" class="form-control" style="display: none;" placeholder="Enter Account Holder Name">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">IFSC Code</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="ifsc-code" class="mt-1 font-14">-</p>
+                                          <input id="ifsc-code-input" type="text" class="form-control" style="display: none;" placeholder="Enter IFSC Code">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Branch Name</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="branch-name" class="mt-1 font-14">-</p>
+                                          <input id="branch-name-input" type="text" class="form-control" style="display: none;" placeholder="Enter Branch Name">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">SIC Code</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="sic-code" class="mt-1 font-14">-</p>
+                                          <input id="sic-code-input" type="text" class="form-control" style="display: none;" placeholder="Enter SIC Code">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">TCS/TDS</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="tcs-tds" class="mt-1 font-14">-</p>
+                                          <input id="tcs-tds-input" type="text" class="form-control" style="display: none;" placeholder="Enter TCS/TDS">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Company PAN No</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="company-pan-no" class="mt-1 font-14">-</p>
+                                          <input id="company-pan-no-input" type="text" class="form-control" style="display: none;" placeholder="Enter Company PAN No">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Company GST/VAT No</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="company-gst-vat-no" class="mt-1 font-14">-</p>
+                                          <input id="company-gst-vat-no-input" type="text" class="form-control" style="display: none;" placeholder="Enter Company GST/VAT No">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Credit Amount Allowed</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="credit-amount-allowed" class="mt-1 font-14">-</p>
+                                          <input id="credit-amount-allowed-input" type="text" class="form-control" style="display: none;" placeholder="Enter Credit Amount Allowed">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Credit Age</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="credit-age" class="mt-1 font-14">-</p>
+                                          <input id="credit-age-input" type="text" class="form-control" style="display: none;" placeholder="Enter Credit Age">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="tab-pane" id="settings-b2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Billing Street</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="billing-street" class="mt-1 font-14">-</p>
+                                        <input id="billing-street-input" type="text" class="form-control" style="display: none;" placeholder="Enter Billing Street">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Shipping Street</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="shipping-street" class="mt-1 font-14">-</p>
+                                        <input id="shipping-street-input" type="text" class="form-control" style="display: none;" placeholder="Enter Shipping Street">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Billing City</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="billing-city" class="mt-1 font-14">-</p>
+                                        <input id="billing-city-input" type="text" class="form-control" style="display: none;" placeholder="Enter Billing City">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Shipping City</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="shipping-city" class="mt-1 font-14">-</p>
+                                        <input id="shipping-city-input" type="text" class="form-control" style="display: none;" placeholder="Enter Shipping City">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Billing State</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="billing-state" class="mt-1 font-14">-</p>
+                                        <input id="billing-state-input" type="text" class="form-control" style="display: none;" placeholder="Enter Billing State">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Shipping State</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="shipping-state" class="mt-1 font-14">-</p>
+                                        <input id="shipping-state-input" type="text" class="form-control" style="display: none;" placeholder="Enter Shipping State">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Billing Zipcode</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="billing-zipcode" class="mt-1 font-14">-</p>
+                                        <input id="billing-zipcode-input" type="text" class="form-control" style="display: none;" placeholder="Enter Billing Zipcode">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Shipping Zipcode</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="shipping-zipcode" class="mt-1 font-14">-</p>
+                                        <input id="shipping-zipcode-input" type="text" class="form-control" style="display: none;" placeholder="Enter Shipping Zipcode">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Billing Country</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="billing-country" class="mt-1 font-14">-</p>
+                                        <input id="billing-country-input" type="text" class="form-control" style="display: none;" placeholder="Enter Billing Country">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Shipping Country</h5>
+                                <div class="d-flex">
+                                    <div>
+                                        <p id="shipping-country" class="mt-1 font-14">-</p>
+                                        <input id="shipping-country-input" type="text" class="form-control" style="display: none;" placeholder="Enter Shipping Country">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                                                                      
                   </div>
-                  </div>
-                  <!-- end card-body-->
                 </div>
-                <!-- end card-->
+                <!-- end card-body-->
               </div>
-              <!-- end col -->
-            </div>
             <!-- end row -->
           </div>
           <!-- container -->
@@ -1079,73 +1558,252 @@
     </script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    fetch('/customers/get')
-        .then(response => response.json())
-        .then(customers => {
-            const tableBody = document.getElementById('customerTableBody');
-            tableBody.innerHTML = ''; // Clear the table body before inserting new data
+  document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const customerId = urlParams.get('customerId'); // Get the customer ID from URL
+      console.log(customerId);
+      
+      if (!customerId) {
+          console.error('No customer ID provided');
+          return;
+      }
 
-            customers.forEach((customer, i) => {
-                const row = document.createElement('tr');
-                row.dataset.customerId = customer.CUS_ID;
+      try {
+        // Fetch customer details
+        const response = await fetch(`/customers/edit/${customerId}`);
 
-                row.innerHTML = `
-                    <td>${i + 1}</td>
-                    <td>${customer.Company_Name}</td>
-                    <td>${customer.Website}</td>
-                    <td>${customer.Phone}</td>
-                    <td>${customer.Email}</td>
-                    <td>${customer.Account_Ratings}</td>
-                    <td>
-                        <a href="customerview.html?customerId=${customer.CUS_ID}"class="action-icon">
-                            <i class="mdi mdi-square-edit-outline"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="action-icon delete-customer" data-id="${customer.CUS_ID}">
-                            <i class="mdi mdi-delete"></i>
-                        </a>
-                    </td>
-                `;
+        // Check if the response is OK
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-                tableBody.appendChild(row);
-            });
+        // Check if the response is JSON
+        const contentType = response.headers.get('Content-Type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error('Response is not JSON');
+        }
 
-            // Attach delete function to delete icons
-            document.querySelectorAll('.delete-customer').forEach(icon => {
-                icon.addEventListener('click', deleteCustomer);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching customer data:', error);
+        const customer = await response.json(); // Parse response as JSON
+        console.log('Customer Data:', customer);
+        
+        // Populate fields
+        document.getElementById('account-owner').textContent = customer.Account_Owner;
+        document.getElementById('account-owner-input').value = customer.Account_Owner;
+        document.getElementById('rating').textContent = customer.Account_Ratings;
+        document.getElementById('rating-input').value = customer.Account_Ratings;
+        document.getElementById('customer-id').textContent = customer.Company_Id;
+        document.getElementById('customer-id-input').value = customer.Company_Id;
+        document.getElementById('customer-name').textContent = customer.Company_Name;
+        document.getElementById('customer-name-input').value = customer.Company_Name;
+        document.getElementById('parent-company-name').textContent = customer.Parentcompany_Name;
+        document.getElementById('parent-company-name-input').value = customer.Parentcompany_Name;
+        document.getElementById('website').textContent = customer.Website;
+        document.getElementById('website-input').value = customer.Website;
+        document.getElementById('phone').textContent = customer.Phone;
+        document.getElementById('phone-input').value = customer.Phone;
+        document.getElementById('fax').textContent = customer.Fax;
+        document.getElementById('fax-input').value = customer.Fax;
+        document.getElementById('email').textContent = customer.Email;
+        document.getElementById('email-input').value = customer.Email;
+        document.getElementById('accounts-email').textContent = customer.Accounts_Email;
+        document.getElementById('accounts-email-input').value = customer.Accounts_Email;
+        document.getElementById('ceo-name').textContent = customer.Ceo_Name;
+        document.getElementById('ceo-name-input').value = customer.Ceo_Name;
+        document.getElementById('ceo-email').textContent = customer.Ceo_Email;
+        document.getElementById('ceo-email-input').value = customer.Ceo_Email;
+        document.getElementById('ownership').textContent = customer.Ownership;
+        document.getElementById('ownership-input').value = customer.Ownership;
+        document.getElementById('company-type').textContent = customer.Company_Type;
+        document.getElementById('company-type-input').value = customer.Company_Type;
+        document.getElementById('industry').textContent = customer.Industry;
+        document.getElementById('industry-input').value = customer.Industry;
+        document.getElementById('employees').textContent = customer.Employees;
+        document.getElementById('employees-input').value = customer.Employees;
+        document.getElementById('annual-revenue').textContent = customer.Annual_Revenue;
+        document.getElementById('annual-revenue-input').value = customer.Annual_Revenue;
+        document.getElementById('expected-revenue').textContent = customer.Expected_Revenue;
+        document.getElementById('expected-revenue-input').value = customer.Expected_Revenue;
+        document.getElementById('primary-contact-name').textContent = customer.Primary_Contactname;
+        document.getElementById('primary-contact-name-input').value = customer.Primary_Contactname;
+        document.getElementById('secondary-contact-name').textContent = customer.Secondary_Contactname;
+        document.getElementById('secondary-contact-name-input').value = customer.Secondary_Contactname;
+        document.getElementById('primary-phone').textContent = customer.Primary_Phone;
+        document.getElementById('primary-phone-input').value = customer.Primary_Phone;
+        document.getElementById('secondary-phone').textContent = customer.Secondary_Phone;
+        document.getElementById('secondary-phone-input').value = customer.Secondary_Phone;
+        document.getElementById('primary-email').textContent = customer.Primary_Email;
+        document.getElementById('primary-email-input').value = customer.Primary_Email;
+        document.getElementById('secondary-email').textContent = customer.Secondary_Email;
+        document.getElementById('secondary-email-input').value = customer.Secondary_Email;
+        document.getElementById('primary-designation').textContent = customer.Primary_Designation;
+        document.getElementById('primary-designation-input').value = customer.Primary_Designation;
+        document.getElementById('secondary-designation').textContent = customer.Secondary_Designation;
+        document.getElementById('secondary-designation-input').value = customer.Secondary_Designation;
+        document.getElementById('remarks').textContent = customer.Primary_Remarks;
+        document.getElementById('remarks-input').value = customer.Primary_Remarks;
+        document.getElementById('additional-remarks').textContent = customer.Secondary_Remarks;
+        document.getElementById('additional-remarks-input').value = customer.Secondary_Remarks;
+
+        // Bank Details
+        document.getElementById('bank-account-number').textContent = customer.Bank_Accountno;
+        document.getElementById('bank-account-number-input').value = customer.Bank_Accountno;
+        document.getElementById('account-holder-name').textContent = customer.Account_Holder;
+        document.getElementById('account-holder-name-input').value = customer.Account_Holder;
+        document.getElementById('ifsc-code').textContent = customer.Ifsc_Code;
+        document.getElementById('ifsc-code-input').value = customer.Ifsc_Code;
+        document.getElementById('branch-name').textContent = customer.Branch_Name;
+        document.getElementById('branch-name-input').value = customer.Branch_Name;
+        document.getElementById('sic-code').textContent = customer.Sic_Code;
+        document.getElementById('sic-code-input').value = customer.Sic_Code;
+        document.getElementById('tcs-tds').textContent = customer.Tcs_Tds;
+        document.getElementById('tcs-tds-input').value = customer.Tcs_Tds;
+        document.getElementById('company-pan-no').textContent = customer.Company_Pan;
+        document.getElementById('company-pan-no-input').value = customer.Company_Pan;
+        document.getElementById('company-gst-vat-no').textContent = customer.Gst_Vat;
+        document.getElementById('company-gst-vat-no-input').value = customer.Gst_Vat;
+        document.getElementById('credit-amount-allowed').textContent = customer.Credit_Amountallowed;
+        document.getElementById('credit-amount-allowed-input').value = customer.Credit_Amountallowed;
+        document.getElementById('credit-age').textContent = customer.Credit_Age;
+        document.getElementById('credit-age-input').value = customer.Credit_Age;
+
+        // Address Details
+        document.getElementById('billing-street').textContent = customer.Billing_Street;
+        document.getElementById('billing-street-input').value = customer.Billing_Street;
+        document.getElementById('shipping-street').textContent = customer.Shipping_Street;
+        document.getElementById('shipping-street-input').value = customer.Shipping_Street;
+        document.getElementById('billing-city').textContent = customer.Billing_City;
+        document.getElementById('billing-city-input').value = customer.Billing_City;
+        document.getElementById('shipping-city').textContent = customer.Shipping_City;
+        document.getElementById('shipping-city-input').value = customer.Shipping_City;
+        document.getElementById('billing-state').textContent = customer.Billing_State;
+        document.getElementById('billing-state-input').value = customer.Billing_State;
+        document.getElementById('shipping-state').textContent = customer.Shipping_State;
+        document.getElementById('shipping-state-input').value = customer.Shipping_State;
+        document.getElementById('billing-zipcode').textContent = customer.Billing_Zipcode;
+        document.getElementById('billing-zipcode-input').value = customer.Billing_Zipcode;
+        document.getElementById('shipping-zipcode').textContent = customer.Shipping_Zipcode;
+        document.getElementById('shipping-zipcode-input').value = customer.Shipping_Zipcode;
+        document.getElementById('billing-country').textContent = customer.Billing_Country;
+        document.getElementById('billing-country-input').value = customer.Billing_Country;
+        document.getElementById('shipping-country').textContent = customer.Shipping_Country;
+        document.getElementById('shipping-country-input').value = customer.Shipping_Country;
+
+      } catch (error) {
+        console.error('Error fetching customer details:', error);
+        // Optionally, display an error message to the user
+        alert('There was a problem fetching customer details.');
+      }
+
+      const editButton = document.getElementById('edit-button');
+      const saveButton = document.getElementById('save-button');
+
+      editButton.addEventListener('click', () => {
+        const fields = [
+          'account-owner', 'rating', 'customer-id', 'customer-name', 'parent-company-name', 'website', 
+          'phone', 'fax', 'email', 'accounts-email', 'ceo-name', 'ceo-email', 'ownership', 'company-type', 
+          'industry', 'employees', 'annual-revenue', 'expected-revenue', 'primary-contact-name', 
+          'secondary-contact-name', 'primary-phone', 'secondary-phone', 'primary-email', 'secondary-email', 
+          'primary-designation', 'secondary-designation', 'remarks', 'additional-remarks', 'bank-account-number', 
+          'account-holder-name', 'ifsc-code', 'branch-name', 'sic-code', 'tcs-tds', 'company-pan-no', 
+          'company-gst-vat-no', 'credit-amount-allowed', 'credit-age', 'billing-street', 'shipping-street', 
+          'billing-city', 'shipping-city', 'billing-state', 'shipping-state', 'billing-zipcode', 
+          'shipping-zipcode', 'billing-country', 'shipping-country'
+        ];
+
+        fields.forEach(fieldId => {
+          const textElem = document.getElementById(fieldId);
+          const inputElem = document.getElementById(`${fieldId}-input`);
+
+          if (textElem && inputElem) {
+            const isEditing = inputElem.style.display === 'block';
+            textElem.style.display = isEditing ? 'block' : 'none';
+            inputElem.style.display = isEditing ? 'none' : 'block';
+          }
         });
+      });
+
+      document.getElementById('save-button').addEventListener('click', async () => {
+    // Prepare the data object with customer details from input fields
+    const updatedCustomer = {
+        Account_Owner: document.getElementById('account-owner-input').value,
+        Rating: document.getElementById('rating-input').value,
+        Customer_ID: document.getElementById('customer-id-input').value,
+        Customer_Name: document.getElementById('customer-name-input').value,
+        Parent_Company_Name: document.getElementById('parent-company-name-input').value,
+        Website: document.getElementById('website-input').value,
+        Phone: document.getElementById('phone-input').value,
+        Fax: document.getElementById('fax-input').value,
+        Email: document.getElementById('email-input').value,
+        Accounts_Email: document.getElementById('accounts-email-input').value,
+        CEO_Name: document.getElementById('ceo-name-input').value,
+        CEO_Email: document.getElementById('ceo-email-input').value,
+        Ownership: document.getElementById('ownership-input').value,
+        Company_Type: document.getElementById('company-type-input').value,
+        Industry: document.getElementById('industry-input').value,
+        Employees: document.getElementById('employees-input').value,
+        Annual_Revenue: document.getElementById('annual-revenue-input').value,
+        Expected_Revenue: document.getElementById('expected-revenue-input').value,
+        Primary_Contact_Name: document.getElementById('primary-contact-name-input').value,
+        Secondary_Contact_Name: document.getElementById('secondary-contact-name-input').value,
+        Primary_Phone: document.getElementById('primary-phone-input').value,
+        Secondary_Phone: document.getElementById('secondary-phone-input').value,
+        Primary_Email: document.getElementById('primary-email-input').value,
+        Secondary_Email: document.getElementById('secondary-email-input').value,
+        Primary_Designation: document.getElementById('primary-designation-input').value,
+        Secondary_Designation: document.getElementById('secondary-designation-input').value,
+        Remarks: document.getElementById('remarks-input').value,
+        Additional_Remarks: document.getElementById('additional-remarks-input').value,
+        Bank_Account_Number: document.getElementById('bank-account-number-input').value,
+        Account_Holder_Name: document.getElementById('account-holder-name-input').value,
+        IFSC_Code: document.getElementById('ifsc-code-input').value,
+        Branch_Name: document.getElementById('branch-name-input').value,
+        SIC_Code: document.getElementById('sic-code-input').value,
+        TCS_TDS: document.getElementById('tcs-tds-input').value,
+        Company_PAN_No: document.getElementById('company-pan-no-input').value,
+        Company_GST_VAT_No: document.getElementById('company-gst-vat-no-input').value,
+        Credit_Amount_Allowed: document.getElementById('credit-amount-allowed-input').value,
+        Credit_Age: document.getElementById('credit-age-input').value,
+        Billing_Street: document.getElementById('billing-street-input').value,
+        Shipping_Street: document.getElementById('shipping-street-input').value,
+        Billing_City: document.getElementById('billing-city-input').value,
+        Shipping_City: document.getElementById('shipping-city-input').value,
+        Billing_State: document.getElementById('billing-state-input').value,
+        Shipping_State: document.getElementById('shipping-state-input').value,
+        Billing_Zipcode: document.getElementById('billing-zipcode-input').value,
+        Shipping_Zipcode: document.getElementById('shipping-zipcode-input').value,
+        Billing_Country: document.getElementById('billing-country-input').value,
+        Shipping_Country: document.getElementById('shipping-country-input').value
+    };
+
+    console.log('Data to be sent:', updatedCustomer); // Debugging: Log data object to verify
+
+    try {
+        // Send the data to the server for updating
+        const response = await fetch(`/customers/putEdit/${customerId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedCustomer)
+        });
+
+        if (response.ok) {
+            // Update the UI or redirect as necessary
+            alert('Customer details updated successfully!');
+            window.location.reload(); // Refresh page after save
+        } else {
+            throw new Error('Failed to update customer details');
+        }
+    } catch (error) {
+        console.error('Error updating customer details:', error);
+        alert('There was a problem updating customer details.');
+    }
 });
 
-
-
-  function deleteCustomer(event) {
-    const customerId = event.currentTarget.getAttribute('data-id');
-
-    // Confirm before deleting
-    if (confirm('Are you sure you want to delete this customer?')) {
-        fetch(`/customers/delete/${customerId}`, {
-            method: 'DELETE',
-        })
-        .then(response => {
-            if (response.ok) {
-                // Successfully deleted, now remove the row from the table
-                const row = event.currentTarget.closest('tr');
-                row.remove();
-                alert('Customer deleted successfully.');
-            } else {
-                alert('Failed to delete customer.');
-            }
-        })
-        .catch(error => {
-            console.error('Error deleting customer:', error);
-        });
-    }
-}
+    });
 </script>
 
+  
+  
   </body>
 </html>

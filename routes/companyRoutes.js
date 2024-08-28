@@ -46,30 +46,65 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-router.get('/edit/:id', (req, res) => {
-    const companyId = req.params.companyId;
-    
-    const sqlQuery = 'SELECT * FROM company WHERE CM_ID = ?';
-    db.query(sqlQuery, [companyId], (err, result) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send('Server Error');
+router.get('/edit/:id', async (req, res) => {
+    const companyId = req.params.id;
+    try {
+        const [rows] = await db.query('SELECT * FROM company WHERE CM_ID = ?', [companyId]);
+        if (rows.length === 0) {
+            return res.status(404).json({ message: 'Company not found' });
         }
-        res.json(result[0]); // Assuming you only want one company based on id
-    });
+        res.json(rows[0]);
+    } catch (error) {
+        console.error('Database fetch error:', error);
+        res.status(500).send('Server error');
+    }
 });
 
-router.put('/putEdit/:id', (req, res) => {
+
+router.put('/putEdit/:companyId', async (req, res) => {
     const companyId = req.params.companyId;
-    const updatedData = req.body;
-  
-    const sqlQuery = 'UPDATE company SET ? WHERE CM_ID = ?';
-    db.query(sqlQuery, [updatedData, companyId], (err, result) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Server Error');
-      }
-      res.send('Company updated successfully');
-    });
-  });
+    const updatedCompany = req.body;
+
+    console.log('Received data:', updatedCompany); // Debugging: Log incoming data
+
+    const updateQuery = `
+        UPDATE company
+        SET 
+            Company_Name = ?, Company_Accid = ?, Phone = ?, Email = ?, Website = ?, Fax = ?, 
+            Numberof_Employees = ?, Annual_Revenue = ?, Skype_Id = ?, Gst_Vat = ?, 
+            Business_Pan = ?, Enable_Tax = ?, Enable_Tds = ?, Bank_Name = ?, Branch_Name = ?, 
+            Crn_Id = ?, Account_No = ?, Ifsc_Code = ?, Door_No = ?, Street = ?, City = ?, 
+            State = ?, Zipcode = ?, Country = ?, Description = ?, Company_Logo = ? 
+        WHERE 
+            CM_ID  = ?
+    `;
+
+    const values = [
+        updatedCompany.Company_Name, updatedCompany.Company_Accid, updatedCompany.Phone, updatedCompany.Email, 
+        updatedCompany.Website, updatedCompany.Fax, updatedCompany.Numberof_Employees, updatedCompany.Annual_Revenue, 
+        updatedCompany.Skype_Id, updatedCompany.Gst_Vat, updatedCompany.Business_Pan, updatedCompany.Enable_Tax, 
+        updatedCompany.Enable_Tds, updatedCompany.Bank_Name, updatedCompany.Branch_Name, updatedCompany.Crn_Id, 
+        updatedCompany.Account_No, updatedCompany.Ifsc_Code, updatedCompany.Door_No, updatedCompany.Street, 
+        updatedCompany.City, updatedCompany.State, updatedCompany.Zipcode, updatedCompany.Country, 
+        updatedCompany.Description, updatedCompany.Company_Logo, companyId
+    ];
+
+    console.log('Update values:', values); // Debugging: Log the values being passed to the query
+
+    try {
+        const result = await db.query(updateQuery, values);
+        console.log('Query result:', result); // Debugging: Log the result of the query
+        res.status(200).send('Company details updated successfully');
+    } catch (error) {
+        console.error('Error updating company details:', error);
+        res.status(500).send('Failed to update company details');
+    }
+});
+
+
+//   company edit code
+
+
+
+
 module.exports = router;

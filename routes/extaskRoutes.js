@@ -67,10 +67,10 @@ router.get('/get-doc-types', async (req, res) => {
     }
 });
 router.delete('/delete/:id', async (req, res) => {
-    const taskId = req.params.id;
+    const taskId = req.params.AT_ID;
     try {
         // Replace with your database query to delete the task
-        const result = await db.query('DELETE FROM upload_task WHERE id = ?', [taskId]);
+        const result = await db.query('DELETE FROM assign_task WHERE AT_ID = ?', [taskId]);
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Task not found' });
@@ -80,6 +80,20 @@ router.delete('/delete/:id', async (req, res) => {
     } catch (error) {
         console.error('Error deleting task:', error);
         res.status(500).json({ error: 'Failed to delete task' });
+    }
+});
+
+router.delete('/delete1/:id', async (req, res) => {
+    const taskId1 = req.params.id;
+    try {
+        const result = await db.query('DELETE FROM upload_task WHERE UT_ID = ?', [taskId1]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Task not found' });
+        }
+        res.json({ message: 'Task deleted successfully' });
+    } catch (error) {
+        console.error('Database delete error:', error);
+        res.status(500).send('Server error');
     }
 });
 

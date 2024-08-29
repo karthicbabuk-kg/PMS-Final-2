@@ -1112,58 +1112,52 @@
       }
 
       try {
-          // Fetch group details
-          const response = await fetch(`/groups/edit/${groupId}`);
+    const response = await fetch(`/groups/grpedit/${groupId}`);
 
-          // Check if the response is OK
-          if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-          }
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`HTTP error! Status: ${response.status}. Message: ${errorText}`);
+    }
 
-          // Check if the response is JSON
-          const contentType = response.headers.get('Content-Type');
-          if (!contentType || !contentType.includes('application/json')) {
-              throw new Error('Response is not JSON');
-          }
+    const contentType = response.headers.get('Content-Type');
+    if (!contentType || !contentType.includes('application/json')) {
+        throw new Error(`Unexpected content type: ${contentType}`);
+    }
 
-          const group = await response.json(); // Parse response as JSON
-          console.log('Group Data:', group);
-          
-          // Populate fields
-          document.getElementById('group-name-text').textContent = group.Group_Name || '-';
-          document.getElementById('group-name-input').value = group.Group_Name || '';
-          document.getElementById('company-text').textContent = group.Company || '-';
-          document.getElementById('company-input').value = group.Company || '';
-          document.getElementById('lead-text').textContent = group.Lead || '-';
-          document.getElementById('lead-input').value = group.Lead || '';
-          document.getElementById('employee-text').textContent = group.Employee || '-';
-          document.getElementById('employee-input').value = group.Employee || '';
-          document.getElementById('status-text').textContent = group.Status || '-';
-          document.getElementById('status-input').value = group.Status || '';
+    const group = await response.json();
+    console.log('Group Data:', group);
+    
+    document.getElementById('group-name-text').textContent = group.Group_Name || '-';
+    document.getElementById('group-name-input').value = group.Group_Name || '';
+    document.getElementById('company-text').textContent = group.Company || '-';
+    document.getElementById('company-input').value = group.Company || '';
+    document.getElementById('lead-text').textContent = group.Select_Lead || '-';
+    document.getElementById('lead-input').value = group.Select_Lead || '';
+    document.getElementById('employee-text').textContent = group.Select_Employee || '-';
+    document.getElementById('employee-input').value = group.Select_Employee || '';
 
-      } catch (error) {
-          console.error('Error fetching group details:', error);
-          // Optionally, display an error message to the user
-          alert('There was a problem fetching group details.');
-      }
+} catch (error) {
+    console.error('Error fetching group details:', error);
+    alert('There was a problem fetching group details.');
+}
       const editButton = document.getElementById('edit-button');
-     editButton.addEventListener('click', () => {
-          const fields = [
-              'group-name', 'company', 'lead', 'employee'
-          ];
+      const saveButton = document.getElementById('save-button');
+      editButton.addEventListener('click', () => {
+    const fields = ['group-name', 'company', 'lead', 'employee'];
 
-          fields.forEach(fieldId => {
-              const textElem = document.getElementById(`${fieldId}-text`);
-              const inputElem = document.getElementById(`${fieldId}-input`);
+    fields.forEach(fieldId => {
+        const textElem = document.getElementById(`${fieldId}-text`);
+        const inputElem = document.getElementById(`${fieldId}-input`);
 
-              if (textElem && inputElem) {
-                  const isEditing = inputElem.style.display === 'block';
-                  textElem.style.display = isEditing ? 'block' : 'none';
-                  inputElem.style.display = isEditing ? 'none' : 'block';
-              }
-          });
-      });
+        if (textElem && inputElem) {
+            textElem.style.display = 'none';
+            inputElem.style.display = 'block';
+        }
+    });
 
+    saveButton.style.display = 'block';
+    editButton.style.display = 'none';
+});
       document.getElementById('save-button').addEventListener('click', async () => {
           // Prepare the data object with group details from input fields
           const updatedGroup = {
@@ -1171,7 +1165,6 @@
               Company: document.getElementById('company-input').value,
               Lead: document.getElementById('lead-input').value,
               Employee: document.getElementById('employee-input').value,
-              Status: document.getElementById('status-input').value
           };
 
           console.log('Data to be sent:', updatedGroup); // Debugging: Log data object to verify

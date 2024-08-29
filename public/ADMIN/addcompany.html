@@ -27,6 +27,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
+  <style>
+    .border-danger {
+        border-color: #dc3545 !important;
+    }
+    .text-danger {
+        color: #dc3545;
+    }
+    </style>
 
   <body>
     <!-- Begin page -->
@@ -378,11 +386,11 @@
                           <div class="row" style="margin-top: 10px;">
                             <div class="col-md-6">
                               <label class="form-label">Website</label>
-                              <input type="text" class="form-control" placeholder="website" name="CCP_WEB" runat="server" />
+                              <input type="text" class="form-control" placeholder="website" name="CCP_WEB" runat="server" required/>
                             </div>
                             <div class="col-md-6">
                               <label class="form-label">Fax</label>
-                              <input type="text" class="form-control" placeholder="Fax" name="CCP_FAX" runat="server" />
+                              <input type="text" class="form-control" placeholder="Fax" name="CCP_FAX" runat="server" required/>
                             </div>
                           </div>
 
@@ -403,7 +411,7 @@
                                     <option>EURO</option>
                                   </select>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Annual Revenue" name="CCP_AR" runat="server" />
+                                <input type="text" class="form-control" placeholder="Annual Revenue" name="CCP_AR" runat="server" required/>
                               </div>
                             </div>
                           </div>
@@ -411,7 +419,7 @@
                           <div class="row" style="margin-top: 10px;">
                             <div class="col-md-6">
                               <label class="form-label">Skype Id</label>
-                              <input type="text" class="form-control" placeholder="Skype Id" name="CCP_SKY" runat="server" />
+                              <input type="text" class="form-control" placeholder="Skype Id" name="CCP_SKY" runat="server" required/>
                             </div>
                           </div>
 
@@ -420,11 +428,11 @@
                           <div class="row" style="margin-top: 10px;">
                             <div class="col-md-6">
                               <label class="form-label">GST/VAT No</label>
-                              <input type="text" class="form-control" placeholder="TAX No" name="CCP_GST" runat="server" />
+                              <input type="text" class="form-control" placeholder="TAX No" name="CCP_GST" runat="server" required/>
                             </div>
                             <div class="col-md-6">
                               <label class="form-label">Business PAN</label>
-                              <input type="text" class="form-control" placeholder="PAN No" name="CCP_PAN" runat="server" />
+                              <input type="text" class="form-control" placeholder="PAN No" name="CCP_PAN" runat="server" required/>
                             </div>
                           </div>
 
@@ -450,28 +458,28 @@
                           <div class="row" style="margin-top: 10px;">
                             <div class="col-md-6">
                               <label class="form-label">Bank Name</label>
-                              <input type="text" class="form-control" placeholder="Bank Name" name="CCP_BKN" runat="server" />
+                              <input type="text" class="form-control" placeholder="Bank Name" name="CCP_BKN" runat="server" required/>
                             </div>
                             <div class="col-md-6">
                               <label class="form-label">Branch Name</label>
-                              <input type="text" class="form-control" placeholder="Branch Name" name="CCP_BRN" runat="server" />
+                              <input type="text" class="form-control" placeholder="Branch Name" name="CCP_BRN" runat="server" required/>
                             </div>
                           </div>
 
                           <div class="row" style="margin-top: 10px;">
                             <div class="col-md-6">
                               <label class="form-label">CRN ID</label>
-                              <input type="text" class="form-control" placeholder="CRN ID" name="CCP_CRN" runat="server" />
+                              <input type="text" class="form-control" placeholder="CRN ID" name="CCP_CRN" runat="server" required/>
                             </div>
                             <div class="col-md-6">
                               <label class="form-label">Account No</label>
-                              <input type="text" class="form-control" placeholder="Account No" name="CCP_ACTNO" runat="server" />
+                              <input type="text" class="form-control" placeholder="Account No" name="CCP_ACTNO" runat="server" required/>
                             </div>
                           </div>
                           <div class="row" style="margin-top: 10px;">
                             <div class="col-md-6">
                               <label class="form-label">IFSC Code</label>
-                              <input type="text" class="form-control" placeholder="IFSC Code" name="IFSC" runat="server" />
+                              <input type="text" class="form-control" placeholder="IFSC Code" name="IFSC" runat="server" required/>
                             </div>
                           </div>
 
@@ -479,33 +487,33 @@
                           <div class="row" style="margin-top: 10px;">
                             <div class="col-md-6">
                               <label class="form-label">Door No/Building</label>
-                              <input type="text" class="form-control" placeholder="Door No/Building" name="CCP_DNO" runat="server" />
+                              <input type="text" class="form-control" placeholder="Door No/Building" name="CCP_DNO" runat="server" required/>
                             </div>
                             <div class="col-md-6">
                               <label class="form-label">Street</label>
-                              <input type="text" class="form-control" placeholder="Street" name="CCP_STR" runat="server" />
+                              <input type="text" class="form-control" placeholder="Street" name="CCP_STR" runat="server" required/>
                             </div>
                           </div>
                           <div class="row" style="margin-top: 10px;">
                            
                             <div class="col-md-6">
                               <label class="form-label">City</label>
-                              <input type="text" class="form-control" placeholder="City" name="CCP_CIT" runat="server" />
+                              <input type="text" class="form-control" placeholder="City" name="CCP_CIT" runat="server" required/>
                             </div>
                             <div class="col-md-6">
                               <label class="form-label">State</label>
-                              <input type="text" class="form-control" placeholder="State" name="CCP_STA" runat="server" />
+                              <input type="text" class="form-control" placeholder="State" name="CCP_STA" runat="server" required/>
                             </div>
                           </div>
                           <div class="row" style="margin-top: 10px;">
                            
                             <div class="col-md-6">
                               <label class="form-label">Zipcode</label>
-                              <input type="text" class="form-control" placeholder="Zipcode" name="CCP_ZIP" runat="server" />
+                              <input type="text" class="form-control" placeholder="Zipcode" name="CCP_ZIP" runat="server" required/>
                             </div>
                             <div class="col col-md-6">
                               <label class="form-label">Country</label>
-                              <input type="text" class="form-control" placeholder="Country" name="CCP_COU" runat="server" />
+                              <input type="text" class="form-control" placeholder="Country" name="CCP_COU" runat="server" required/>
                             </div>
                           </div>
                          
@@ -514,7 +522,7 @@
                           <div class="row">
                             <div class="col-md-12">
                               <label class="form-label">Description</label>
-                              <textarea class="form-control" placeholder="Description" name="CCP_DES" runat="server"></textarea>
+                              <textarea class="form-control" placeholder="Description" name="CCP_DES" runat="server" required></textarea>
                             </div>
                           </div>
 
@@ -1498,5 +1506,55 @@
         }, 1000);
       }
     </script>
+
+<script>
+function validateForm(action) {
+    let isValid = true;
+
+    // Clear previous errors
+    document.querySelectorAll('.form-control').forEach(field => {
+        field.classList.remove('border-danger');
+        const errorMessage = field.nextElementSibling;
+        if (errorMessage) {
+            errorMessage.remove();
+        }
+    });
+
+    // Check for empty fields
+    document.querySelectorAll('.form-control[required]').forEach(field => {
+        if (field.value.trim() === '') {
+            field.classList.add('border-danger');
+            displayError(field, 'This field is required');
+            isValid = false;
+        }
+    });
+
+   // Validate Phone Number
+   const phoneField = document.querySelector('input[name="CCP_PHN"]');
+      if (phoneField.value === '' || !/^\d{10}$/.test(phoneField.value)) {
+          phoneField.classList.add('border-danger');
+          displayError(phoneField, 'Please enter a valid 10-digit phone number');
+          isValid = false;
+      }
+  
+      // Validate Email
+      const emailField = document.querySelector('input[name="CCP_EMAIL"]');
+      if (emailField.value === '' || !/\S+@\S+\.\S+/.test(emailField.value)) {
+          emailField.classList.add('border-danger');
+          displayError(emailField, 'Please enter a valid email address');
+          isValid = false;
+      }
+
+    return isValid;
+}
+
+function displayError(field, message) {
+    const error = document.createElement('div');
+    error.classList.add('text-danger');
+    error.style.fontSize = 'small';
+    error.textContent = message;
+    field.parentElement.appendChild(error);
+}
+</script>
   </body>
 </html>

@@ -297,7 +297,7 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-body">
-                    <form action="/customers/add" method="POST">
+                    <form action="/customers/add" method="POST"  onsubmit="return validateForm('save')">
                       <div id="progressbarwizard">
                         <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
                           <li class="nav-item">
@@ -715,7 +715,7 @@
                                 <button type="button" class="btn btn-light"><i class="mdi mdi-arrow-left me-1"></i> Back</button>
                               </li>
                               <li class="next list-inline-item float-end">
-                                <button  type="submit"  class="btn btn-info">Save</button>
+                                <button  type="submit" onclick="return validateForm('save')"  class="btn btn-info">Save</button>
                               </li>
                             
                             </ul>
@@ -1907,6 +1907,55 @@
 
 
     </script>
+    <script>
+      function validateForm(action) {
+          let isValid = true;
+      
+          // Clear previous errors
+          document.querySelectorAll('.form-control').forEach(field => {
+              field.classList.remove('border-danger');
+              const errorMessage = field.nextElementSibling;
+              if (errorMessage) {
+                  errorMessage.remove();
+              }
+          });
+      
+          // Check for empty fields
+          document.querySelectorAll('.form-control[required]').forEach(field => {
+              if (field.value.trim() === '') {
+                  field.classList.add('border-danger');
+                  displayError(field, 'This field is required');
+                  isValid = false;
+              }
+          });
+      
+         // Validate Phone Number
+         const phoneField = document.querySelector('input[name="CCP_PHN"]');
+            if (phoneField.value === '' || !/^\d{10}$/.test(phoneField.value)) {
+                phoneField.classList.add('border-danger');
+                displayError(phoneField, 'Please enter a valid 10-digit phone number');
+                isValid = false;
+            }
+        
+            // Validate Email
+            const emailField = document.querySelector('input[name="CAT_CEOEM",name="CAT_EM",name="CAT_ACEMLS",name="CAT_PEML",name="CAT_SEML"]');
+            if (emailField.value === '' || !/\S+@\S+\.\S+/.test(emailField.value)) {
+                emailField.classList.add('border-danger');
+                displayError(emailField, 'Please enter a valid email address');
+                isValid = false;
+            }
+      
+          return isValid;
+      }
+      
+      function displayError(field, message) {
+          const error = document.createElement('div');
+          error.classList.add('text-danger');
+          error.style.fontSize = 'small';
+          error.textContent = message;
+          field.parentElement.appendChild(error);
+      }
+      </script>
 
   </body>
 </html>

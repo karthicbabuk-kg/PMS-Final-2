@@ -91,4 +91,52 @@ router.get('/get-document-types', async (req, res) => {
     }
 });
 
+
+router.get('/edit/:id', async (req, res) => {
+    const assignId = req.params.id;
+    try {
+        const [rows] = await db.query('SELECT * FROM assign_task WHERE AT_ID = ?', [assignId]);
+        if (rows.length === 0) {
+            return res.status(404).json({ message: 'task not found' });
+        }
+        res.json(rows[0]);
+    } catch (error) {
+        console.error('Database fetch error:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+router.put('/putEdit/:assignId', async (req, res) => {
+    const assignId = req.params.assignId;
+    const updatedCompany = req.body;
+
+    console.log('Received data:', updatedCompany); // Debugging: Log incoming data
+
+    const updateQuery = `
+        UPDATE assign_task
+        SET 
+            Executive_Name = ?, Company_Id = ?, Company_Name = ?, Document_Type = ?, Document_Name = ?, Doument_URL = ?, 
+            Task_Name = ?, Task_Details = ?, Status = ?, Remarks = ?
+        WHERE 
+            AT_ID  = ?
+    `;
+
+    const values = [
+        updatedCompany.Executive_Name, updatedCompany.Company_Id, updatedCompany.Company_Name, updatedCompany.Document_Type, 
+        updatedCompany.Document_Name, updatedCompany.Doument_URL, updatedCompany.Task_Name, updatedCompany.Task_Details, 
+        updatedCompany.Remarks, updatedCompany.Status ,assignId
+    ];
+
+    console.log('Update values:', values); // Debugging: Log the values being passed to the query
+
+    try {
+        const result = await db.query(updateQuery, values);
+        console.log('Query result:', result); // Debugging: Log the result of the query
+        res.status(200).send('task details updated successfully');
+    } catch (error) {
+        console.error('Error updating task details:', error);
+        res.status(500).send('Failed to update task details');
+    }
+});
+
 module.exports = router;

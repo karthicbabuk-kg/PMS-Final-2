@@ -35,18 +35,199 @@ router.get('/get', async (req, res) => {
 
 router.get('/companies', async (req, res) => {
     try {
-      const [rows] = await db.query('SELECT Company_Name FROM company');
-      res.json(rows);
+        const [rows] = await db.query('SELECT Company_Name FROM company');
+        res.json(rows);
     } catch (error) {
-      console.error('Database query error:', error);
-      res.status(500).json({ error: 'Database error' });
+        console.error('Database query error:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+
+router.delete('/delete/:id', employeeController.deleteEmployee);
+
+
+//   edit employee
+
+
+router.get('/edit/:id', async (req, res) => {
+    const employeeId = req.params.id;
+
+    try {
+        // Perform the database query to get employee details
+        const [rows] = await db.query('SELECT * FROM employee WHERE EM_ID = ?', [employeeId]);
+
+        // Check if any rows were returned
+        if (rows.length === 0) {
+            return res.status(404).json({ message: 'Employee not found' });
+        }
+
+        // Send the employee details as JSON
+        res.json(rows[0]);
+    } catch (error) {
+        // Log and handle the error
+        console.error('Database fetch error:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+// Update employee details
+const query = (sql, values) => {
+    return new Promise((resolve, reject) => {
+      db.query(sql, values, (error, results) => {
+        if (error) return reject(error);
+        resolve(results);
+      });
+    });
+  };
+  
+  // PUT route to update employee details
+  router.put('/putEdit/:employeeId', async (req, res) => {
+    const employeeId = req.params.employeeId;
+    const employeeData = req.body;
+  
+    // Construct SQL query for updating employee details
+    const sql = `
+      UPDATE employee
+      SET
+        Employee_Name = ?,
+        Employee_Code = ?,
+        Gender = ?,
+        Company = ?,
+        Department_Name = ?,
+        Department_Desigination = ?,
+        Department_Category = ?,
+        Shift = ?,
+        Shift_Starttime = ?,
+        Shift_Endtime = ?,
+        Educational_Qualification = ?,
+        Department = ?,
+        Experience = ?,
+        Previous_Company = ?,
+        Experience_Years = ?,
+        Experience_Months = ?,
+        Date_of_Birth = ?,
+        Place_of_Birth = ?,
+        Blood_Group = ?,
+        Date_of_Joining = ?,
+        Employment_Type = ?,
+        Employment_Status = ?,
+        Personal_Mobile = ?,
+        Work_Mobile = ?,
+        Extension = ?,
+        Biometric_Id = ?,
+        Father_Name = ?,
+        Mother_Name = ?,
+        Residential_Address = ?,
+        Residential_Address_Line1 = ?,
+        Residential_Address_Line2 = ?,
+        Residential_City = ?,
+        Residential_District = ?,
+        Residential_State = ?,
+        Residential_Pincode = ?,
+        Residential_Country = ?,
+        Permanent_Address = ?,
+        Permanent_Address_Line1 = ?,
+        Permanent_Address_Line2 = ?,
+        Permanent_City = ?,
+        Permanent_District = ?,
+        Permanent_State = ?,
+        Permanent_Pincode = ?,
+        Permanent_Country = ?,
+        Contact_Number = ?,
+        Email = ?,
+        Aadhar_Card = ?,
+        Voter_Id = ?,
+        Record_Status = ?,
+        Record_Location = ?,
+        Remarks = ?,
+        Uan_Number = ?,
+        Login_Id = ?,
+        Password = ?,
+        Uan_Login_Phone = ?,
+        Aadhar_Link_Phone = ?,
+        Bank_Name = ?,
+        Bank_Branch = ?,
+        IFSC_Code = ?,
+        Account_Number = ?,
+        Pass_Word = ?,
+        Employee_Photo = ?
+      WHERE EM_ID  = ?
+    `;
+  
+    const values = [
+      employeeData.Employee_Name,
+      employeeData.Employee_Code,
+      employeeData.Gender,
+      employeeData.Company,
+      employeeData.Department_Name,
+      employeeData.Department_Designation,
+      employeeData.Department_Category,
+      employeeData.Shift,
+      employeeData.Shift_Starttime,
+      employeeData.Shift_Endtime,
+      employeeData.Educational_Qualification,
+      employeeData.Department,
+      employeeData.Experience,
+      employeeData.Previous_Company,
+      employeeData.Experience_Years,
+      employeeData.Experience_Months,
+      employeeData.Date_of_Birth,
+      employeeData.Place_of_Birth,
+      employeeData.Blood_Group,
+      employeeData.Date_of_Joining,
+      employeeData.Employment_Type,
+      employeeData.Employment_Status,
+      employeeData.Personal_Mobile,
+      employeeData.Work_Mobile,
+      employeeData.Extension,
+      employeeData.Biometric_Id,
+      employeeData.Father_Name,
+      employeeData.Mother_Name,
+      employeeData.Residential_Address,
+      employeeData.Residential_Address_Line1,
+      employeeData.Residential_Address_Line2,
+      employeeData.Residential_City,
+      employeeData.Residential_District,
+      employeeData.Residential_State,
+      employeeData.Residential_Pincode,
+      employeeData.Residential_Country,
+      employeeData.Permanent_Address,
+      employeeData.Permanent_Address_Line1,
+      employeeData.Permanent_Address_Line2,
+      employeeData.Permanent_City,
+      employeeData.Permanent_District,
+      employeeData.Permanent_State,
+      employeeData.Permanent_Pincode,
+      employeeData.Permanent_Country,
+      employeeData.Contact_Number,
+      employeeData.Email,
+      employeeData.Aadhar_Card,
+      employeeData.Voter_Id,
+      employeeData.Record_Status,
+      employeeData.Record_Location,
+      employeeData.Remarks,
+      employeeData.Uan_Number,
+      employeeData.Login_Id,
+      employeeData.Password,
+      employeeData.Uan_Login_Phone,
+      employeeData.Aadhar_Link_Phone,
+      employeeData.Bank_Name,
+      employeeData.Bank_Branch,
+      employeeData.IFSC_Code,
+      employeeData.Account_Number,
+      employeeData.Pass_Word,
+      employeeData.Employee_Photo,
+      employeeId
+    ];
+  
+    try {
+      const result = await query(sql, values);
+      res.json({ message: 'Employee updated successfully!' });
+    } catch (error) {
+      console.error('Error updating employee:', error);
+      res.status(500).json({ message: 'There was a problem updating employee details.' });
     }
   });
-
-  router.delete('/delete/:id', employeeController.deleteEmployee);
-// Placeholder routes for other operations (update, delete)
-// router.get('/get', employeeController.getEmployees);
-// router.delete('/:id', employeeController.deleteEmployee);
-// router.put('/:id', upload.single('employeePhoto'), employeeController.updateEmployee);
-
+  
 module.exports = router;
+

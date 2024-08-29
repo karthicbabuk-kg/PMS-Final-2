@@ -27,6 +27,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
+  <style>
+    .edit-mode {
+    display: none;
+    
+}
+  </style>
 
   <body>
     <!-- Begin page -->
@@ -303,9 +309,9 @@
               <div class="col-12">
                 <div class="card">
                   <div class="text-xl-end mt-xl-0 mt-z p-3">
-                    <button type="button" class="btn btn-light mb-2 me-2">Edit</button>
+                    <button type="button" id="edit-button" class="btn btn-light mb-2 me-2">Edit</button>
 
-                    <button type="button" class="btn btn-primary mb-2 me-2">Save</button>
+                    <button type="button" id="save-button" class="btn btn-primary mb-2 me-2">Save</button>
 
                    
                   </div>
@@ -332,590 +338,646 @@
                     </ul>
                     
                     <div class="tab-content p-3">
-                        <div class="tab-pane show active" id="home-b2">
+                      <div class="tab-pane show active" id="home-b2">
                           <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Employee Name</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Employee Code</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Gender</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Company</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Department Category</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Department Name</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Department Designation</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Shift</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Shift Start Time</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Shift End Time</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Educational Qualification</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Educational Department</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Experience</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Previous Company Name</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Relevant Experience Years</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Relevant Experience Months</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Date of Birth</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Place of Birth</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Blood Group</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Date of Joining</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Employment Type</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Employment Status</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Personal Mobile</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Work Mobile</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Extension</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Bio Metric Id</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Employee Name</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="employee-name-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="employee-name-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Employee Code</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="employee-code-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="employee-code-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
                           
-                            
-                       
-                        </div>
-                        <div class="tab-pane  " id="profile-b2">
                           <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Father Name</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Mother Name</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Gender</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="gender-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="gender-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Company</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="company-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="company-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Department Category</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="department-category-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="department-category-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Department Name</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="department-name-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="department-name-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Department Designation</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="department-designation-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="department-designation-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Shift</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="shift-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="shift-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Shift Start Time</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="shift-start-time-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="shift-start-time-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Shift End Time</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="shift-end-time-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="shift-end-time-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Educational Qualification</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="educational-qualification-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="educational-qualification-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Educational Department</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="educational-department-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="educational-department-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Experience</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="experience-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="experience-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Previous Company Name</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="previous-company-name-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="previous-company-name-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Relevant Experience Years</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="relevant-experience-years-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="relevant-experience-years-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Relevant Experience Months</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="relevant-experience-months-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="relevant-experience-months-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Date of Birth</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="date-of-birth-text" class="mt-1 font-14">-</p>
+                                          <input type="date" id="date-of-birth-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Place of Birth</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="place-of-birth-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="place-of-birth-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Blood Group</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="blood-group-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="blood-group-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Date of Joining</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="date-of-joining-text" class="mt-1 font-14">-</p>
+                                          <input type="date" id="date-of-joining-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Employment Type</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="employment-type-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="employment-type-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Employment Status</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="employment-status-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="employment-status-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Personal Mobile</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="personal-mobile-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="personal-mobile-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Work Mobile</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="work-mobile-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="work-mobile-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Extension</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="extension-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="extension-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">BioMetric ID</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="biometric-id-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="biometric-id-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Contact Number</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Email</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Residential Address</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Address Line 1</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Address Line 2</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">City</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">State</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">District</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Pincode</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Country</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Permanent Address</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Address Line 1</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Address Line 2</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">City</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">State</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">District</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Pincode</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Country</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                         
-                        </div>
+                        <div class="tab-pane" id="profile-b2">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Father Name</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="father-name-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="father-name-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Mother Name</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="mother-name-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="mother-name-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Contact Number</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="contact-number-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="contact-number-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Email</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="email-text" class="mt-1 font-14">-</p>
+                                          <input type="email" id="email-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Residential Address</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="residential-address-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="residential-address-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Address Line 1</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="address-line1-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="address-line1-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Address Line 2</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="address-line2-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="address-line2-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">City</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="city-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="city-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">State</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="state-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="state-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">District</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="district-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="district-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Pincode</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="pincode-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="pincode-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Country</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="country-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="country-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Permanent Address</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="permanent-address-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="permanent-address-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Address Line 1</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="permanent-address-line1-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="permanent-address-line1-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Address Line 2</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="permanent-address-line2-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="permanent-address-line2-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">City</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="permanent-city-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="permanent-city-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">State</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="permanent-state-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="permanent-state-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">District</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="permanent-district-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="permanent-district-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Pincode</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="permanent-pincode-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="permanent-pincode-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Country</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="permanent-country-text" class="mt-1 font-14">-</p>
+                                          <input type="text" id="permanent-country-input" class="form-control" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+
                         <div class="tab-pane" id="settings-b2">
-                          <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Aadhar Card</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Voter ID</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Record Status</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Record Location</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Remarks</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">UAN Number</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Login ID</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Password</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">UAN Login Phone</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Aadhar Link Phone</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Bank Name</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Branch</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">IFSC Code</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Account Number</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Password</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Employee Photo</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        </div>
-                    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Aadhar Card</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="aadhar-card-text" class="mt-1 font-14">-</p>
+                    <input type="text" id="aadhar-card-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Voter ID</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="voter-id-text" class="mt-1 font-14">-</p>
+                    <input type="text" id="voter-id-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Record Status</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="record-status-text" class="mt-1 font-14">-</p>
+                    <input type="text" id="record-status-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Record Location</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="record-location-text" class="mt-1 font-14">-</p>
+                    <input type="text" id="record-location-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Remarks</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="remarks-text" class="mt-1 font-14">-</p>
+                    <input type="text" id="remarks-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">UAN Number</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="uan-number-text" class="mt-1 font-14">-</p>
+                    <input type="text" id="uan-number-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Login ID</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="login-id-text" class="mt-1 font-14">-</p>
+                    <input type="text" id="login-id-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Password</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="password-text" class="mt-1 font-14">-</p>
+                    <input type="password" id="password-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">UAN Login Phone</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="uan-login-phone-text" class="mt-1 font-14">-</p>
+                    <input type="text" id="uan-login-phone-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Aadhar Link Phone</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="aadhar-link-phone-text" class="mt-1 font-14">-</p>
+                    <input type="text" id="aadhar-link-phone-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Bank Name</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="bank-name-text" class="mt-1 font-14">-</p>
+                    <input type="text" id="bank-name-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Branch</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="branch-text" class="mt-1 font-14">-</p>
+                    <input type="text" id="branch-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">IFSC Code</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="ifsc-code-text" class="mt-1 font-14">-</p>
+                    <input type="text" id="ifsc-code-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Account Number</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="account-number-text" class="mt-1 font-14">-</p>
+                    <input type="text" id="account-number-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Password</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="employee-password-text" class="mt-1 font-14">-</p>
+                    <input type="password" id="employee-password-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Employee Photo</h5>
+            <div class="d-flex">
+                <div>
+                    <p id="employee-photo-text" class="mt-1 font-14">-</p>
+                    <input type="file" id="employee-photo-input" class="form-control" style="display: none;" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
                                                                     
                 </div>
               </div>
@@ -1682,5 +1744,288 @@
         alert("Logout Successfully!");
       }
     </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const employeeId = urlParams.get('employeeID'); // Get the employee ID from URL
+      console.log(employeeId);
+      
+      if (!employeeId) {
+          console.error('No employee ID provided');
+          return;
+      }
+
+      try {
+        // Fetch employee details
+        const response = await fetch(`/employee/edit/${employeeId}`);
+
+        // Check if the response is OK
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        // Check if the response is JSON
+        const contentType = response.headers.get('Content-Type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error('Response is not JSON');
+        }
+
+        const employee = await response.json(); // Parse response as JSON
+        console.log('Employee Data:', employee);
+
+        // Populate fields
+        document.getElementById('employee-name-text').textContent = employee.Employee_Name;
+document.getElementById('employee-name-input').value = employee.Employee_Name;
+document.getElementById('employee-code-text').textContent = employee.Employee_Code;
+document.getElementById('employee-code-input').value = employee.Employee_Code;
+document.getElementById('gender-text').textContent = employee.Gender;
+document.getElementById('gender-input').value = employee.Gender;
+document.getElementById('company-text').textContent = employee.Company;
+document.getElementById('company-input').value = employee.Company;
+document.getElementById('department-name-text').textContent = employee.Department_Name;
+document.getElementById('department-name-input').value = employee.Department_Name;
+document.getElementById('department-designation-text').textContent = employee.Department_Desigination;
+document.getElementById('department-designation-input').value = employee.Department_Desigination;
+document.getElementById('department-category-text').textContent = employee.Department_Category;
+document.getElementById('department-category-input').value = employee.Department_Category;
+
+document.getElementById('shift-text').textContent = employee.Shift;
+document.getElementById('shift-input').value = employee.Shift;
+document.getElementById('shift-start-time-text').textContent = employee.Shift_Starttime;
+document.getElementById('shift-start-time-input').value = employee.Shift_Starttime;
+document.getElementById('shift-end-time-text').textContent = employee.Shift_Endtime;
+document.getElementById('shift-end-time-input').value = employee.Shift_Endtime;
+document.getElementById('educational-qualification-text').textContent = employee.Educational_Qualification;
+document.getElementById('educational-qualification-input').value = employee.Educational_Qualification;
+document.getElementById('educational-department-text').textContent = employee.Department;
+document.getElementById('educational-department-input').value = employee.Department;
+document.getElementById('experience-text').textContent = employee.Experience;
+document.getElementById('experience-input').value = employee.Experience;
+document.getElementById('previous-company-name-text').textContent = employee.Previous_Company;
+document.getElementById('previous-company-name-input').value = employee.Previous_Company;
+document.getElementById('relevant-experience-years-text').textContent = employee.Experience_Years;
+document.getElementById('relevant-experience-years-input').value = employee.Experience_Years;
+document.getElementById('relevant-experience-months-text').textContent = employee.Experience_Months;
+document.getElementById('relevant-experience-months-input').value = employee.Experience_Months;
+document.getElementById('date-of-birth-text').textContent = employee.Date_of_Birth;
+document.getElementById('date-of-birth-input').value = employee.Date_of_Birth;
+document.getElementById('place-of-birth-text').textContent = employee.Place_of_Birth;
+document.getElementById('place-of-birth-input').value = employee.Place_of_Birth;
+document.getElementById('blood-group-text').textContent = employee.Blood_Group;
+document.getElementById('blood-group-input').value = employee.Blood_Group;
+document.getElementById('date-of-joining-text').textContent = employee.Date_of_Joining;
+document.getElementById('date-of-joining-input').value = employee.Date_of_Joining;
+document.getElementById('employment-type-text').textContent = employee.Employment_Type;
+document.getElementById('employment-type-input').value = employee.Employment_Type;
+document.getElementById('employment-status-text').textContent = employee.Employment_Status;
+document.getElementById('employment-status-input').value = employee.Employment_Status;
+document.getElementById('personal-mobile-text').textContent = employee.Personal_Mobile;
+document.getElementById('personal-mobile-input').value = employee.Personal_Mobile;
+document.getElementById('work-mobile-text').textContent = employee.Work_Mobile;
+document.getElementById('work-mobile-input').value = employee.Work_Mobile;
+document.getElementById('extension-text').textContent = employee.Extension;
+document.getElementById('extension-input').value = employee.Extension;
+document.getElementById('biometric-id-text').textContent = employee.Biometric_Id;
+document.getElementById('biometric-id-input').value = employee.Biometric_Id;
+document.getElementById('father-name-text').textContent = employee.Father_Name;
+document.getElementById('father-name-input').value = employee.Father_Name;
+document.getElementById('mother-name-text').textContent = employee.Mother_Name;
+document.getElementById('mother-name-input').value = employee.Mother_Name;
+document.getElementById('residential-address-text').textContent = employee.Residential_Address;
+document.getElementById('residential-address-input').value = employee.Residential_Address;
+document.getElementById('address-line1-text').textContent = employee.Residential_Address_Line1;
+document.getElementById('address-line1-input').value = employee.Residential_Address_Line1;
+document.getElementById('address-line2-text').textContent = employee.Residential_Address_Line2;
+document.getElementById('address-line2-input').value = employee.Residential_Address_Line2;
+document.getElementById('city-text').textContent = employee.Residential_City;
+document.getElementById('city-input').value = employee.Residential_City;
+document.getElementById('district-text').textContent = employee.Residential_District;
+document.getElementById('district-input').value = employee.Residential_District;
+document.getElementById('state-text').textContent = employee.Residential_State;
+document.getElementById('state-input').value = employee.Residential_State;
+document.getElementById('pincode-text').textContent = employee.Residential_Pincode;
+document.getElementById('pincode-input').value = employee.Residential_Pincode;
+document.getElementById('country-text').textContent = employee.Residential_Country;
+document.getElementById('country-input').value = employee.Residential_Country;
+document.getElementById('permanent-address-text').textContent = employee.Permanent_Address;
+document.getElementById('permanent-address-input').value = employee.Permanent_Address;
+document.getElementById('permanent-address-line1-text').textContent = employee.Permanent_Address_Line1;
+document.getElementById('permanent-address-line1-input').value = employee.Permanent_Address_Line1;
+document.getElementById('permanent-address-line2-text').textContent = employee.Permanent_Address_Line2;
+document.getElementById('permanent-address-line2-input').value = employee.Permanent_Address_Line2;
+document.getElementById('permanent-city-text').textContent = employee.Permanent_City;
+document.getElementById('permanent-city-input').value = employee.Permanent_City;
+document.getElementById('permanent-district-text').textContent = employee.Permanent_District;
+document.getElementById('permanent-district-input').value = employee.Permanent_District;
+document.getElementById('permanent-state-text').textContent = employee.Permanent_State;
+document.getElementById('permanent-state-input').value = employee.Permanent_State;
+document.getElementById('permanent-pincode-text').textContent = employee.Permanent_Pincode;
+document.getElementById('permanent-pincode-input').value = employee.Permanent_Pincode;
+document.getElementById('permanent-country-text').textContent = employee.Permanent_Country;
+document.getElementById('permanent-country-input').value = employee.Permanent_Country;
+document.getElementById('contact-number-text').textContent = employee.Contact_Number;
+document.getElementById('contact-number-input').value = employee.Contact_Number;
+document.getElementById('email-text').textContent = employee.Email;
+document.getElementById('email-input').value = employee.Email;
+document.getElementById('aadhar-card-text').textContent = employee.Aadhar_Card;
+document.getElementById('aadhar-card-input').value = employee.Aadhar_Card;
+document.getElementById('voter-id-text').textContent = employee.Voter_Id;
+document.getElementById('voter-id-input').value = employee.Voter_Id;
+document.getElementById('record-status-text').textContent = employee.Record_Status;
+document.getElementById('record-status-input').value = employee.Record_Status;
+document.getElementById('record-location-text').textContent = employee.Record_Location;
+document.getElementById('record-location-input').value = employee.Record_Location;
+document.getElementById('remarks-text').textContent = employee.Remarks;
+document.getElementById('remarks-input').value = employee.Remarks;
+document.getElementById('uan-number-text').textContent = employee.Uan_Number;
+document.getElementById('uan-number-input').value = employee.Uan_Number;
+document.getElementById('login-id-text').textContent = employee.Login_Id;
+document.getElementById('login-id-input').value = employee.Login_Id;
+document.getElementById('password-text').textContent = employee.Password;
+document.getElementById('password-input').value = employee.Password;
+document.getElementById('uan-login-phone-text').textContent = employee.Uan_Login_Phone;
+document.getElementById('uan-login-phone-input').value = employee.Uan_Login_Phone;
+document.getElementById('aadhar-link-phone-text').textContent = employee.Aadhar_Link_Phone;
+document.getElementById('aadhar-link-phone-input').value = employee.Aadhar_Link_Phone;
+document.getElementById('bank-name-text').textContent = employee.Bank_Name;
+document.getElementById('bank-name-input').value = employee.Bank_Name;
+document.getElementById('branch-text').textContent = employee.Bank_Branch;
+document.getElementById('branch-input').value = employee.Bank_Branch;
+document.getElementById('ifsc-code-text').textContent = employee.IFSC_Code;
+document.getElementById('ifsc-code-input').value = employee.IFSC_Code;
+document.getElementById('account-number-text').textContent = employee.Account_Number;
+document.getElementById('account-number-input').value = employee.Account_Number;
+document.getElementById('employee-password-text').textContent = employee.Pass_Word;
+document.getElementById('employee-password-input').value = employee.Pass_Word;
+document.getElementById('employee-photo-text').textContent = employee.Employee_Photo;
+// document.getElementById('employee-photo-input').value = employee.Employee_Photo;
+} catch (error) {
+        console.error('Error fetching employee details:', error);
+        // Optionally, display an error message to the user
+        alert('There was a problem fetching employee details.');
+      }
+
+      const editButton = document.getElementById('edit-button');
+      const saveButton = document.getElementById('save-button');
+
+      editButton.addEventListener('click', () => {
+        const fields = [
+              'employee-name', 'employee-code', 'gender', 'department-category','department-name','department-designation', 'department-designation', 'shift', 
+              'shift-start-time', 'shift-end-time', 'educational-qualification','educational-department', 'experience', 'previous-company-name', 
+              'relevant-experience-years', 'relevant-experience-months', 'date-of-birth', 'place-of-birth', 
+              'blood-group', 'date-of-joining', 'employment-type', 'employment-status', 'personal-mobile', 
+              'work-mobile', 'extension', 'biometric-id', 'father-name', 'mother-name', 
+              'address-line1', 'address-line2', 'city', 'district', 'state', 'pincode', 'country', 
+              'permanent-address-line1', 'permanent-address-line2', 'permanent-city', 'permanent-district', 
+              'permanent-state', 'permanent-pincode', 'permanent-country', 'contact-number', 'email', 
+              'aadhar-card', 'voter-id', 'record-status', 'record-location', 'remarks', 'uan-number', 
+              'login-id', 'password', 'uan-login-phone', 'aadhar-link-phone', 'bank-name', 'branch', 
+              'ifsc-code', 'account-number', 'employee-photo'
+          ];
+
+        fields.forEach(fieldId => {
+          const textElem = document.getElementById(`${fieldId}-text`);
+          const inputElem = document.getElementById(`${fieldId}-input`);
+
+          if (textElem && inputElem) {
+            const isEditing = inputElem.style.display === 'block';
+            textElem.style.display = isEditing ? 'block' : 'none';
+            inputElem.style.display = isEditing ? 'none' : 'block';
+          }
+        });
+      });
+      document.getElementById('save-button').addEventListener('click', async () => {
+    // Prepare the data object with customer details from input fields
+    const updatedEmployee = {
+    Employee_Name: document.getElementById('employee-name-input').value,
+    Employee_Code: document.getElementById('employee-code-input').value,
+    Gender: document.getElementById('gender-input').value,
+    Company: document.getElementById('company-input').value,
+    Department_Category: document.getElementById('department-category-input').value,
+    Department_Name: document.getElementById('department-name-input').value,
+    Department_Designation: document.getElementById('department-designation-input').value,
+    Shift: document.getElementById('shift-input').value,
+    Shift_Start_Time: document.getElementById('shift-start-time-input').value,
+    Shift_End_Time: document.getElementById('shift-end-time-input').value,
+    Educational_Qualification: document.getElementById('educational-qualification-input').value,
+    Department: document.getElementById('educational-department-input').value,
+    Experience: document.getElementById('experience-input').value,
+    Previous_Company: document.getElementById('previous-company-name-input').value,
+    Relevant_Experience_Years: document.getElementById('relevant-experience-years-input').value,
+    Relevant_Experience_Months: document.getElementById('relevant-experience-months-input').value,
+    Date_Of_Birth: document.getElementById('date-of-birth-input').value,
+    Place_Of_Birth: document.getElementById('place-of-birth-input').value,
+    Blood_Group: document.getElementById('blood-group-input').value,
+    Date_Of_Joining: document.getElementById('date-of-joining-input').value,
+    Employment_Type: document.getElementById('employment-type-input').value,
+    Employment_Status: document.getElementById('employment-status-input').value,
+    Personal_Mobile: document.getElementById('personal-mobile-input').value,
+    Work_Mobile: document.getElementById('work-mobile-input').value,
+    Extension: document.getElementById('extension-input').value,
+    BioMetric_ID: document.getElementById('biometric-id-input').value,
+    Father_Name: document.getElementById('father-name-input').value,
+    Mother_Name: document.getElementById('mother-name-input').value,
+    Residential_Address: document.getElementById('residential-address-input').value,
+    Address_Line1: document.getElementById('address-line1-input').value,
+    Address_Line2: document.getElementById('address-line2-input').value,
+    City: document.getElementById('city-input').value,
+    District: document.getElementById('district-input').value,
+    State: document.getElementById('state-input').value,
+    Pincode: document.getElementById('pincode-input').value,
+    Country: document.getElementById('country-input').value,
+    Permanent_Address: document.getElementById('permanent-address-input').value,
+    Permanent_Address_Line1: document.getElementById('permanent-address-line1-input').value,
+    Permanent_Address_Line2: document.getElementById('permanent-address-line2-input').value,
+    Permanent_City: document.getElementById('permanent-city-input').value,
+    Permanent_District: document.getElementById('permanent-district-input').value,
+    Permanent_State: document.getElementById('permanent-state-input').value,
+    Permanent_Pincode: document.getElementById('permanent-pincode-input').value,
+    Permanent_Country: document.getElementById('permanent-country-input').value,
+    Contact_Number: document.getElementById('contact-number-input').value,
+    Email: document.getElementById('email-input').value,
+    Aadhar_Card: document.getElementById('aadhar-card-input').value,
+    Voter_ID: document.getElementById('voter-id-input').value,
+    Record_Status: document.getElementById('record-status-input').value,
+    Record_Location: document.getElementById('record-location-input').value,
+    Remarks: document.getElementById('remarks-input').value,
+    UAN_Number: document.getElementById('uan-number-input').value,
+    Login_ID: document.getElementById('login-id-input').value,
+    Pass: document.getElementById('password-input').value,
+    UAN_Login_Phone: document.getElementById('uan-login-phone-input').value,
+    Aadhar_Link_Phone: document.getElementById('aadhar-link-phone-input').value,
+    Bank_Name: document.getElementById('bank-name-input').value,
+    Branch: document.getElementById('branch-input').value,
+    IFSC_Code: document.getElementById('ifsc-code-input').value,
+    Account_No: document.getElementById('account-number-input').value,
+    Employee_Photo_Path: document.getElementById('employee-photo-input').value
+};
+
+console.log('Data to be sent:', updatedEmployee); // Debugging: Log data object to verif
+        try {
+          const response = await fetch(`/employee/putEdit/${employeeId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedEmployee)
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          alert(result.message || 'Employee updated successfully!');
+          saveButton.disabled = true;
+          editButton.disabled = false;
+        } catch (error) {
+          console.error('Error updating employee:', error);
+          alert('There was a problem updating employee details.');
+        }
+      });
+  });
+</script>
+
   </body>
 </html>

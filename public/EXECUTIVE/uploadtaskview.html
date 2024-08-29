@@ -273,140 +273,134 @@
             <!-- end page title -->
 
             <div class="row">
-                <div class="col-xxl-12">
+              <div class="col-xxl-12">
                   <!-- project card -->
                   <div class="card d-block">
-                    <div class="card-body">
-                      <div class="text-xl-end mt-xl-0 mt-z p-3">
-                          <button type="button" class="btn btn-light mb-2 me-2">Edit</button>
-                          <button type="button" class="btn btn-primary mb-2 me-2">Save</button>
-                      </div>
-                  
-                      <div class="clearfix"></div>
-                  
-                      <div class="row">
-                            <div class="col-md-6">
-                                <!-- assignee -->
-                                <h5 class="mt-2 mb-1 fw-bold text-uppercase">Executive Name</h5>
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="mt-1 font-14">
-                                        -
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                              <!-- assignee -->
-                              <h5 class="mt-2 mb-1 fw-bold text-uppercase">Company ID</h5>
-                              <div class="d-flex">
-                                  <div>
-                                      <p class="mt-1 font-14">
-                                      -
-                                      </p>
+                      <div class="card-body">
+                          <div class="text-xl-end mt-xl-0 mt-z p-3">
+                              <button type="button" id="edit-button" class="btn btn-light mb-2 me-2">Edit</button>
+                              <button type="button" id="save-button" class="btn btn-primary mb-2 me-2">Save</button>
+                          </div>
+          
+                          <div class="clearfix"></div>
+          
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <!-- assignee -->
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Executive Name</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="executiveName" class="mt-1 font-14">-</p>
+                                          <input type="text" class="form-control" type="text" class="form-control" type="text" id="executiveName-input" style="display: none;" />
+                                      </div>
                                   </div>
                               </div>
-                            </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                            <!-- assignee -->
-                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Company TYpe</h5>
-                            <div class="d-flex">
-                                <div>
-                                    <p class="mt-1 font-14">
-                                    -
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                          <!-- assignee -->
-                          <h5 class="mt-2 mb-1 fw-bold text-uppercase">Document Type</h5>
-                          <div class="d-flex">
-                              <div>
-                                  <p class="mt-1 font-14">
-                                  -
-                                  </p>
+                              <div class="col-md-6">
+                                  <!-- assignee -->
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Company ID</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="companyId" class="mt-1 font-14">-</p>
+                                          <input type="text" class="form-control" type="text" id="companyId-input" style="display: none;" />
+                                      </div>
+                                  </div>
                               </div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                            <!-- assignee -->
-                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Document NAme</h5>
-                            <div class="d-flex">
-                                <div>
-                                    <p class="mt-1 font-14">
-                                    -
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                          <!-- assignee -->
-                          <h5 class="mt-2 mb-1 fw-bold text-uppercase"> Document Url</h5>
-                          <div class="d-flex">
-                              <div>
-                                  <p class="mt-1 font-14">
-                                  -
-                                  </p>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <!-- assignee -->
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Company Type</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="companyType" class="mt-1 font-14">-</p>
+                                          <input type="text" class="form-control"  id="companyType-input" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <!-- assignee -->
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Document Type</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="documentType" class="mt-1 font-14">-</p>
+                                          <input type="text" class="form-control" id="documentType-input" style="display: none;" />
+                                      </div>
+                                  </div>
                               </div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                            <!-- assignee -->
-                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Task NAme</h5>
-                            <div class="d-flex">
-                                <div>
-                                    <p class="mt-1 font-14">
-                                    -
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                          <!-- assignee -->
-                          <h5 class="mt-2 mb-1 fw-bold text-uppercase"> Task Details</h5>
-                          <div class="d-flex">
-                              <div>
-                                  <p class="mt-1 font-14">
-                                  -
-                                  </p>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <!-- assignee -->
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Document Name</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="documentName" class="mt-1 font-14">-</p>
+                                          <input type="text" class="form-control" id="documentName-input" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <!-- assignee -->
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Document URL</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="documentURL" class="mt-1 font-14">-</p>
+                                          <input type="text" class="form-control" id="documentURL-input" style="display: none;" />
+                                      </div>
+                                  </div>
                               </div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                            <!-- assignee -->
-                            <h5 class="mt-2 mb-1 fw-bold text-uppercase">Status </h5>
-                            <div class="d-flex">
-                                <div>
-                                    <p class="mt-1 font-14">
-                                    -
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                          <!-- assignee -->
-                          <h5 class="mt-2 mb-1 fw-bold text-uppercase"> Remarks</h5>
-                          <div class="d-flex">
-                              <div>
-                                  <p class="mt-1 font-14">
-                                  -
-                                  </p>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <!-- assignee -->
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Task Name</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="taskName" class="mt-1 font-14">-</p>
+                                          <input type="text" class="form-control"  id="taskName-input" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <!-- assignee -->
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Task Details</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="taskDetails" class="mt-1 font-14">-</p>
+                                          <input type="text" class="form-control"  id="taskDetails-input" style="display: none;" />
+                                      </div>
+                                  </div>
                               </div>
                           </div>
-                        </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <!-- assignee -->
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Status</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="status" class="mt-1 font-14">-</p>
+                                          <input type="text" class="form-control"  id="status-input" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <!-- assignee -->
+                                  <h5 class="mt-2 mb-1 fw-bold text-uppercase">Remarks</h5>
+                                  <div class="d-flex">
+                                      <div>
+                                          <p id="remarks" class="mt-1 font-14">-</p>
+                                          <input type="text" class="form-control"  id="remarks-input" style="display: none;" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+          
+                          <!-- end card-body-->
                       </div>
-                  
-                    <!-- end card-body-->
                   </div>
+              </div>
+          </div>
+          
                   <!-- end card-->
                 </div>
                 <!-- end col -->
@@ -1158,5 +1152,132 @@
         alert("Logout Successfully!");
       }
     </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const uploadID = urlParams.get('uploadId'); // Get the ID from URL
+
+    console.log(uploadID);
+
+    if (!uploadID) {
+      console.error('No ID provided');
+      return;
+    }
+
+    try {
+      // Fetch task details
+      const response = await fetch(`/tasks/edit/${uploadID}`);
+      const assignTask = await response.json();
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch task details');
+      }
+
+      // Populate fields
+      document.getElementById('executiveName').textContent = assignTask.Executive_Name;
+      document.getElementById('executiveName-input').value = assignTask.Executive_Name;
+      document.getElementById('companyId').textContent = assignTask.Company_Id;
+      document.getElementById('companyId-input').value = assignTask.Company_Id;
+      document.getElementById('companyType').textContent = assignTask.Company_Name;
+      document.getElementById('companyType-input').value = assignTask.Company_Name;
+      document.getElementById('documentType').textContent = assignTask.Document_Type;
+      document.getElementById('documentType-input').value = assignTask.Document_Type;
+      document.getElementById('documentName').textContent = assignTask.Document_Name;
+      document.getElementById('documentName-input').value = assignTask.Document_Name;
+      document.getElementById('documentURL').textContent = assignTask.Doument_URL;
+      document.getElementById('documentURL-input').value = assignTask.Doument_URL;
+      document.getElementById('taskName').textContent = assignTask.Task_Name;
+      document.getElementById('taskName-input').value = assignTask.Task_Name;
+      document.getElementById('taskDetails').textContent = assignTask.Task_Details;
+      document.getElementById('taskDetails-input').value = assignTask.Task_Details;
+      document.getElementById('remarks').textContent = assignTask.Remarks;
+      document.getElementById('remarks-input').value = assignTask.Remarks;
+      document.getElementById('status').textContent = assignTask.Status;
+      document.getElementById('status-input').value = assignTask.Status;
+
+      const editButton = document.getElementById('edit-button');
+      const saveButton = document.getElementById('save-button');
+
+      if (!editButton || !saveButton) {
+        console.error('Edit or Save button not found');
+        return;
+      }
+
+      // Toggle edit mode
+      editButton.addEventListener('click', () => {
+        console.log('Edit button clicked');
+        const fields = [
+          'executiveName', 'companyId', 'companyType', 'documentType', 'documentName',
+          'documentURL', 'taskName', 'taskDetails', 'status', 'remarks'
+        ];
+
+        fields.forEach(field => {
+          const textField = document.getElementById(field);
+          const inputField = document.getElementById(`${field}-input`);
+
+          if (textField && inputField) {
+            textField.style.display = 'none';
+            inputField.style.display = 'block';
+          }
+        });
+
+        saveButton.style.display = 'block';
+        editButton.style.display = 'none';
+      });
+
+      // Save updated task data
+      saveButton.addEventListener('click', async () => {
+        const updatedTask = {
+          Executive_Name: document.getElementById('executiveName-input').value,
+          Company_Id: document.getElementById('companyId-input').value,
+          Company_Name: document.getElementById('companyType-input').value,
+          Document_Type: document.getElementById('documentType-input').value,
+          Document_Name: document.getElementById('documentName-input').value,
+          Doument_URL: document.getElementById('documentURL-input').value,
+          Task_Name: document.getElementById('taskName-input').value,
+          Task_Details: document.getElementById('taskDetails-input').value,
+          Status: document.getElementById('status-input').value,
+          Remarks: document.getElementById('remarks-input').value,
+        };
+
+        try {
+          const response = await fetch(`/tasks/putEdit/${uploadID}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedTask),
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to update task details');
+          }
+
+          const fields = [
+            'executiveName', 'companyId', 'companyType', 'documentType', 'documentName',
+            'documentURL', 'taskName', 'taskDetails', 'status', 'remarks'
+          ];
+
+          fields.forEach(field => {
+            document.getElementById(`${field}-input`).style.display = 'none';
+            document.getElementById(field).textContent = document.getElementById(`${field}-input`).value;
+            document.getElementById(field).style.display = 'block';
+          });
+
+          saveButton.style.display = 'none';
+          editButton.style.display = 'block';
+
+        } catch (error) {
+          console.error(error);
+        }
+      });
+
+    } catch (error) {
+      console.error(error);
+    }
+  });
+</script>
+
   </body>
 </html>

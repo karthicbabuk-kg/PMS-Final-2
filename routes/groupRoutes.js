@@ -47,44 +47,57 @@ router.get('/companies', groupController.getCompanies)
 
 // edit page
 
-router.get('/edit/:groupId', (req, res) => {
-    const groupId = req.params.groupId;
-    const query = 'SELECT * FROM groups WHERE GRP_ID = ?';
-
-    db.query(query, [groupId], (err, results) => {
-        if (err) {
-            console.error('Error fetching group details:', err);
-            res.status(500).send('Error fetching group details');
-            return;
+router.get('/grpedit/:id', async (req, res) => {
+    const groupId = req.params.id;
+    try {
+        // Perform the database query to get group details
+        const [rows] = await db.query('SELECT * FROM `groups` WHERE GRP_ID = ?', [groupId]);
+        
+        // Check if any rows were returned
+        if (rows.length === 0) {
+            return res.status(404).json({ message: 'Group not found' });
         }
-        res.json(results[0]);
-    });
+        
+        // Send the group details as JSON
+        res.json(rows[0]);
+    } catch (error) {
+        // Log and handle the error
+        console.error('Database fetch error:', error);
+        res.status(500).send('Server error');
+    }
 });
 
-router.put('/putEdit/:groupId', (req, res) => {
-    const groupId = req.params.groupId;
+router.put('/putEdit/:id', async (req, res) => {
+    const groupId = req.params.id;
     const updatedGroup = req.body;
 
-    const query = `
-        UPDATE groups SET
-        Group_Name = ?, Company = ?, Select_Lead = ?, Select_Employee = ?
-        WHERE GRP_ID = ?
-    `;
+    try {
+        // Use backticks around the table name `groups`
+        const query = `
+            UPDATE \`groups\` SET
+            Group_Name = ?, Company = ?, Select_Lead = ?, Select_Employee = ?
+            WHERE GRP_ID = ?
+        `;
 
-    db.query(query, [
-        updatedGroup.Group_Name,
-        updatedGroup.Lead,
-        updatedGroup.Employee,
-        updatedGroup.Status,
-        groupId
-    ], (err, results) => {
-        if (err) {
-            console.error('Error updating group details:', err);
-            res.status(500).send('Error updating group details');
-            return;
+        // Perform the database query
+        const [result] = await db.query(query, [
+            updatedGroup.Group_Name,
+            updatedGroup.Company,
+            updatedGroup.Lead,
+            updatedGroup.Employee,
+            groupId
+        ]);
+
+        // Check if any rows were affected
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Group not found or no changes made' });
         }
-        res.send('Group details updated successfully');
-    });
-});
 
+        res.send('Group details updated successfully');
+    } catch (error) {
+        // Log and handle the error
+        console.error('Database update error:', error);
+        res.status(500).send('Server error');
+    }
+});
 module.exports = router;

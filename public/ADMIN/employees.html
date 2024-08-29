@@ -2221,6 +2221,7 @@
 
             employees.forEach(employee => {
                 const row = document.createElement('tr');
+                row.dataset.employeeId = employee.EM_ID;
 
                 row.innerHTML = `
                     
@@ -2231,7 +2232,9 @@
                     <td>${employee.Company}</td>
                     <td>${employee.Department_Desigination}</td>
                     <td>
-                        <a href="#"  class="action-icon" data-bs-toggle="modal" data-bs-target="#fullscreeexampleModal"> <i class="mdi mdi-square-edit-outline"></i></a>
+                         <a href="employeeview.html?employeeID=${employee.EM_ID}"class="action-icon">
+                            <i class="mdi mdi-square-edit-outline"></i>
+                        </a>
                         <a href="#" class="action-icon delete-icon" data-id="${employee.EM_ID}"> <i class="mdi mdi-delete"></i></a>
                     </td>
                 `;

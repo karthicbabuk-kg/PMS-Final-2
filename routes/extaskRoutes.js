@@ -97,4 +97,50 @@ router.delete('/delete1/:id', async (req, res) => {
     }
 });
 
+router.get('/edit/:id', async (req, res) => {
+    const uploadId = req.params.id;
+    try {
+        const [rows] = await db.query('SELECT * FROM upload_task WHERE UT_ID  = ?', [uploadId]);
+        if (rows.length === 0) {
+            return res.status(404).json({ message: 'task not found' });
+        }
+        res.json(rows[0]);
+    } catch (error) {
+        console.error('Database fetch error:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+router.put('/putEdit/:assignId', async (req, res) => {
+    const assignId = req.params.assignId;
+    const updatedTask = req.body;
+
+    console.log('Received data:', updatedTask); // Debugging: Log incoming data
+
+    const updateQuery = `
+        UPDATE upload_task
+        SET 
+            Executive_Name = ?, Company_Id = ?, Company_Name = ?, Document_Type = ?, Document_Name = ?, Doument_URL = ?, 
+            Task_Name = ?, Task_Details = ?, Status = ?, Remarks = ?
+        WHERE 
+            UT_ID = ?
+    `;
+
+    const values = [
+        updatedTask.Executive_Name, updatedTask.Company_Id, updatedTask.Company_Name, updatedTask.Document_Type, 
+        updatedTask.Document_Name, updatedTask.Document_URL, updatedTask.Task_Name, updatedTask.Task_Details, 
+        updatedTask.Status, updatedTask.Remarks, assignId
+    ];
+
+    console.log('Update values:', values); // Debugging: Log the values being passed to the query
+
+    try {
+        const result = await db.query(updateQuery, values);
+        console.log('Query result:', result); // Debugging: Log the result of the query
+        res.status(200).send('Task details updated successfully');
+    } catch (error) {
+        console.error('Error updating task details:', error);
+        res.status(500).send('Failed to update task details');
+    }
+});
 module.exports = router;

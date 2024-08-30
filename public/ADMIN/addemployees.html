@@ -460,14 +460,14 @@
                                 <select
                                   class="form-select"
                                   name="AEM_DD_GN"
+                                  id="AEM_DD_GN"
                                   runat="server"
                                   required
                                 >
                                   <option selected value="GEN"
                                     ><-Select-></option
                                   >
-                                  <option>Male</option>
-                                  <option>Female</option>
+                                 
                                 </select>
                               </div>
                               <div class="col-md-6">
@@ -486,20 +486,14 @@
                                 <select
                                   class="form-select"
                                   name="AEM_DD_DC"
+                                  id="AEM_DD_DC"
                                   runat="server"
                                   required
                                 >
                                   <option selected value="DPC"
                                     ><-Select-></option
                                   >
-                                  <option>CRM</option>
-                                  <option>HRM</option>
-                                  <option>planning & Production</option>
-                                  <option>Inventory & Warehouse</option>
-                                  <option>Logistics</option>
-                                  <option>Factory Maintenance</option>
-                                  <option>Finance & Billing</option>
-                                  <option>Business Intelligence</option>
+                                
                                 </select>
                               </div>
                               <div class="col-md-6">
@@ -509,13 +503,13 @@
                                 <select
                                   class="form-select"
                                   name="AEM_DD_DN"
+                                  id="AEM_DD_DN"
                                   runat="server"
                                   required
                                 >
                                   <option selected value="DPN"
                                     ><-Select-></option
                                   >
-                                  <option>Production</option>
                                 </select>
                               </div>
                             </div>
@@ -543,14 +537,14 @@
                                 <select
                                   class="form-select"
                                   name="AEM_DD_SF"
+                                  id="AEM_DD_SF"
                                   runat="server"
                                   required
                                 >
                                   <option selected value="DPS"
                                     ><-Select-></option
                                   >
-                                  <option>Day Shift</option>
-                                  <option>Night Shift</option>
+                               
                                 </select>
                               </div>
                             </div>
@@ -588,16 +582,14 @@
                                 <select
                                   class="form-select"
                                   name="AEM_DD_EQ"
+                                  id="AEM_DD_EQ"
                                   runat="server"
                                   required
                                 >
                                   <option selected value="EDQ"
                                     ><-Select-></option
                                   >
-                                  <option>UG</option>
-                                  <option>PG</option>
-                                  <option>Diplomo</option>
-                                  <option>ITI</option>
+                          
                                 </select>
                               </div>
                               <div class="col-md-6">
@@ -619,14 +611,14 @@
                                 <select
                                   class="form-select"
                                   name="AEM_DD_EX"
+                                  id="AEM_DD_EX"
                                   runat="server"
                                   required
                                 >
                                   <option selected value="EXP"
                                     ><-Select-></option
                                   >
-                                  <option>Experienced</option>
-                                  <option>Fresher</option>
+                                 
                                 </select>
                               </div>
                               <div class="col-md-6">
@@ -731,18 +723,14 @@
                                 <select
                                   class="form-select"
                                   name="AEM_DD_ET"
+                                  id="AEM_DD_ET"
                                   runat="server"
                                   required
                                 >
                                   <option selected value="EPT"
                                     ><-Select-></option
                                   >
-                                  <option>Full-time</option>
-                                  <option>Part-time</option>
-                                  <option>Trainee</option>
-                                  <option>Contract</option>
-                                  <option>Internship</option>
-                                  <option>Probation</option>
+                           
                                 </select>
                               </div>
                               <div class="col-md-6">
@@ -2979,6 +2967,86 @@
       error.textContent = message;
       field.parentElement.appendChild(error);
   }
+  </script>
+
+  <script>
+    fetch('/employee/getGender')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('AEM_DD_GN');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+    fetch('/employee/getDeptCat')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('AEM_DD_DC');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+    fetch('/employee/getDeptName')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('AEM_DD_DN');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+    fetch('/employee/getShift')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('AEM_DD_SF');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+    fetch('/employee/getEduQul')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('AEM_DD_EQ');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+    fetch('/employee/getExp')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('AEM_DD_EX');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+    fetch('/employee/getEmpType')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('AEM_DD_ET');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
   </script>
   </body>
 </html>

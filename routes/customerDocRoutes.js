@@ -27,8 +27,9 @@ router.get('/getAccountOwners', async (req, res) => {
 
 // Route to fetch Company IDs
 router.get('/getCompanyIds', async (req, res) => {
+    const { accountOwner } = req.params;
     try {
-        const [rows] = await db.query('SELECT DISTINCT Company_Accid FROM company');
+        const [rows] = await db.query('SELECT DISTINCT Company_Id FROM customer ');
         res.json(rows);
     } catch (error) {
         console.error('Error fetching company IDs:', error);
@@ -40,7 +41,7 @@ router.get('/getCompanyIds', async (req, res) => {
 router.get('/getCompanyName/:companyId', async (req, res) => {
     const { companyId } = req.params;
     try {
-        const [rows] = await db.query('SELECT Company_Name FROM company WHERE Company_Accid = ?', [companyId]);
+        const [rows] = await db.query('SELECT Company_Name FROM customer WHERE Company_Id = ?', [companyId]);
         res.json(rows[0] || {});
     } catch (error) {
         console.error('Error fetching company name:', error);

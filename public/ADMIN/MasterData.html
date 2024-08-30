@@ -295,13 +295,13 @@
                         <div class="card-body">
                           <div class="row mb-2">
                             <div class="form">
-                              <form action="/master/masterdata" method="POST">
+                              <form id="masterDataForm" action="/master/addData" method="POST">
                                 <div class="text-end mt-4">
-                                  <button type="button" class="btn btn-primary mb-2">Add</button>
-                                  <button type="button" class="btn btn-light mb-2">Cancel</button>
-                                  <button type="button" class="btn btn-light mb-2">Export</button>
-                              </div>
-                              <p style="font-weight: bold;">Master Data Information</p>
+                                    <button type="submit" id="submitForm" class="btn btn-primary mb-2">Add</button>
+                                    <button type="button" class="btn btn-light mb-2">Cancel</button>
+                                    <button type="button" class="btn btn-light mb-2">Export</button>
+                                </div>
+                                <p style="font-weight: bold;">Master Data Information</p>
                                 <div class="row mt-3">
                                     <div class="col-md-6">
                                         <label class="form-label">Module</label>
@@ -316,7 +316,7 @@
                                         </select>
                                     </div>
                                 </div>
-                    
+                            
                                 <div class="row mt-3">
                                     <div class="col-md-6">
                                         <label class="form-label">Column Name</label>
@@ -331,7 +331,7 @@
                                         </select>
                                     </div>
                                 </div>
-                    
+                            
                                 <div class="row mt-3">
                                     <div class="col-md-6">
                                         <label class="form-label">Status</label>
@@ -343,11 +343,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Add Column Description</label>
-                                        <input type="text" class="form-control" name="addColumnDescription" placeholder="Description" required>
+                                        <input type="text" class="form-control" id="addColumnDescription" name="addColumnDescription" placeholder="Description" required>
                                     </div>
                                 </div>
-                    
-                               
                             </form>
                             
                             </div>
@@ -1199,7 +1197,7 @@
         .then(data => {
             console.log(data);  // Check the data structure
             const columnDescriptionSelect = document.getElementById('columnDescriptionSelect');
-            columnDescriptionSelect.innerHTML = '<option selected value=""><-Select-></option>';
+            columnDescriptionSelect.innerHTML = '<option selected value="Null"><-Select-></option>';
 
             data.forEach(description => {
                 columnDescriptionSelect.innerHTML += `<option value="${description.Column_Description}">${description.Column_Description}</option>`;
@@ -1212,63 +1210,68 @@
 <script>
   // Function to fetch and display data in the table based on selected filters
   function loadTableData(module = '', subModule = '', columnName = '', columnDescription = '') {
-      const query = new URLSearchParams();
-      if (module) query.append('module', module);
-      if (subModule) query.append('subModule', subModule);
-      if (columnName) query.append('columnName', columnName);
-      if (columnDescription) query.append('columnDescription', columnDescription);
+    const query = new URLSearchParams();
+    if (module) query.append('module', module);
+    if (subModule) query.append('subModule', subModule);
+    if (columnName) query.append('columnName', columnName);
+    if (columnDescription) query.append('columnDescription', columnDescription);
 
-      fetch(`/master/get-masterdata?${query.toString()}`)
-          .then(response => response.json())
-          .then(data => {
-              const tableBody = document.getElementById('data-table-body');
-              tableBody.innerHTML = ''; // Clear existing rows
+    fetch(`/master/get-masterdata?${query.toString()}`)
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('data-table-body');
+            tableBody.innerHTML = ''; // Clear existing rows
 
-              data.forEach((item, index) => {
-                  const row = document.createElement('tr');
-                  row.innerHTML = `
-                      <td>${index + 1}</td>
-                      <td>${item.Module}</td>
-                      <td>${item.Sub_Modue}</td>
-                      <td>${item.Column_Name}</td>
-                      <td>${item.Column_Description}</td>
-                      <td>${item.Status}</td>
-                      <td>
-                           <a href="javascript:void(0);" class="action-icon delete-group" data-id="${item.id}">
+            data.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.dataset.masterId = item.MD_ID; // Ensure this is set
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${item.Module}</td>
+                    <td>${item.Sub_Modue}</td>
+                    <td>${item.Column_Name}</td>
+                    <td>${item.Column_Description}</td>
+                    <td>${item.Status}</td>
+                    <td>
+                        <a href="javascript:void(0);" class="action-icon delete-group" data-id="${item.MD_ID}">
                             <i class="mdi mdi-delete"></i>
                         </a>
-                      </td>
-                  `;
-                  tableBody.appendChild(row);
-              });
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
 
-              // Add event listeners to delete buttons
-              document.querySelectorAll('.delete-btn').forEach(button => {
-                  button.addEventListener('click', function() {
-                      const id = this.getAttribute('data-id');
-                      deleteRecord(id);
-                  });
-              });
-          })
-          .catch(error => console.error('Error fetching master data:', error));
-  }
+            // Add event listeners to delete buttons
+            document.querySelectorAll('.delete-group').forEach(button => {
+                button.addEventListener('click', deleteCustomer); // Attach handler directly
+            });
+        })
+        .catch(error => console.error('Error fetching master data:', error));
+}
 
-  // Function to delete a record by ID
-  function deleteRecord(id) {
-      if (confirm('Are you sure you want to delete this record?')) {
-          fetch(`/master/delete/${id}`, {
-              method: 'DELETE'
-          })
-          .then(response => {
-              if (response.ok) {
-                  loadTableData(); // Reload data after deletion
-              } else {
-                  console.error('Failed to delete record');
-              }
-          })
-          .catch(error => console.error('Error deleting record:', error));
-      }
-  }
+// Function to delete a record by ID
+function deleteCustomer(event) {
+    const masterId = event.currentTarget.getAttribute('data-id');
+
+    // Confirm before deleting
+    if (confirm('Are you sure you want to delete this master data?')) {
+        fetch(`/master/delete/${masterId}`, {
+            method: 'DELETE',
+        })
+        .then(response => {
+            if (response.ok) {
+                // Successfully deleted, now remove the row from the table
+                const row = event.currentTarget.closest('tr');
+                row.remove();
+                alert('Record deleted successfully.');
+            } 
+        })
+        .catch(error => {
+            console.error('Error deleting record:', error);
+        });
+    }
+}
+
 
   // Event listeners for filters
   document.getElementById('moduleSelect').addEventListener('change', function() {
@@ -1306,6 +1309,8 @@
   // Load data initially without filters
   document.addEventListener('DOMContentLoaded', () => loadTableData());
 </script>
+
+
 
 
   </body>

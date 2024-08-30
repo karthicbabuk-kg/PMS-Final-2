@@ -83,7 +83,7 @@ router.put('/putEdit/:companyId', async (req, res) => {
         updatedCompany.Company_Name, updatedCompany.Company_Accid, updatedCompany.Phone, updatedCompany.Email, 
         updatedCompany.Website, updatedCompany.Fax, updatedCompany.Numberof_Employees, updatedCompany.Annual_Revenue, 
         updatedCompany.Skype_Id, updatedCompany.Gst_Vat, updatedCompany.Business_Pan, updatedCompany.Enable_Tax, 
-        updatedCompany.Enable_Tds, updatedCompany.Bank_Name, updatedCompany.Branch_Name, updatedCompany.Crn_Id, 
+        updatedCompany.Enable_Tds, updatedCompany.Bank_Name, updatedCompany.Branch_Name, updatedCompany.crnid_Id, 
         updatedCompany.Account_No, updatedCompany.Ifsc_Code, updatedCompany.Door_No, updatedCompany.Street, 
         updatedCompany.City, updatedCompany.State, updatedCompany.Zipcode, updatedCompany.Country, 
         updatedCompany.Description, updatedCompany.Company_Logo, companyId

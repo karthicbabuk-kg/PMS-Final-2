@@ -2,6 +2,30 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models/db'); // Assuming you have a database connection module
+const masterDataController= require('../controllers/masterdataController')
+
+router.post('/addData', masterDataController.createMasterData);
+router.delete('/delete/:id',async (req, res) => {
+    try {
+        const masterId = req.params.id; // Get ID from route parameter
+
+        // Your query should match how you identify records in your database
+        const result = await db.query(
+            `DELETE FROM final_module WHERE MD_ID = ?`,
+            [masterId]
+        );
+
+        if (result.affectedRows > 0) {
+            res.status(200).send('Record deleted successfully.');
+        } else {
+            res.status(404).send('Error: Record not found.');
+        }
+    } catch (error) {
+        console.error('Error deleting record:', error);
+        res.status(500).send('Server error');
+    }
+});
+
 
 router.get('/get-modules', async (req, res) => {
     try {

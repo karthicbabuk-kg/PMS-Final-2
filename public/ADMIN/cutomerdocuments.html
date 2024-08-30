@@ -1120,14 +1120,15 @@
       });
 
   // Fetch Company IDs and populate the dropdown
-  fetch('/customer/getCompanyIds')
+  
+  fetch(`/customer/getCompanyIds`)
       .then(response => response.json())
       .then(data => {
           const companyIdSelect = document.getElementById('companyIdSelect');
           data.forEach(company => {
               const option = document.createElement('option');
-              option.value = company.Company_Accid;
-              option.textContent = company.Company_Accid;
+              option.value = company.Company_Id;
+              option.textContent = company.Company_Id;
               companyIdSelect.appendChild(option);
           });
       });

@@ -293,6 +293,15 @@ const query = (sql, values) => {
         res.status(500).json({ error: 'Database error' });
     }
 });
+  router.get('/getEmpStatus', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Employee' AND Column_Name = 'Employee Status'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
   
 module.exports = router;
 

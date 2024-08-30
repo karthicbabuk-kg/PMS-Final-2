@@ -740,14 +740,14 @@
                                 <select
                                   class="form-select"
                                   name="AEM_DD_ES"
+                                  id="AEM_DD_ES"
                                   runat="server"
                                   required
                                 >
                                   <option selected value="EPS"
                                     ><-Select-></option
                                   >
-                                  <option>Approved</option>
-                                  <option>Cancelled</option>
+                                
                                 </select>
                               </div>
                             </div>
@@ -3040,6 +3040,17 @@
       .then(response => response.json())
       .then(data => {
           const documentTypeSelect = document.getElementById('AEM_DD_ET');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+    fetch('/employee/getEmpStatus')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('AEM_DD_ES');
           data.forEach(type => {
               const option = document.createElement('option');
               option.value = type.Column_Description;

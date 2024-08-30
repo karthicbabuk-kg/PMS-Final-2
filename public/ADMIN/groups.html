@@ -1131,69 +1131,73 @@
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('/groups/get')
-        .then(response => response.json())
-        .then(data => {
-            const tableBody = document.getElementById('groupTableBody');
-            tableBody.innerHTML = ''; // Clear existing rows
-
-            data.forEach((group, i) => {
-                const row = document.createElement('tr');
-                row.dataset.groupId = group.GRP_ID;
-                
-                row.innerHTML = `
-                    <td>${i + 1}</td>
-                    <td>${group.Group_Name}</td>
-                    <td>${group.Company}</td>
-                    <td>${group.Select_Lead}</td>
-                    <td>${group.Select_Employee}</td>
-                    <td>
-                       <a href="groupview.html?groupId=${group.GRP_ID}" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>
-                        <a href="javascript:void(0);" class="action-icon delete-group" data-id="${group.GRP_ID}">
-                            <i class="mdi mdi-delete"></i>
-                        </a>
-                    </td>
-                `;
-                
-                tableBody.appendChild(row);
-            });
-
-            // Attach delete event listener to each delete icon after table rows are rendered
-            document.querySelectorAll('.delete-group').forEach(deleteBtn => {
-                deleteBtn.addEventListener('click', async (e) => {
-                    const groupId = e.currentTarget.getAttribute('data-id');
-                    
-                    // Confirm before delete
-                    if (confirm('Are you sure you want to delete this group?')) {
-                        try {
-                            const response = await fetch(`/groups/delete/${groupId}`, {
-                                method: 'DELETE'
-                            });
-
-                            if (response.ok) {
-                                // Remove the row from the table without refreshing the page
-                                const row = e.currentTarget.closest('tr');
-                                
-                                if (row) {
-                                    row.remove(); // Remove the row from the table
-                                    console.log('Group deleted and row removed from table.');
-                                } else {
-                                    console.error('Row element not found.');
-                                }
-                            } else {
-                                console.error('Failed to delete group');
-                            }
-                        } catch (error) {
-                            console.error('Error deleting group:', error);
-                        }
-                    }
-                });
-            });
-        })
-        .catch(error => console.error('Error fetching group data:', error));
-});
-
+  document.addEventListener('DOMContentLoaded', async () => {
+      try {
+          const response = await fetch('/groups/get');
+          const groups = await response.json();
+  
+          const tableBody = document.getElementById('groupTableBody');
+          tableBody.innerHTML = ''; // Clear existing rows
+  
+          groups.forEach((group, i) => {
+              const row = document.createElement('tr');
+              row.dataset.groupId = group.GRP_ID;
+  
+              row.innerHTML = `
+                  <td>${i + 1}</td>
+                  <td>${group.Group_Name}</td>
+                  <td>${group.Company}</td>
+                  <td>${group.Select_Lead}</td>
+                  <td>${group.Select_Employee}</td>
+                  <td>
+                      <a href="groupview.html?groupId=${group.GRP_ID}" class="action-icon">
+                          <i class="mdi mdi-square-edit-outline"></i>
+                      </a>
+                      <a href="javascript:void(0);" class="action-icon delete-icon">
+                          <i class="mdi mdi-delete"></i>
+                      </a>
+                  </td>
+              `;
+  
+              tableBody.appendChild(row);
+          });
+  
+          // Attach delete function to delete icons
+          document.querySelectorAll('.delete-icon').forEach(icon => {
+              icon.addEventListener('click', async (event) => {
+                  const row = event.target.closest('tr');
+                  const groupId = row.dataset.groupId;
+  
+                  // Confirmation alert before deletion
+                  const isConfirmed = confirm("Are you sure you want to delete this group?");
+                  if (!isConfirmed) {
+                      return; // If user cancels, stop the deletion process
+                  }
+  
+                  try {
+                      console.log(`Attempting to delete group with ID: ${groupId}`); // Debug log
+  
+                      const response = await fetch(`/groups/delete/${groupId}`, {
+                          method: 'DELETE',
+                      });
+  
+                      if (response.ok) {
+                          console.log(`Group with ID ${groupId} deleted successfully.`); // Debug log
+                          row.remove(); // Remove the row from the table
+                      } else {
+                          console.error('Failed to delete group');
+                          alert('Failed to delete group.');
+                      }
+                  } catch (error) {
+                      console.error('Error:', error);
+                      alert('Error deleting group.');
+                  }
+              });
+          });
+      } catch (error) {
+          console.error('Error fetching groups:', error);
+      }
+  });
   </script>
   
 <script>

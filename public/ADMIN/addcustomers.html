@@ -337,13 +337,9 @@
                               </div>
                               <div class="col-md-6">
                                 <label class="form-label">Ratings</label>
-                                <select class="form-select" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();" name="CAT_DD_RAT" runat="server" required>
+                                <select class="form-select" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();" name="CAT_DD_RAT"  id="CAT_DD_RAT" runat="server" required>
                                   <option selected value="RAT"><-Select-></option>
-                                  <option>Acquired</option>
-                                  <option>Active</option>
-                                  <option>Market Failed</option>
-                                  <option>Project Cancelled</option>
-                                  <option>Shut Down</option>
+                              
                                 </select>
                                 <div class="invalid-feedback">Please select ratings.</div>
                               </div>
@@ -407,35 +403,16 @@
                             <div class="row mt-2">
                               <div class="col-md-6">
                                 <label class="form-label">Company Type</label>
-                                <select class="form-select" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();" name="CAT_DD_CT" runat="server" required>
+                                <select class="form-select" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();" name="CAT_DD_CT" id="CAT_DD_CT" runat="server" required>
                                   <option selected value="CTY"><-Select-></option>
-                                  <option>Other</option>
-                                  <option>Public</option>
-                                  <option>Private</option>
-                                  <option>Subsidiary</option>
-                                  <option>Partnership</option>
-                                  <option>Government</option>
-                                  <option>Privately Held</option>
-                                  <option>Public Company</option>
+                             
                                 </select>
                               </div>
                               <div class="col-md-6">
                                 <label class="form-label">Ownership</label>
-                                <select class="form-select" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();" name="CAT_DD_OWR" runat="server" required>
+                                <select class="form-select" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();" name="CAT_DD_OWR" id="CAT_DD_OWR" runat="server" required>
                                   <option selected value="OWN"><-Select-></option>
-                                  <option>Analyst</option>
-                                  <option>Competitor</option>
-                                  <option>Customer</option>
-                                  <option>Distributor</option>
-                                  <option>Integrator</option>
-                                  <option>Investor</option>
-                                  <option>Other</option>
-                                  <option>Partner</option>
-                                  <option>Press</option>
-                                  <option>Prospect</option>
-                                  <option>Reseller</option>
-                                  <option>Supplier</option>
-                                  <option>Vendor</option>
+                                  
                                 </select>
                               </div>
                             
@@ -444,25 +421,9 @@
                             <div class="row mt-2">
                               <div class="col-md-6">
                                 <label class="form-label">Industry</label>
-                                <select class="form-select" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();" name="CAT_IND" runat="server" required>
+                                <select class="form-select" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();" name="CAT_IND" id="CAT_IND" runat="server" required>
                                   <option selected value="IND"><-Select-></option>
-                                  <option>Asp(Application Service Provider)</option>
-                                  <option>Data/Telecom OEM</option>
-                                  <option>ERP(Enterprise Resource Planning)</option>
-                                  <option>Government/Military</option>
-                                  <option>Large Enterprises</option>
-                                  <option>Management ISV</option>
-                                  <option>MSP(Management Service Provider)</option>
-                                  <option>Network Equipment Enterprises</option>
-                                  <option>Non-Management ISV</option>
-                                  <option>Optical Networking</option>
-                                  <option>Service Provider</option>
-                                  <option>Small/Medium Enterprise</option>
-                                  <option>Storage Equipement</option>
-                                  <option>Storage Serive Provider</option>
-                                  <option>System Integrator</option>
-                                  <option>Wireless Industry</option>
-                                  <option>ERP</option>
+                              
                                 </select>
                               </div>
                               <div class="col-md-6">
@@ -476,11 +437,9 @@
                                 <label class="form-label">Annual Revenue</label>
                                 <div class="input-group">
                                   <div class="input-group-prepend">
-                                    <select class="form-select" name="CAT_DD_AMO" runat="server" required>
+                                    <select class="form-select" name="CAT_DD_AMO" id="CAT_DD_AMO" runat="server" required>
                                       <option selected value="ANR"><-Select-></option>
-                                      <option>USD</option>
-                                      <option>INR</option>
-                                      <option>EURO</option>
+                                     
                                     </select>
                                   </div>
                                   <input type="text" class="form-control" placeholder="Annual Revenue" name="CAT_AR" runat="server" required/>
@@ -490,11 +449,9 @@
                                 <label class="form-label">Expected Revenue</label>
                                 <div class="input-group">
                                   <div class="input-group-prepend">
-                                    <select class="form-select" name="CAT_DD_AMO0" runat="server" required>
+                                    <select class="form-select" name="CAT_DD_AMO0" id="CAT_DD_AMO0" runat="server" required>
                                       <option selected value="ENR"><-Select-></option>
-                                      <option>USD</option>
-                                      <option>INR</option>
-                                      <option>EURO</option>
+                            
                                     </select>
                                   </div>
                                   <input type="text" class="form-control" placeholder="Annual Revenue" name="CAT_ER" runat="server" required/>
@@ -544,16 +501,16 @@
                               
                               <div class="col-md-6">
                                 <label class="form-label" style="margin-top: 10px;">Primary Designation</label>
-                                <select class="form-select" name="CAT_DD_PD" runat="server" required>
+                                <select class="form-select" name="CAT_DD_PD" id="CAT_DD_PD" runat="server" required>
                                   <option selected value="PD"><-Select-></option>
-                                  <option>NA</option>
+                                 
                                 </select>
                               </div>
                               <div class="col-md-6">
                                 <label class="form-label" style="margin-top: 10px;">Secondary Designation</label>
-                                <select class="form-select" name="CAT_DD_SD" runat="server" required>
+                                <select class="form-select" name="CAT_DD_SD" id="CAT_DD_SD" runat="server" required>
                                   <option selected value="SD"><-Select-></option>
-                                  <option>NA</option>
+                                 
                                 </select>
                               </div>
                             </div>
@@ -610,10 +567,9 @@
                               </div>
                               <div class="col-md-6">
                                 <label class="form-label">TCS/TDS</label>
-                                  <select class="form-select" name="CAT_TCS" runat="server" required>
+                                  <select class="form-select" name="CAT_TCS" id="CAT_TCS" runat="server" required>
                                     <option selected value="TCS"><-Select-></option>
-                                    <option>TCS</option>
-                                    <option>TDS</option>
+                                 
                                   </select>
                               </div>
                             </div>
@@ -1955,6 +1911,108 @@
           error.textContent = message;
           field.parentElement.appendChild(error);
       }
+      </script>
+
+      <script>
+         fetch('/customers/getRating')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('CAT_DD_RAT');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+         fetch('/customers/getComType')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('CAT_DD_CT');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+         fetch('/customers/getOwner')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('CAT_DD_OWR');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+         fetch('/customers/getIndustry')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('CAT_IND');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+         fetch('/customers/getAnRev')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('CAT_DD_AMO');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+         fetch('/customers/getExRev')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('CAT_DD_AMO0');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+         fetch('/customers/getTDS')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('CAT_TCS');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+         fetch('/customers/getPrimaryD')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('CAT_DD_PD');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+         fetch('/customers/getSecondaryD')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('CAT_DD_SD');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
       </script>
 
   </body>

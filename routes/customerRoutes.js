@@ -21,24 +21,23 @@ router.get('/get', async (req, res) => {
     }
 });
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/delete/:id', async(req, res) => {
     const customerId = req.params.id;
 
     // SQL query to delete the customer
-    const sql = 'DELETE FROM customer WHERE CUS_ID = ?';
-    db.query(sql, [customerId], (err, result) => {
-        if (err) {
-            console.error('Error deleting customer:', err);
-            return res.status(500).send('Server error');
-        }
-
+    try {
+        const result = await db.query('DELETE FROM customer WHERE CUS_ID = ?', [customerId]);
         if (result.affectedRows === 0) {
-            return res.status(404).send('Customer not found');
+            return res.status(404).json({ message: 'customer not found' });
         }
-
-        res.status(200).send('Customer deleted');
-    });
+        res.json({ message: 'customer deleted successfully' });
+    } catch (error) {
+        console.error('Database delete error:', error);
+        res.status(500).send('Server error');   
+    }
 });
+
+
 
 router.get('/edit/:id', async (req, res) => {
     const customerId = req.params.id;
@@ -146,6 +145,88 @@ router.put('/putEdit/:customerId', async (req, res) => {
     }
 });
 
+router.get('/getRating', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Customer' AND Column_Name = 'Ratings'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+router.get('/getComType', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Customer' AND Column_Name = 'Company Type'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+
+router.get('/getOwner', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Customer' AND Column_Name = 'Ownership'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+router.get('/getIndustry', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Customer' AND Column_Name = 'Industry'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+router.get('/getAnRev', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Customer' AND Column_Name = 'Annual Revenue'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+router.get('/getExRev', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Customer' AND Column_Name = 'Expected Revenue'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+router.get('/getTDS', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Customer' AND Column_Name = 'TCS TDS'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+router.get('/getPrimaryD', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Customer' AND Column_Name = 'Primary Designation'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+router.get('/getSecondaryD', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Customer' AND Column_Name = 'Secondary Designation'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
 
 
 module.exports = router;

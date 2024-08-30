@@ -6,23 +6,33 @@ const masterDataController= require('../controllers/masterdataController')
 
 router.post('/addData', masterDataController.createMasterData);
 router.delete('/delete/:id',async (req, res) => {
+    const masterId = req.params.id;
+
     try {
-        const masterId = req.params.id; // Get ID from route parameter
-
-        // Your query should match how you identify records in your database
-        const result = await db.query(
-            `DELETE FROM final_module WHERE MD_ID = ?`,
-            [masterId]
-        );
-
-        if (result.affectedRows > 0) {
-            res.status(200).send('Record deleted successfully.');
-        } else {
-            res.status(404).send('Error: Record not found.');
+        const result = await db.query('DELETE FROM final_module WHERE MD_ID = ?', [masterId]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Master Data not found' });
         }
+        res.json({ message: 'Master Data deleted successfully' });
     } catch (error) {
-        console.error('Error deleting record:', error);
-        res.status(500).send('Server error');
+        console.error('Database delete error:', error);
+        res.status(500).send('Server error');   
+    }
+});
+
+router.delete('/delete/:id', async(req, res) => {
+    const customerId = req.params.id;
+
+    // SQL query to delete the customer
+    try {
+        const result = await db.query('DELETE FROM customer WHERE CUS_ID = ?', [customerId]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'customer not found' });
+        }
+        res.json({ message: 'customer deleted successfully' });
+    } catch (error) {
+        console.error('Database delete error:', error);
+        res.status(500).send('Server error');   
     }
 });
 

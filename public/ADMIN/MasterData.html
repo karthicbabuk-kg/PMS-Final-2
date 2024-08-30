@@ -1209,31 +1209,39 @@
 
 <script>
   // Function to fetch and display data in the table based on selected filters
-  function loadTableData(module = '', subModule = '', columnName = '', columnDescription = '') {
-    const query = new URLSearchParams();
-    if (module) query.append('module', module);
-    if (subModule) query.append('subModule', subModule);
-    if (columnName) query.append('columnName', columnName);
-    if (columnDescription) query.append('columnDescription', columnDescription);
+  document.addEventListener('DOMContentLoaded', () => {
+    // Function to load table data with optional filters
+    async function loadTableData(module = '', subModule = '', columnName = '', columnDescription = '') {
+        try {
+            // Build the query string based on the provided filters
+            const query = new URLSearchParams();
+            if (module) query.append('module', module);
+            if (subModule) query.append('subModule', subModule);
+            if (columnName) query.append('columnName', columnName);
+            if (columnDescription) query.append('columnDescription', columnDescription);
 
-    fetch(`/master/get-masterdata?${query.toString()}`)
-        .then(response => response.json())
-        .then(data => {
+            // Fetch data from the server
+            const response = await fetch(`/master/get-masterdata?${query.toString()}`);
+            const data = await response.json();
+
+            // Clear existing rows
             const tableBody = document.getElementById('data-table-body');
-            tableBody.innerHTML = ''; // Clear existing rows
+            tableBody.innerHTML = '';
 
+            // Populate the table with fetched data
             data.forEach((item, index) => {
                 const row = document.createElement('tr');
-                row.dataset.masterId = item.MD_ID; // Ensure this is set
+                row.dataset.masterId = item.MD_ID; // Set the master data ID as a data attribute
+
                 row.innerHTML = `
                     <td>${index + 1}</td>
                     <td>${item.Module}</td>
-                    <td>${item.Sub_Modue}</td>
+                    <td>${item.Sub_Module}</td>
                     <td>${item.Column_Name}</td>
                     <td>${item.Column_Description}</td>
                     <td>${item.Status}</td>
                     <td>
-                        <a href="javascript:void(0);" class="action-icon delete-group" data-id="${item.MD_ID}">
+                        <a href="javascript:void(0);" class="action-icon delete-icon">
                             <i class="mdi mdi-delete"></i>
                         </a>
                     </td>
@@ -1241,37 +1249,46 @@
                 tableBody.appendChild(row);
             });
 
-            // Add event listeners to delete buttons
-            document.querySelectorAll('.delete-group').forEach(button => {
-                button.addEventListener('click', deleteCustomer); // Attach handler directly
+            // Attach delete event listeners to each delete icon
+            document.querySelectorAll('.delete-icon').forEach(icon => {
+                icon.addEventListener('click', async (event) => {
+                    const row = event.target.closest('tr');
+                    const masterId = row.dataset.masterId;
+
+                    // Confirmation alert before deletion
+                    const isConfirmed = confirm("Are you sure you want to delete this master data?");
+                    if (!isConfirmed) {
+                        return; // If user cancels, stop the deletion process
+                    }
+
+                    try {
+                        console.log(`Attempting to delete master data with ID: ${masterId}`); // Debug log
+
+                        const response = await fetch(`/master/delete/${masterId}`, {
+                            method: 'DELETE',
+                        });
+
+                        if (response.ok) {
+                            console.log(`Master data with ID ${masterId} deleted successfully.`); // Debug log
+                            row.remove(); // Remove the row from the table
+                        } else {
+                            console.error('Failed to delete master data');
+                            alert('Failed to delete master data.');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Error deleting master data.');
+                    }
+                });
             });
-        })
-        .catch(error => console.error('Error fetching master data:', error));
-}
-
-// Function to delete a record by ID
-function deleteCustomer(event) {
-    const masterId = event.currentTarget.getAttribute('data-id');
-
-    // Confirm before deleting
-    if (confirm('Are you sure you want to delete this master data?')) {
-        fetch(`/master/delete/${masterId}`, {
-            method: 'DELETE',
-        })
-        .then(response => {
-            if (response.ok) {
-                // Successfully deleted, now remove the row from the table
-                const row = event.currentTarget.closest('tr');
-                row.remove();
-                alert('Record deleted successfully.');
-            } 
-        })
-        .catch(error => {
-            console.error('Error deleting record:', error);
-        });
+        } catch (error) {
+            console.error('Error fetching master data:', error);
+        }
     }
-}
 
+    // Initial load of table data
+    loadTableData();
+});
 
   // Event listeners for filters
   document.getElementById('moduleSelect').addEventListener('change', function() {

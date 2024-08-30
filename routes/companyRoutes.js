@@ -102,7 +102,33 @@ router.put('/putEdit/:companyId', async (req, res) => {
 });
 
 
-//   company edit code
+router.get('/getAulRev', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Company' AND Column_Name = 'Annual Revenue'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+router.get('/getEtax', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Company' AND Column_Name = 'Enable TAX'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+router.get('/getEtds', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Company' AND Column_Name = 'Enable TDS'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
 
 
 

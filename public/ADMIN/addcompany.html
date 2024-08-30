@@ -404,11 +404,9 @@
                               <label class="form-label">Annual Revenue</label>
                               <div class="input-group">
                                 <div class="input-group-prepend">
-                                  <select class="form-select" name="CCP_DD_AMO" runat="server">
+                                  <select class="form-select" name="CCP_DD_AMO" id="CCP_DD_AMO" runat="server">
                                     <option selected value="ARS"><-Select-></option>
-                                    <option>USD</option>
-                                    <option>INR</option>
-                                    <option>EURO</option>
+                                    
                                   </select>
                                 </div>
                                 <input type="text" class="form-control" placeholder="Annual Revenue" name="CCP_AR" runat="server" required/>
@@ -439,16 +437,16 @@
                           <div class="row" style="margin-top: 10px;">
                             <div class="col-md-6">
                               <label class="form-label">Enable TAX</label>
-                              <select class="form-select" name="CCP_DD_ETAX" runat="server">
+                              <select class="form-select" name="CCP_DD_ETAX" id="CCP_DD_ETAX" runat="server">
                                 <option selected value="ETAX"><-Select-></option>
-                                <option>TAX</option>
+                             
                               </select>
                             </div>
                             <div class="col-md-6">
                               <label class="form-label">Enable TDS</label>
-                              <select class="form-select" name="CCP_DD_ETDS" runat="server">
+                              <select class="form-select" name="CCP_DD_ETDS" id="CCP_DD_ETDS" runat="server">
                                 <option selected value="CCP_DD_ETDS"><-Select-></option>
-                                <option>TDS</option>
+                                
                               </select>
                             </div>
                           </div>
@@ -1555,6 +1553,42 @@ function displayError(field, message) {
     error.textContent = message;
     field.parentElement.appendChild(error);
 }
+</script>
+
+<script>
+     fetch('/company/getAulRev')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('CCP_DD_AMO');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+     fetch('/company/getEtax')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('CCP_DD_ETAX');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+     fetch('/company/getEtds')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('CCP_DD_ETDS');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
 </script>
   </body>
 </html>

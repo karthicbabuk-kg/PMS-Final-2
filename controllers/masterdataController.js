@@ -30,7 +30,7 @@ exports.createMasterData = async (req, res) => {
             );
 
             console.log("Insert Result: ", JSON.stringify(result));
-            res.redirect('../ADMIN/MasterData.html');
+            res.redirect('../ADMIN/home.html');
         }
     } catch (error) {
         console.error('Database insert error:', error);

@@ -138,6 +138,7 @@ router.put('/putEdit/:customerId', async (req, res) => {
     try {
         const result = await db.query(updateQuery, values);
         console.log('Query result:', result); // Debugging: Log the result of the query
+        res.redirect('/ADMIN/customers.html');
         res.status(200).send('Customer details updated successfully');
     } catch (error) {
         console.error('Error updating customer details:', error);

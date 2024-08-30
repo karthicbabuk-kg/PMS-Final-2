@@ -93,6 +93,7 @@ router.put('/putEdit/:companyId', async (req, res) => {
 
     try {
         const result = await db.query(updateQuery, values);
+        res.redirect('/ADMIN/company.html');
         console.log('Query result:', result); // Debugging: Log the result of the query
         res.status(200).send('Company details updated successfully');
     } catch (error) {

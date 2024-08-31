@@ -9,21 +9,23 @@ exports.addTask = async (req, res) => {
         CMP_ID,
         ATK_DD_CMP,
         DCT,
-        DOCN,
+        DCN, // Document Name
         TSN,
         TSD,
         REM,
-        ATK_DD_STA
+        ATK_DD_STA,
+        SERTY, // Service Type
+        ACOW,
+        DSNG 
     } = req.body;
 
-
-      // Ensure session data is available
-      if (!req.session || !req.session.user) {
+    // Ensure session data is available
+    if (!req.session || !req.session.user) {
         return res.status(401).send('Unauthorized: No session data found');
     }
 
     const sessionUser = req.session.user;
-    const Primary_Role = sessionUser.designation
+    const Primary_Role = sessionUser.designation;
     const Primary_Email = sessionUser.email; // Executive's Email
     const Primary_ID = sessionUser.code; // Executive's Employee_Code
     const Primary_Name = sessionUser.name; // Executive's Employee_Name
@@ -72,7 +74,7 @@ exports.addTask = async (req, res) => {
     const [financialYearResults] = await db.query(getFinancialYearQuery);
 
     if (!financialYearResults.length) {
-      return res.status(400).send('Financial Year not found');
+        return res.status(400).send('Financial Year not found');
     }
 
     const Financial_Year = financialYearResults[0].Financial_Year;
@@ -80,26 +82,26 @@ exports.addTask = async (req, res) => {
     try {
         const [result] = await db.query(
             `INSERT INTO assign_task (
-                Executive_Name, Company_Id, Company_Name, Document_Type, Document_Name, Doument_URL, Task_Name, Task_Details, 
+                Designation,Executive_Name, Company_Id,Account_Owner, Company_Name,Service_Type, Document_Type, Document_Name, Doument_URL, Task_Name, Task_Details, 
                 Remarks, Status, Ip_Mac, Financial_Year, Primary_Roles, Primary_Email, Primary_ID, Primary_Name, 
                 Secondary_Roles, Secondary_Email, Secondary_ID, Secondary_Name, Created_DT, Lastupdated_DT, Month_Year
             ) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`,
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)`,
             [
-                ATK_DD_EXE, CMP_ID, ATK_DD_CMP, DCT, DOCN, DURL, TSN, TSD, REM, ATK_DD_STA,
-                Ip_Mac, Financial_Year,Primary_Role, Primary_Email, Primary_ID, Primary_Name,
+                DSNG, ATK_DD_EXE, CMP_ID,ACOW, ATK_DD_CMP, DCT, DCN,SERTY, DURL, TSN, TSD, REM, ATK_DD_STA,
+                  // Added Service Type
+                Ip_Mac, Financial_Year, Primary_Role, Primary_Email, Primary_ID, Primary_Name,
                 secondaryRole, secondaryEmail, secondaryID, secondaryName, Created_DT, Lastupdated_DT, Month_Year
             ]
         );
 
         console.log("Insert Result: ", JSON.stringify(result));
-        res.redirect('../TL/addtask.html');
+        res.redirect('../TL/assigntask.html');
     } catch (error) {
         console.error('Database insert error:', error);
         res.status(500).send('Server error');
     }
 };
-
 
 // Get Tasks
 exports.getTasks = async (req, res) => {

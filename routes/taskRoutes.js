@@ -62,35 +62,6 @@ router.get('/get-executives', async (req, res) => {
     }
 });
 
-
-
-router.get('/get-companies', async (req, res) => {
-    try {
-        const [rows] = await db.query(`
-            SELECT DISTINCT Company_Id AS id, Company_Name AS name FROM customer_documents
-        `);
-
-        res.json(rows);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Server error');
-    }
-});
-
-router.get('/get-document-types', async (req, res) => {
-    try {
-        const [rows] = await db.query(`
-            SELECT DISTINCT Document_Type FROM customer_documents 
-        `);
-
-        res.json(rows);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Server error');
-    }
-});
-
-
 router.get('/edit/:id', async (req, res) => {
     const assignId = req.params.id;
     try {
@@ -138,4 +109,179 @@ router.put('/putEdit/:assignId', async (req, res) => {
     }
 });
 
+router.get('/designations', async (req, res) => {
+ 
+    try {
+        const [rows] = await db.query(`
+             SELECT DISTINCT Department_Desigination 
+            FROM employee 
+            WHERE Department_Desigination = 'Executive'
+        `);
+
+        res.json(rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server error');
+    }
+});
+
+router.get('/getAccountOwners', async (req, res) => {
+    try {
+        // Query to get distinct Account Owner values
+        const [accountOwners] = await db.query(
+            `SELECT DISTINCT Account_Owner FROM customer_documents`
+        );
+
+        if (accountOwners.length === 0) {
+            return res.status(404).send('No account owners found');
+        }
+
+        res.json(accountOwners);
+    } catch (error) {
+        console.error('Error fetching account owners:', error);
+        res.status(500).send('Server error');
+    }
+});
+router.get('/getCompanyNames', async (req, res) => {
+    const { accountOwner } = req.query; // Get the account owner from the query string
+
+    if (!accountOwner) {
+        return res.status(400).send('Account Owner is required');
+    }
+
+    try {
+        // Query to get Company Names based on the selected Account Owner
+        const [companyNames] = await db.query(
+            `SELECT DISTINCT Company_Name FROM customer_documents WHERE Account_Owner = ?`,
+            [accountOwner]
+        );
+
+        if (companyNames.length === 0) {
+            return res.status(404).send('No company names found for the selected account owner');
+        }
+
+        res.json(companyNames);
+    } catch (error) {
+        console.error('Error fetching company names:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+router.get('/getCompanyID', async (req, res) => {
+    const { companyName } = req.query; // Get the company name from the query string
+
+    if (!companyName) {
+        return res.status(400).send('Company Name is required');
+    }
+
+    try {
+        // Query to get Company ID based on the selected Company Name
+        const [companyInfo] = await db.query(
+            `SELECT DISTINCT Company_Id FROM customer_documents WHERE Company_Name = ?`,
+            [companyName]
+        );
+
+        if (companyInfo.length === 0) {
+            return res.status(404).send('No company ID found for the selected company name');
+        }
+
+        res.json(companyInfo[0]);
+    } catch (error) {
+        console.error('Error fetching company ID:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+router.get('/getServiceTypes', async (req, res) => {
+    const { companyName } = req.query;
+
+    if (!companyName) {
+        return res.status(400).send('Company Name is required');
+    }
+
+    try {
+        const [serviceTypes] = await db.query(
+            `SELECT DISTINCT Service_Type FROM customer_documents WHERE Company_Name = ?`,
+            [companyName]
+        );
+
+        if (serviceTypes.length === 0) {
+            return res.status(404).send('No service types found for the selected company name');
+        }
+
+        // Return service types as an array
+        res.json(serviceTypes);
+    } catch (error) {
+        console.error('Error fetching service types:', error);
+        res.status(500).send('Server error');
+    }
+});
+router.get('/getDocumentTypes', async (req, res) => {
+    const { companyName } = req.query;
+
+    if (!companyName) {
+        return res.status(400).send('Company Name is required');
+    }
+
+    try {
+        const [documentTypes] = await db.query(
+            `SELECT DISTINCT Document_Type FROM customer_documents WHERE Company_Name = ?`,
+            [companyName]
+        );
+
+        if (documentTypes.length === 0) {
+            return res.status(404).send('No document types found for the selected company name');
+        }
+
+        // Return document types as an array
+        res.json(documentTypes);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+router.get('/getDocumentNames', async (req, res) => {
+    const { companyName } = req.query;
+
+    if (!companyName) {
+        return res.status(400).send('Company Name is required');
+    }
+
+    try {
+        const [documentNames] = await db.query(
+            `SELECT DISTINCT Document_Name FROM customer_documents WHERE Company_Name = ?`,
+            [companyName]
+        );
+
+        if (documentNames.length === 0) {
+            return res.status(404).send('No document names found for the selected company name');
+        }
+
+        // Return document names as an array
+        res.json(documentNames);
+    } catch (error) {
+        console.error('Error fetching document names:', error);
+        res.status(500).send('Server error');
+    }
+});
+router.get('/getDocumentUrl', async (req, res) => {
+    const { documentName } = req.query;
+
+    try {
+        const [results] = await db.query(
+            'SELECT Document_URL FROM customer_documents WHERE Document_Name = ?',
+            [documentName]
+        );
+
+        if (results.length > 0) {
+            res.json({ Document_URL: results[0].Document_URL });
+        } else {
+            res.status(404).json({ Document_URL: null });
+        }
+    } catch (error) {
+        console.error('Error fetching document URL:', error);
+        res.status(500).send('Server error');
+    }
+});
 module.exports = router;

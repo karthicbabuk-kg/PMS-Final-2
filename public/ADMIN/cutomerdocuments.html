@@ -312,21 +312,32 @@
                                       <!-- Options populated by JavaScript -->
                                   </select>
                               </div>
+                              <div class="col-md-6">
+                                  <label class="form-label">Company ID</label>
+                                  <select class="form-select" name="CMID" id="CMID" required>
+                                      <option selected value=""><-Select-></option>
+                                      <!-- Options populated by JavaScript -->
+                                  </select>
+                              </div>
                           </div>
                       
                           <!-- Company ID and Company Name -->
                           <div class="row" style="margin-top: 10px;">
                               <div class="col-md-6">
-                                  <label class="form-label">Company ID</label>
-                                  <select class="form-select" name="CMID" id="companyIdSelect" required>
+                                  <label class="form-label">Company Name</label>
+                                  <select class="form-select" name="CMN" id="CMN" required>
                                       <option selected value=""><-Select-></option>
                                       <!-- Options populated by JavaScript -->
                                   </select>
                               </div>
                               <div class="col-md-6">
-                                  <label class="form-label">Company Name</label>
-                                  <input type="text" class="form-control" name="CMN" id="companyNameInput" readonly>
+                                  <label class="form-label">Service type</label>
+                                  <select class="form-select" name="SCT" id="SCT" required>
+                                      <option selected value=""><-Select-></option>
+                                      <!-- Options populated by JavaScript -->
+                                  </select>
                               </div>
+                              
                           </div>
                       
                           <!-- Document Type and Document Name -->
@@ -361,6 +372,25 @@
               </div>
               <!-- end card-->
             </div>
+            <div class="table-responsive">
+              <table class="table table-centered table-nowrap mb-0">
+                  <thead class="table-light">
+                      <tr>
+                          <th>ID</th>
+                          <th>Account Owner</th>
+                          <th>Company Name</th>
+                          <th>Service Type</th>
+                          <th>Document Type</th>
+                          <th>Document Name</th>
+                          <th>File Name</th>
+                          <th style="width: 125px;">Action</th>
+                      </tr>
+                  </thead>
+                  <tbody id="customerTableBody">
+                      <!-- Data will be inserted here dynamically -->
+                  </tbody>
+              </table>
+          </div>
 
             <!-- end row -->
           </div>
@@ -1107,42 +1137,83 @@
 
 <script>
   // Fetch Account Owners from the customer table
-  fetch('/customer/getAccountOwners')
-      .then(response => response.json())
-      .then(data => {
-          const accountOwnerSelect = document.getElementById('accountOwnerSelect');
-          data.forEach(owner => {
-              const option = document.createElement('option');
-              option.value = owner.Employee_Name;
-              option.textContent = owner.Employee_Name;
-              accountOwnerSelect.appendChild(option);
-          });
-      });
+  function populateAccountOwners() {
+    fetch('/customer/getAccountOwners')
+        .then(response => response.json())
+        .then(data => {
+            const accountOwnerSelect = document.getElementById('accountOwnerSelect');
+            accountOwnerSelect.innerHTML = '<option selected value=""><-Select-></option>'; // Reset options
+            data.forEach(owner => {
+                const option = document.createElement('option');
+                option.value = owner.Account_Owner;
+                option.textContent = owner.Account_Owner;
+                accountOwnerSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching account owners:', error));
+}
 
-  // Fetch Company IDs and populate the dropdown
+function populateCompanyIds(accountOwner) {
+    fetch(`/customer/getCompanyIdsByOwner?accountOwner=${encodeURIComponent(accountOwner)}`)
+        .then(response => response.json())
+        .then(data => {
+            const companyIdSelect = document.getElementById('CMID');
+            companyIdSelect.innerHTML = '<option selected value=""><-Select-></option>'; // Reset options
+
+            data.forEach(row => {
+                const option = document.createElement('option');
+                option.value = row.Company_Id;
+                option.textContent = row.Company_Id;
+                companyIdSelect.appendChild(option);
+            });
+
+            // Clear the Company Name dropdown
+            const companyNameSelect = document.getElementById('CMN');
+            companyNameSelect.innerHTML = '<option selected value=""><-Select-></option>';
+        })
+        .catch(error => console.error('Error fetching company IDs:', error));
+}
+
+function populateCompanyName(companyId) {
+    fetch(`/customer/getCompanyNameById?companyId=${encodeURIComponent(companyId)}`)
+        .then(response => response.json())
+        .then(data => {
+            const companyNameSelect = document.getElementById('CMN');
+            companyNameSelect.innerHTML = '<option selected value=""><-Select-></option>'; // Reset options
+
+            if (data) {
+                const option = document.createElement('option');
+                option.value = data.Company_Name;
+                option.textContent = data.Company_Name;
+                companyNameSelect.appendChild(option);
+            }
+        })
+        .catch(error => console.error('Error fetching company name:', error));
+}
+
+document.getElementById('accountOwnerSelect').addEventListener('change', (event) => {
+    const selectedAccountOwner = event.target.value;
+    if (selectedAccountOwner) {
+        populateCompanyIds(selectedAccountOwner);
+    } else {
+        // If no account owner is selected, clear the Company_ID and Company_Name dropdowns
+        document.getElementById('CMID').innerHTML = '<option selected value=""><-Select-></option>';
+        document.getElementById('CMN').innerHTML = '<option selected value=""><-Select-></option>';
+    }
+});
+
+document.getElementById('CMID').addEventListener('change', (event) => {
+    const selectedCompanyId = event.target.value;
+    if (selectedCompanyId) {
+        populateCompanyName(selectedCompanyId);
+    } else {
+        // If no company ID is selected, clear the Company_Name dropdown
+        document.getElementById('CMN').innerHTML = '<option selected value=""><-Select-></option>';
+    }
+});
+
+document.addEventListener('DOMContentLoaded', populateAccountOwners);
   
-  fetch(`/customer/getCompanyIds`)
-      .then(response => response.json())
-      .then(data => {
-          const companyIdSelect = document.getElementById('companyIdSelect');
-          data.forEach(company => {
-              const option = document.createElement('option');
-              option.value = company.Company_Id;
-              option.textContent = company.Company_Id;
-              companyIdSelect.appendChild(option);
-          });
-      });
-
-  // Fetch Company Name based on the selected Company ID
-  document.getElementById('companyIdSelect').addEventListener('change', function () {
-      const companyId = this.value;
-      fetch(`/customer/getCompanyName/${companyId}`)
-          .then(response => response.json())
-          .then(data => {
-              document.getElementById('companyNameInput').value = data.Company_Name || '';
-          });
-  });
-
   // Fetch Document Types from the final_module table
   fetch('/customer/getDocumentTypes')
       .then(response => response.json())
@@ -1155,6 +1226,88 @@
               documentTypeSelect.appendChild(option);
           });
       });
+  fetch('/customer/getServiceType')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('SCT');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    fetch('/customer/documents')
+        .then(response => response.json())
+        .then(data => {
+            const customerTableBody = document.getElementById('customerTableBody');
+            customerTableBody.innerHTML = ''; // Clear the table body
+          console.log(data);
+          
+            data.forEach((doc,i) => {
+                const row = document.createElement('tr');
+              row.dataset.doc_ID = doc.CD_ID;
+
+
+                row.innerHTML = `
+                    <td>${i+=i+1}</td>
+                    <td>${doc.Account_Owner}</td>
+                    <td>${doc.Company_Id}</td>
+                    <td>${doc.Service_Type}</td>
+                    <td>${doc.Document_Type}</td>
+                    <td>${doc.Document_Name}</td>
+                    <td>${doc.Document_URL}</td>
+                       <td>
+                     
+                      <a href="javascript:void(0);" class="action-icon delete-icon">
+                          <i class="mdi mdi-delete"></i>
+                      </a>
+                  </td>
+                `;
+
+                customerTableBody.appendChild(row);
+            });
+            document.querySelectorAll('.delete-icon').forEach(icon => {
+              icon.addEventListener('click', async (event) => {
+                  const row = event.target.closest('tr');
+                  const docID = row.dataset.doc_ID;
+  
+                  // Confirmation alert before deletion
+                  const isConfirmed = confirm("Are you sure you want to delete this customer?");
+                  if (!isConfirmed) {
+                      return; // If user cancels, stop the deletion process
+                  }
+  
+                  try {
+                      console.log(`Attempting to delete customer with ID: ${docID}`); // Debug log
+  
+                      const response = await fetch(`/customer/delete/${docID}`, {
+                          method: 'DELETE',
+                      });
+  
+                      if (response.ok) {
+                          console.log(`Customer with ID ${docID} deleted successfully.`); // Debug log
+                          row.remove(); // Remove the row from the table
+                      } else {
+                          console.error('Failed to delete document');
+                          alert('Failed to delete customer.');
+                      }
+                  } catch (error) {
+                      console.error('Error:', error);
+                      
+                  }
+              });
+          });
+     
+        })
+        .catch(error => console.error('Error fetching customer documents:', error));
+});
+
+
 </script>
   </body>
 </html>

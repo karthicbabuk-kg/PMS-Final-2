@@ -323,34 +323,66 @@
                             </div>
                         
                             <p style="font-weight: bold;">Task Information</p>
-                        
-                            <!-- Dropdowns for Executive and Company -->
-                            <div class="row" style="margin-top: 10px;">
-                                <div class="col-md-6">
-                                    <label class="form-label">Executive Name</label>
-                                    <select class="form-select" name="ATK_DD_EXE" id="ATK_DD_EXE" required>
-                                        <option selected>-Select-</option>
-                                        <!-- Options will be populated dynamically -->
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Company ID</label>
-                                    <select class="form-select" name="CMP_ID" id="CMP_ID" required>
-                                        <option selected>-Select-</option>
-                                        <!-- Options will be populated dynamically -->
-                                    </select>
-                                </div>
-                            </div>
-                        
-                            <!-- Task Name and File -->
                             <div class="row" style="margin-top: 10px;">
                               <div class="col-md-6">
-                                <label class="form-label">Company Name</label>
-                                <select class="form-select" name="ATK_DD_CMP" id="ATK_DD_CMP" required>
-                                    <option selected>-Select-</option>
+                                  <label class="form-label">Designation</label>
+                                  <select class="form-select" name="DSNG" id="DSNG" required>
+                                      <option selected><-Select-></option>
+                                      <!-- Options will be populated dynamically -->
+                                  </select>
+                              </div>
+                              <div class="col-md-6">
+                                <label class="form-label">Executive Name</label>
+                                <select class="form-select" name="ATK_DD_EXE" id="ATK_DD_EXE" required>
+                                    <option selected><-Select-></option>
                                     <!-- Options will be populated dynamically -->
                                 </select>
                             </div>
+                              
+                          </div>
+                        
+                            <!-- Dropdowns for Executive and Company -->
+                            <div class="row" style="margin-top: 10px;">
+                               
+                                <div class="col-md-6">
+                                  <label class="form-label">Account Owner</label>
+                                  <select class="form-select" name="ACOW" id="ACOW" required>
+                                      <option selected><-Select-></option>
+                                      <!-- Options will be populated dynamically -->
+                                  </select>
+                              </div>
+                              <div class="col-md-6">
+                                <label class="form-label">Company Name</label>
+                                <select class="form-select" name="ATK_DD_CMP" id="ATK_DD_CMP" required>
+                                    <option selected><-Select-></option>
+                                    <!-- Options will be populated dynamically -->
+                                </select>
+                            </div>
+                             
+                                
+                            </div>
+                           
+                        
+                            <!-- Task Name and File -->
+                            <div class="row" style="margin-top: 10px;">
+
+                              <div class="col-md-6">
+                                <label class="form-label">Company ID</label>
+                                <select class="form-select" name="CMP_ID" id="CMP_ID" required>
+                                    <option selected><-Select-></option>
+                                    <!-- Options will be populated dynamically -->
+                                </select>
+                            </div>
+                              <div class="col-md-6">
+                                <label class="form-label">Service Type</label>
+                                <select class="form-select" name="SERTY" id="SERTY" required>
+                                    <option selected><-Select-></option>
+                                    <!-- Options will be populated dynamically -->
+                                </select>
+                            </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px;">
+                              
                             <div class="col-md-6">
                               <label class="form-label">Document Type</label>
                               <select class="form-select" name="DCT" id="DCT" required>
@@ -358,48 +390,60 @@
                                   <!-- Options populated by JavaScript -->
                               </select>
                           </div>
+                           
+                          <div class="col-md-6">
+                            <label class="form-label">Document Name</label>
+                            <select class="form-select" name="DCN" id="DCN" required>
+                                <option selected><-Select-></option>
+                                <!-- Options populated by JavaScript -->
+                            </select>
+                        </div>
                             </div>
-                        
-                            <!-- Remarks and Status -->
                             <div class="row" style="margin-top: 10px;">
                               <div class="col-md-6">
-                                <label class="form-label">Document Name</label>
-                                <input type="text" class="form-control" placeholder="Document Name" name="DOCN" required>
+                                <label class="form-label">Document URL</label>
+                                <input type="text" class="form-control" name="DURL" id="DURL" required>
                             </div>
-                                
-                                <div class="col-md-6">
-                                  <label class="form-label">Document URL</label>
-                                  <input type="file" class="form-control" name="DURL" accept=".pdf,.jpg,.jpeg,.png" required>
-                              </div>
+                          <div class="col-md-6">
+                            <label class="form-label">Task Name</label>
+                            <input type="text" class="form-control" placeholder="Task Name" name="TSN" required>
+                        </div>
+
+                            </div>
+                            
+                        
+                            <!-- Remarks and Status -->
+                           
+                            </div>
+                               
                             </div>
 
                             <div class="row" style="margin-top: 10px;">
-                              <div class="col-md-6">
-                                <label class="form-label">Task Name</label>
-                                <input type="text" class="form-control" placeholder="Task Name" name="TSN" required>
-                            </div>
+                              
                                 
                                 <div class="col-md-6">
                                   <label class="form-label">Task Details</label>
                                   <input type="text" class="form-control" placeholder="Task Details" name="TSD" required>
                               </div>
+                              <div class="col-md-6">
+                                <label class="form-label">Remarks</label>
+                                <input type="text" class="form-control" placeholder="Remarks" name="REM"  required>
+                            </div>
                             </div>
                         
                             <!-- Document Upload -->
                             <div class="row" style="margin-top: 10px;">
-                              <div class="col-md-6">
-                                <label class="form-label">Status</label>
-                                <select class="form-select" name="ATK_DD_STA" required>
-                                    <option selected>-Select-</option>
-                                    <option value="Open">Open</option>
-                                    <option value="Closed">Closed</option>
-                                </select>
-                            </div>
+                           
 
-                            <div class="col-md-6">
-                              <label class="form-label">Remarks</label>
-                              <input type="text" class="form-control" placeholder="Remarks" name="REM"  required>
-                          </div>
+                            
+                          <div class="col-md-6">
+                            <label class="form-label">Status</label>
+                            <select class="form-select" name="ATK_DD_STA" required>
+                                <option selected>-Select-</option>
+                                <option value="Open">Open</option>
+                                <option value="Closed">Closed</option>
+                            </select>
+                        </div>
                                
                             </div>
                         
@@ -1220,49 +1264,27 @@
         .catch(error => console.error('Error fetching executives:', error));
     
     // Populate Company Dropdown
-    fetch('/addTask/get-companies')
+  // Fetch Account Owners from the customer_documents table
+  function populateAccountOwners() {
+    fetch('/addTask/getAccountOwners')
         .then(response => response.json())
         .then(data => {
-            const companySelect = document.getElementById('CMP_ID');
-            companySelect.innerHTML = '<option selected>-Select-</option>'; // Reset options
-            data.forEach(company => {
+            const accountOwnerSelect = document.getElementById('ACOW');
+            accountOwnerSelect.innerHTML = '<option selected value=""><-Select-></option>'; // Reset options
+            data.forEach(owner => {
                 const option = document.createElement('option');
-                option.value = company.id;
-                option.textContent = company.id;
-                companySelect.appendChild(option);
+                option.value = owner.Account_Owner;
+                option.textContent = owner.Account_Owner;
+                accountOwnerSelect.appendChild(option);
             });
         })
-        .catch(error => console.error('Error fetching companies:', error));
+        .catch(error => console.error('Error fetching account owners:', error));
+  }
     
-    // Populate Company Name Dropdown
-    fetch('/addTask/get-companies') // Assuming it is the same list
-        .then(response => response.json())
-        .then(data => {
-            const companyNameSelect = document.getElementById('ATK_DD_CMP');
-            companyNameSelect.innerHTML = '<option selected>-Select-</option>'; // Reset options
-            data.forEach(company => {
-                const option = document.createElement('option');
-                option.value = company.name;
-                option.textContent = company.name;
-                companyNameSelect.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error fetching companies for Company Name:', error));
+
     
 // Populate Document Type Dropdown
-fetch('/addTask/get-document-types')
-    .then(response => response.json())
-    .then(data => {
-        const documentTypeSelect = document.getElementById('DCT');
-        documentTypeSelect.innerHTML = '<option selected><-Select-></option>'; // Reset options
-        data.forEach(type => {
-            const option = document.createElement('option');
-            option.value = type.Document_Type; // Use the actual Document_Type value
-            option.textContent = type.Document_Type; // Set the visible text
-            documentTypeSelect.appendChild(option);
-        });
-    })
-    .catch(error => console.error('Error fetching document types:', error));
+
   });
 
 </script>
@@ -1315,6 +1337,314 @@ fetch('/addTask/get-document-types')
       error.textContent = message;
       field.parentElement.appendChild(error);
   }
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // Fetch the designations where Department_Designation is "Executive"
+    fetch('/addTask/designations')
+        .then(response => response.json())
+        .then(data => {
+            const designationSelect = document.getElementById('DSNG');
+
+            // Clear any existing options except for the default "-Select-"
+            designationSelect.innerHTML = '<option selected>-Select-</option>';
+
+            // Populate the dropdown with the fetched designations
+            data.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.Department_Desigination;
+                option.textContent = item.Department_Desigination;
+                designationSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching designations:', error));
+});
+
+  </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      const accountOwnerSelect = document.getElementById('ACOW');
+  
+      // Function to fetch and populate Account Owners
+      const populateAccountOwners = async () => {
+          try {
+              const response = await fetch('/addTask/getAccountOwners');
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              const accountOwners = await response.json();
+  
+              // Populate dropdown with Account Owners
+              accountOwnerSelect.innerHTML = '<option selected>-Select-</option>'; // Reset options
+              accountOwners.forEach(owner => {
+                  const option = document.createElement('option');
+                  option.value = owner.Account_Owner;
+                  option.textContent = owner.Account_Owner;
+                  accountOwnerSelect.appendChild(option);
+              });
+          } catch (error) {
+              console.error('Error fetching account owners:', error);
+              alert('Error fetching account owners');
+          }
+      };
+  
+      // Populate Account Owners on page load
+      populateAccountOwners();
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+    const accountOwnerSelect = document.getElementById('ACOW');
+    const companyNameSelect = document.getElementById('ATK_DD_CMP');
+
+    // Function to fetch and populate Company Names based on selected Account Owner
+    const populateCompanyNames = async (accountOwner) => {
+        try {
+            const response = await fetch(`/addTask/getCompanyNames?accountOwner=${encodeURIComponent(accountOwner)}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const companyNames = await response.json();
+
+            // Populate dropdown with Company Names
+            companyNameSelect.innerHTML = '<option selected>-Select-</option>'; // Reset options
+            companyNames.forEach(company => {
+                const option = document.createElement('option');
+                option.value = company.Company_Name;
+                option.textContent = company.Company_Name;
+                companyNameSelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Error fetching company names:', error);
+            alert('Error fetching company names');
+        }
+    };
+
+    // Add event listener to update Company Names when Account Owner changes
+    accountOwnerSelect.addEventListener('change', () => {
+        const selectedAccountOwner = accountOwnerSelect.value;
+        if (selectedAccountOwner) {
+            populateCompanyNames(selectedAccountOwner);
+        } else {
+            companyNameSelect.innerHTML = '<option selected>-Select-</option>'; // Reset options if no selection
+        }
+    });
+
+    // Initial population of Account Owners on page load
+    populateAccountOwners();
+});
+
+
+  </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      const companyNameSelect = document.getElementById('ATK_DD_CMP');
+      const companyIDDropdown = document.getElementById('CMP_ID');
+  
+      // Function to fetch and populate Company ID based on selected Company Name
+      const populateCompanyID = async (companyName) => {
+          try {
+              const response = await fetch(`/addTask/getCompanyID?companyName=${encodeURIComponent(companyName)}`);
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              const companyInfo = await response.json();
+  
+              // Clear existing options
+              companyIDDropdown.innerHTML = '<option selected>-Select-</option>';
+  
+              if (companyInfo.Company_Id) { // Ensure key matches your backend response
+                  // Create a new option element for the Company ID
+                  const option = document.createElement('option');
+                  option.value = companyInfo.Company_Id; // Ensure this key matches your backend response
+                  option.textContent = companyInfo.Company_Id;
+  
+                  // Add the new option to the dropdown
+                  companyIDDropdown.appendChild(option);
+              }
+          } catch (error) {
+              console.error('Error fetching company ID:', error);
+              alert('Error fetching company ID');
+          }
+      };
+  
+      // Add event listener to update Company ID when Company Name changes
+      companyNameSelect.addEventListener('change', () => {
+          const selectedCompanyName = companyNameSelect.value;
+          if (selectedCompanyName) {
+              populateCompanyID(selectedCompanyName);
+          } else {
+              // Clear the Company ID dropdown if no company is selected
+              companyIDDropdown.innerHTML = '<option selected>-Select-</option>';
+          }
+      });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const companyNameSelect = document.getElementById('ATK_DD_CMP');
+    const serviceTypeDropdown = document.getElementById('SERTY');
+
+    // Function to fetch and populate Service Types based on selected Company Name
+    const populateServiceTypes = async (companyName) => {
+        try {
+            const response = await fetch(`/addTask/getServiceTypes?companyName=${encodeURIComponent(companyName)}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const serviceTypes = await response.json();
+
+            // Clear existing options
+            serviceTypeDropdown.innerHTML = '<option selected>-Select-</option>';
+
+            serviceTypes.forEach(serviceType => {
+                const option = document.createElement('option');
+                option.value = serviceType.Service_Type; // Ensure this key matches your backend response
+                option.textContent = serviceType.Service_Type;
+
+                // Add the new option to the dropdown
+                serviceTypeDropdown.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Error fetching service types:', error);
+            alert('Error fetching service types');
+        }
+    };
+
+    // Add event listener to update Service Type when Company Name changes
+    companyNameSelect.addEventListener('change', () => {
+        const selectedCompanyName = companyNameSelect.value;
+        if (selectedCompanyName) {
+            populateServiceTypes(selectedCompanyName);
+        } else {
+            // Clear the Service Type dropdown if no company is selected
+            serviceTypeDropdown.innerHTML = '<option selected>-Select-</option>';
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const companyNameSelect = document.getElementById('ATK_DD_CMP');
+    const documentTypeDropdown = document.getElementById('DCT');
+
+    // Function to fetch and populate Document Types based on selected Company Name
+    const populateDocumentTypes = async (companyName) => {
+        try {
+            const response = await fetch(`/addTask/getDocumentTypes?companyName=${encodeURIComponent(companyName)}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const documentTypes = await response.json();
+
+            // Clear existing options
+            documentTypeDropdown.innerHTML = '<option selected>-Select-</option>';
+
+            documentTypes.forEach(docType => {
+                const option = document.createElement('option');
+                option.value = docType.Document_Type; // Ensure this key matches your backend response
+                option.textContent = docType.Document_Type;
+
+                // Add the new option to the dropdown
+                documentTypeDropdown.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Error fetching document types:', error);
+            alert('Error fetching document types');
+        }
+    };
+
+    // Add event listener to update Document Type when Company Name changes
+    companyNameSelect.addEventListener('change', () => {
+        const selectedCompanyName = companyNameSelect.value;
+        if (selectedCompanyName) {
+            populateDocumentTypes(selectedCompanyName);
+        } else {
+            // Clear the Document Type dropdown if no company is selected
+            documentTypeDropdown.innerHTML = '<option selected>-Select-</option>';
+        }
+    });
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const companyNameSelect = document.getElementById('ATK_DD_CMP');
+    const documentNameDropdown = document.getElementById('DCN'); // Changed to the correct id
+
+    // Function to fetch and populate Document Names based on selected Company Name
+    const populateDocumentNames = async (companyName) => {
+        try {
+            const response = await fetch(`/addTask/getDocumentNames?companyName=${encodeURIComponent(companyName)}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const documentNames = await response.json();
+
+            // Clear existing options
+            documentNameDropdown.innerHTML = '<option selected>-Select-</option>';
+
+            documentNames.forEach(docName => {
+                const option = document.createElement('option');
+                option.value = docName.Document_Name; // Ensure this key matches your backend response
+                option.textContent = docName.Document_Name;
+
+                // Add the new option to the dropdown
+                documentNameDropdown.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Error fetching document names:', error);
+            alert('Error fetching document names');
+        }
+    };
+
+    // Add event listener to update Document Name when Company Name changes
+    companyNameSelect.addEventListener('change', () => {
+        const selectedCompanyName = companyNameSelect.value;
+        if (selectedCompanyName) {
+            populateDocumentNames(selectedCompanyName);
+        } else {
+            // Clear the Document Name dropdown if no company is selected
+            documentNameDropdown.innerHTML = '<option selected>-Select-</option>';
+        }
+    });
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const documentNameDropdown = document.getElementById('DCN');
+    const documentUrlField = document.getElementById('DURL');
+
+    if (!documentNameDropdown || !documentUrlField) {
+        console.error('Document Name dropdown or Document URL field not found');
+        return; // Exit if elements are not found
+    }
+
+    // Function to fetch and populate Document URL based on selected Document Name
+    const updateDocumentUrl = async (documentName) => {
+        try {
+            const response = await fetch(`/addTask/getDocumentUrl?documentName=${encodeURIComponent(documentName)}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const result = await response.json();
+
+            if (result && result.Document_URL) {
+                documentUrlField.value = result.Document_URL;
+            } else {
+                documentUrlField.value = ''; // Clear the field if no URL found
+            }
+        } catch (error) {
+            console.error('Error fetching document URL:', error);
+            alert('Error fetching document URL');
+        }
+    };
+
+    // Add event listener to update Document URL when Document Name changes
+    documentNameDropdown.addEventListener('change', () => {
+        const selectedDocumentName = documentNameDropdown.value;
+        if (selectedDocumentName) {
+            updateDocumentUrl(selectedDocumentName);
+        } else {
+            // Clear the Document URL field if no document is selected
+            documentUrlField.value = '';
+        }
+    });
+});
   </script>
   </body>
 </html>

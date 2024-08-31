@@ -1205,18 +1205,17 @@
         })
         .catch(error => console.error('Error fetching column descriptions:', error));
   });
+
 </script>
 
 
-  // Function to fetch and display data in the table based on selected filters
   <script>
-        async function loadTableData(module = '', subModule = '', columnName = '', columnDescription = '') {
+        async function loadTableData(module = '', subModule = '', columnName = '') {
             try {
                 const query = new URLSearchParams();
                 if (module) query.append('module', module);
                 if (subModule) query.append('subModule', subModule);
                 if (columnName) query.append('columnName', columnName);
-                if (columnDescription) query.append('columnDescription', columnDescription);
 
                 const response = await fetch(`/master/get-masterdata?${query.toString()}`);
                 const data = await response.json();

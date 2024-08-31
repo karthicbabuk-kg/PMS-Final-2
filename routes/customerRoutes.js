@@ -146,6 +146,15 @@ router.put('/putEdit/:customerId', async (req, res) => {
     }
 });
 
+router.get('/getAccOwner', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT DISTINCT Employee_Name FROM employee WHERE Department_Desigination='Team Lead'");
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching document types:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
 router.get('/getRating', async (req, res) => {
     try {
         const [rows] = await db.query("SELECT DISTINCT Column_Description FROM final_module WHERE Module='Process Management' AND Sub_Modue='Customer' AND Column_Name = 'Ratings'");

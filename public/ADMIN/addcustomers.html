@@ -328,9 +328,8 @@
                               <div class="col-md-6">
                                 <label class="form-label">Account Owner</label>
                                
-                                <select class="form-select" name="CAT_DD_AO" runat="server" required>
+                                <select class="form-select" name="CAT_DD_AO" id="CAT_DD_AO" runat="server" required>
                                   <option selected value="ATO"><-Select-></option>
-                                  <option>Jerry Geiger</option>
                                 </select>
                                 
                                 <div class="invalid-feedback">Please select account owner.</div>
@@ -1914,6 +1913,17 @@
       </script>
 
       <script>
+         fetch('/customers/getAccOwner')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('CAT_DD_AO');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Employee_Name;
+              option.textContent = type.Employee_Name;
+              documentTypeSelect.appendChild(option);
+          });
+      });
          fetch('/customers/getRating')
       .then(response => response.json())
       .then(data => {

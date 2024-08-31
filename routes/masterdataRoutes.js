@@ -20,21 +20,6 @@ router.delete('/delete/:id',async (req, res) => {
     }
 });
 
-router.delete('/delete/:id', async(req, res) => {
-    const customerId = req.params.id;
-
-    // SQL query to delete the customer
-    try {
-        const result = await db.query('DELETE FROM customer WHERE CUS_ID = ?', [customerId]);
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'customer not found' });
-        }
-        res.json({ message: 'customer deleted successfully' });
-    } catch (error) {
-        console.error('Database delete error:', error);
-        res.status(500).send('Server error');   
-    }
-});
 
 
 router.get('/get-modules', async (req, res) => {
@@ -99,11 +84,7 @@ router.get('/get-masterdata', async (req, res) => {
         query += ' AND Column_Name = ?';
         params.push(columnName);
     }
-    if (columnDescription) {
-        query += ' AND Column_Description = ?';
-        params.push(columnDescription);
-    }
-
+  
     try {
         const [rows] = await db.query(query, params);
         res.json(rows);

@@ -30,7 +30,33 @@ exports.createMasterData = async (req, res) => {
             );
 
             console.log("Insert Result: ", JSON.stringify(result));
-            res.redirect('../ADMIN/home.html');
+
+            // Redirect based on the subModule value
+            let redirectTo = '../ADMIN/MasterData.html'; // Default redirection
+            switch (subModule) {
+                case 'Customer':
+                    redirectTo = '../ADMIN/customer.html';
+                    break;
+                case 'Company':
+                    redirectTo = '../ADMIN/company.html';
+                    break;
+                case 'Employee':
+                    redirectTo = '../ADMIN/employees.html';
+                    break;
+                case 'Groups':
+                    redirectTo = '../ADMIN/groups.html';
+                    break;
+                case 'Customer Document':
+                    redirectTo = '../ADMIN/cutomerdocuments.html';
+                    break;
+                // Add more cases if needed
+                default:
+                    // Optionally handle other cases or set a default page
+                    redirectTo = '../ADMIN/MasterData.html';
+                    break;
+            }
+
+            res.redirect(redirectTo);
         }
     } catch (error) {
         console.error('Database insert error:', error);

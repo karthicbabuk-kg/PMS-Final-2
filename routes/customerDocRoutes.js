@@ -169,8 +169,8 @@ router.post('/upload', upload.single('DURL'), async (req, res) => {
     try {
         // Insert document data into the database
         const query = `
-            INSERT INTO customer_documents (Account_Owner, Company_ID, Company_Name,Service_Type Document_Type, Document_Name, Document_URL) 
-            VALUES (?, ?, ?, ?, ?, ?)`;
+            INSERT INTO customer_documents (Account_Owner, Company_ID, Company_Name,Document_Type,Service_Type, Document_Name, Document_URL) 
+            VALUES (?, ?, ?, ?, ?, ?,?)`;
         const values = [ANTO, CMID, CMN, DCT,SCT, DOCN, documentUrl];
         const [result] = await db.query(query, values);
 

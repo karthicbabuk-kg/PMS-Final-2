@@ -67,7 +67,7 @@ router.get('/get-executives', async (req, res) => {
 router.get('/get-companies', async (req, res) => {
     try {
         const [rows] = await db.query(`
-            SELECT Company_Accid AS id, Company_Name AS name FROM company
+            SELECT DISTINCT Company_Id AS id, Company_Name AS name FROM customer_documents
         `);
 
         res.json(rows);
@@ -80,8 +80,7 @@ router.get('/get-companies', async (req, res) => {
 router.get('/get-document-types', async (req, res) => {
     try {
         const [rows] = await db.query(`
-            SELECT Column_Description AS name FROM final_module 
-            WHERE Column_Name = 'Document Type'
+            SELECT DISTINCT Document_Type FROM customer_documents 
         `);
 
         res.json(rows);

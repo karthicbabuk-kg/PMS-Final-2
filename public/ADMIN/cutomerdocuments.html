@@ -1113,8 +1113,8 @@
           const accountOwnerSelect = document.getElementById('accountOwnerSelect');
           data.forEach(owner => {
               const option = document.createElement('option');
-              option.value = owner.Account_Owner;
-              option.textContent = owner.Account_Owner;
+              option.value = owner.Employee_Name;
+              option.textContent = owner.Employee_Name;
               accountOwnerSelect.appendChild(option);
           });
       });

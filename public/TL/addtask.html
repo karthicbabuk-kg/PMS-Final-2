@@ -353,8 +353,8 @@
                             </div>
                             <div class="col-md-6">
                               <label class="form-label">Document Type</label>
-                              <select class="form-select" name="DCT" id="documentTypeSelect" required>
-                                  <option selected value=""><-Select-></option>
+                              <select class="form-select" name="DCT" id="DCT" required>
+                                  <option selected><-Select-></option>
                                   <!-- Options populated by JavaScript -->
                               </select>
                           </div>
@@ -1249,21 +1249,21 @@
         })
         .catch(error => console.error('Error fetching companies for Company Name:', error));
     
-    // Populate Document Type Dropdown
-    fetch('/addTask/get-document-types')
-        .then(response => response.json())
-        .then(data => {
-            const documentTypeSelect = document.getElementById('documentTypeSelect');
-            documentTypeSelect.innerHTML = '<option selected value=""><-Select-></option>'; // Reset options
-            data.forEach(type => {
-                const option = document.createElement('option');
-                option.value = type.name;
-                option.textContent = type.name;
-                documentTypeSelect.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error fetching document types:', error));
-});
+// Populate Document Type Dropdown
+fetch('/addTask/get-document-types')
+    .then(response => response.json())
+    .then(data => {
+        const documentTypeSelect = document.getElementById('DCT');
+        documentTypeSelect.innerHTML = '<option selected><-Select-></option>'; // Reset options
+        data.forEach(type => {
+            const option = document.createElement('option');
+            option.value = type.Document_Type; // Use the actual Document_Type value
+            option.textContent = type.Document_Type; // Set the visible text
+            documentTypeSelect.appendChild(option);
+        });
+    })
+    .catch(error => console.error('Error fetching document types:', error));
+  });
 
 </script>
 

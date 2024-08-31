@@ -17,7 +17,7 @@ const upload = multer({ storage: storage });
 // Fetch distinct account owners from the customer table
 router.get('/getAccountOwners', async (req, res) => {
     try {
-        const [rows] = await db.query('SELECT DISTINCT Account_Owner FROM customer');
+        const [rows] = await db.query(`SELECT DISTINCT Employee_Name FROM employee WHERE Department_Desigination = 'Team Lead'`);
         res.json(rows);
     } catch (error) {
         console.error('Error fetching account owners:', error);

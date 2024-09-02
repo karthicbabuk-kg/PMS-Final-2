@@ -222,7 +222,7 @@ const query = (sql, values) => {
   
     try {
       const result = await query(sql, values);
-      res.redirect('/ADMIN/employees.html');
+      res.redirect('/public/ADMIN/employees.html');
       res.json({ message: 'Employee updated successfully!' });
     } catch (error) {
       console.error('Error updating employee:', error);

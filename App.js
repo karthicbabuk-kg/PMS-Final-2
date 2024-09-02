@@ -13,6 +13,7 @@ const masterdataRoutes = require('./routes/masterdataRoutes');
 const executiveRoute = require('./routes/executiveRoutes');
 const addTaskRoute = require('./routes/taskRoutes');
 const taskRoutes = require('./routes/extaskRoutes');
+const productRoutes = require('./routes/products');
 const db = require('./models/db')
 
 
@@ -34,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Set up session store
-const sessionStore = new MySQLStore({}, db); // Assuming you have pool configured
+const sessionStore = new MySQLStore({}, db.pool); // Assuming you have pool configured
 
 // Session middleware
 app.use(session({
@@ -50,6 +51,7 @@ app.use(session({
 }));
 
 // Routes
+app.use('/products', productRoutes);
 app.use('/tasks', taskRoutes);
 app.use('/addTask', addTaskRoute);
 app.use('/executive', executiveRoute);
@@ -63,7 +65,7 @@ app.use('/', authRoutes);
 
 // Serve the index page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 app.get('/dashboard-counts', async (req, res) => {
     try {
@@ -85,6 +87,7 @@ app.get('/dashboard-counts', async (req, res) => {
       res.status(500).send('Server Error');
     }
   });
+
 
 // Start server
 app.listen(PORT, () => {

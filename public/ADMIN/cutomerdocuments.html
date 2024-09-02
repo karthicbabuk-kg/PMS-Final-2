@@ -383,7 +383,6 @@
                           <th>Document Type</th>
                           <th>Document Name</th>
                           <th>File Name</th>
-                          <th style="width: 125px;">Action</th>
                       </tr>
                   </thead>
                   <tbody id="customerTableBody">
@@ -1254,19 +1253,14 @@ document.addEventListener('DOMContentLoaded', populateAccountOwners);
 
 
                 row.innerHTML = `
-                    <td>${i+=i+1}</td>
+                    <td>${i+=1}</td>
                     <td>${doc.Account_Owner}</td>
                     <td>${doc.Company_Id}</td>
                     <td>${doc.Service_Type}</td>
                     <td>${doc.Document_Type}</td>
                     <td>${doc.Document_Name}</td>
                     <td>${doc.Document_URL}</td>
-                       <td>
-                     
-                      <a href="javascript:void(0);" class="action-icon delete-icon">
-                          <i class="mdi mdi-delete"></i>
-                      </a>
-                  </td>
+                   
                 `;
 
                 customerTableBody.appendChild(row);

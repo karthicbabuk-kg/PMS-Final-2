@@ -2992,6 +2992,17 @@
               documentTypeSelect.appendChild(option);
           });
       });
+    fetch('/employee/getDeptCat')
+      .then(response => response.json())
+      .then(data => {
+          const documentTypeSelect = document.getElementById('AEM_DD_DC');
+          data.forEach(type => {
+              const option = document.createElement('option');
+              option.value = type.Column_Description;
+              option.textContent = type.Column_Description;
+              documentTypeSelect.appendChild(option);
+          });
+      });
     fetch('/employee/getDeptName')
       .then(response => response.json())
       .then(data => {

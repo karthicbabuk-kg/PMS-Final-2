@@ -88,7 +88,7 @@ exports.addTask = async (req, res) => {
             ) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)`,
             [
-                DSNG, ATK_DD_EXE, CMP_ID,ACOW, ATK_DD_CMP, DCT, DCN,SERTY, DURL, TSN, TSD, REM, ATK_DD_STA,
+                DSNG, ATK_DD_EXE, CMP_ID,ACOW, ATK_DD_CMP,SERTY, DCT, DCN,DURL,TSN, TSD, REM, ATK_DD_STA,
                   // Added Service Type
                 Ip_Mac, Financial_Year, Primary_Role, Primary_Email, Primary_ID, Primary_Name,
                 secondaryRole, secondaryEmail, secondaryID, secondaryName, Created_DT, Lastupdated_DT, Month_Year
